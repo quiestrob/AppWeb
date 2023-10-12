@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container-header {
+    height: 100vh;
+}
+
+.container-nav nav {
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Poppins';
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.title a {
+    color: #7E57C2;
+    text-decoration: none;
+}
+
+.nav li {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 15px;
+}
+
+.nav li a {
+    text-decoration: none;
+    color: #000;
+    transition: color .2s ease-in-out;
+}
+
+.nav li a:hover {
+    color: #7E57C2;
+}
+
+.container-nav nav .button-inscription {
+    font-weight: 600;
+    color: #7E57C2;
+    border: 2px solid #7E57C2;
+    border-radius: 20px;
+    padding: 5px 15px;
+    letter-spacing: .05em;
+    cursor: pointer;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+    user-select: none;
+}
+
+.container-nav nav .button-inscription:hover {
+    background: #7E57C2;
+    color: #fff;
+}
+
+.container-inscription {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    height: 40px;
+    background: #D1C4E9;
+    border-radius: 30px;
+    animation: message 10s ease-in-out;
+}
+
+.message span {
+    font-family: 'Poppins';
+    color: #fff;
+    animation: messageText 10s ease-in-out;
+}
+
+@keyframes message {
+    0% {
+        opacity: 0;
+        width: 0;
+    }
+    15% {
+        opacity: 1;
+        width: 250px;
+    }
+    85% {
+        opacity: 1;
+        width: 250px;
+    }
+    100% {
+        opacity: 0;
+        width: 0;
+    }
+}
+
+@keyframes messageText {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.form-inscription {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-inscription .welcome {
+    background: #D1C4E9;
+    font-family: 'Poppins';
+    width: 300px;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 20px;
+    user-select: none;
+    margin: 0 10px 0 0;
+}
+
+.form-inscription .welcome h2 {
+    color: #7E57C2;
+    font-weight: 500;
+    font-size: 25px;
+    width: 268px;
+}
+
+.form-inscription .welcome h3 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 15px;
+    width: 268px;
+}
+
+.form {
+    margin: 0 0 0 10px;
+}
+
+.form .input-data {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 15px 0;
+}
+
+.form .input-data:nth-child(1) {
+    margin: 0;
+}
+
+.form span {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    color: #868686;
+    user-select: none;
+}
+
+.form span:nth-child(3) {
+    cursor: pointer;
+}
+
+.form input {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    height: 70px;
+    border: 2px solid #d9d9d9;
+    border-radius: 20px;
+    padding: 0 25px;
+    margin: 5px 0 0 0;
+    outline: none;
+}
+
+.form input::placeholder {
+    color: red;
+}
+
+.form input:focus {
+    border: 2px solid #7E57C2;
+}
+
+.form .input-data:nth-child(4) {
+    display: flex;
+    align-items: center;
+}
+
+.form input[type=submit] {
+    width: 170px;
+    height: 60px;
+    background: #7E57C2;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: .03em;
+    cursor: pointer;
+    transition: letter-spacing .2s linear;
+}
+
+.form input[type=submit]:hover {
+    letter-spacing: .1em;
+}
