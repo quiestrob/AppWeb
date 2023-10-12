@@ -21,7 +21,7 @@
                 <div class="container-nav">
                     <nav>
                         <div class="title"><a href="../Pages/index.html">SOMOS ARCOIRIS</a></div>            
-                        <div class="button-inscription">PLATAFORMA</div>
+                        <div class="button-inscription"><a href="login.php">PLATAFORMA</a></div>
                     </nav>
                 </div>
                 <div class="container-inscription">

@@ -49,19 +49,41 @@ html {
 }
 
 .container-nav nav .button-inscription {
+    position: relative;
     font-weight: 600;
     color: #7E57C2;
     border: 2px solid #7E57C2;
-    border-radius: 20px;
     padding: 5px 15px;
     letter-spacing: .05em;
     cursor: pointer;
-    transition: background .3s ease-in-out, color .3s ease-in-out;
     user-select: none;
 }
 
-.container-nav nav .button-inscription:hover {
+.container-nav nav .button-inscription::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     background: #7E57C2;
+    width: 0;
+    height: 100%;
+    transition: .7s width ease-in-out;
+    z-index: -1;
+}
+
+.container-nav nav .button-inscription:hover::before {
+    width: 100%;
+}
+
+.container-nav nav .button-inscription a {
+    font-weight: 500;
+    color: #7E57C2;
+    text-decoration: none;
+    letter-spacing: .1em;
+    transition: .7s color ease-in-out;
+}
+
+.container-nav nav .button-inscription:hover a {
     color: #fff;
 }
 

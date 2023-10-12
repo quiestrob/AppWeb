@@ -61,19 +61,41 @@ body::-webkit-scrollbar-thumb {
 }
 
 .container-nav nav .button-inscription {
+    position: relative;
     font-weight: 600;
     color: #7E57C2;
     border: 2px solid #7E57C2;
-    border-radius: 20px;
     padding: 5px 15px;
     letter-spacing: .05em;
     cursor: pointer;
-    transition: background .3s ease-in-out, color .3s ease-in-out;
     user-select: none;
 }
 
-.container-nav nav .button-inscription:hover {
+.container-nav nav .button-inscription::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 100%;
     background: #7E57C2;
+    top: 0;
+    left: 0;
+    transition: .7s width ease-in-out;
+    z-index: -1;
+}
+
+.container-nav nav .button-inscription:hover::before {
+    width: 100%;
+}
+
+.container-nav nav .button-inscription a {
+    font-weight: 500;
+    position: relative;
+    color: #7E57C2;
+    text-decoration: none;  
+    letter-spacing: .1em;
+    transition: .7s color linear;
+}
+.container-nav nav .button-inscription:hover a {
     color: #fff;
 }
 
@@ -120,25 +142,47 @@ body::-webkit-scrollbar-thumb {
 }
 
 .information__section1 .button-inscription {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 135px;
     height: 40px;
-    color: #fff;
-    background: #7E57C2;
-    border-radius: 20px;
+    color: #7E57C2;
+    border: 2px solid #7E57C2;
     padding: 5px 15px;
     cursor: pointer;
     user-select: none;
     margin: 15px 0;
-    
+}
+
+.information__section1 .button-inscription::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #7E57C2;
+    transition: .7s width ease-in-out; 
+    z-index: 1;
+}
+
+.information__section1 .button-inscription:hover::before {
+    width: 100%;
 }
 
 .information__section1 .button-inscription span {
     font-family: 'Poppins';
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
+    letter-spacing: .05em;
+    transition: .7s color ease-in-out;
+    z-index: 1000;
+}
+
+.information__section1 .button-inscription:hover span {
+    color: #fff;
 }
 
 .information__section1 .button-inscription i {
@@ -148,7 +192,14 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     font-size: 20px;
     margin: 0 0 0 3px;
+    transition: .7s color ease-in-out;
+    z-index: 1000;
 }
+
+.information__section1 .button-inscription:hover i {
+    color: #fff;
+}
+
 
 .information__section1 .button-inscription:hover i {
     animation: animationButton .5s ease-in-out;

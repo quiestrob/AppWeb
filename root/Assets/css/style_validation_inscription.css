@@ -49,19 +49,41 @@ html {
 }
 
 .container-nav nav .button-inscription {
-    font-weight: 600;
+    position: relative;
+    font-weight: 500;
     color: #7E57C2;
     border: 2px solid #7E57C2;
-    border-radius: 20px;
     padding: 5px 15px;
     letter-spacing: .05em;
     cursor: pointer;
-    transition: background .3s ease-in-out, color .3s ease-in-out;
     user-select: none;
 }
 
-.container-nav nav .button-inscription:hover {
+.container-nav nav .button-inscription::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     background: #7E57C2;
+    width: 0;
+    height: 100%;
+    transition: .7s width ease-in-out;
+    z-index: -1;
+}
+
+.container-nav nav .button-inscription:hover::before {
+    width: 100%;
+}
+
+.container-nav nav .button-inscription a {
+    font-weight: 500;
+    color: #7E57C2;
+    text-decoration: none;
+    letter-spacing: .1em;
+    transition: .7s color ease-in-out;
+}
+
+.container-nav nav .button-inscription:hover a {
     color: #fff;
 }
 
@@ -134,12 +156,13 @@ html {
 .validation .welcome {
     background: #D1C4E9;
     font-family: 'Poppins';
-    width: 300px;
-    height: 650px;
+    width: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     padding: 0 10px;
     border-radius: 20px;
     user-select: none;
@@ -164,6 +187,7 @@ html {
 
 .validation .buttons .button-validation,
 .validation .buttons .button-platform {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,21 +195,37 @@ html {
     font-weight: 500;
     color: #7E57C2;
     border: 2px solid #7E57C2;
-    border-radius: 20px;
     padding: 5px 15px;
     cursor: pointer;
     transition: background .3s ease-in-out, color .3s ease-in-out;
     user-select: none;
     margin: 20px 0;
-    transition: .5s color ease-in-out, .5s letter-spacing ease-in-out;
+    letter-spacing: .05em;
+    transition: .7s color ease-in-out;
     width: 200px;
-    height: 35px;
+    height: 40px;
+    z-index: 1000;
 }
 
 .validation .buttons .button-validation:hover,
 .validation .buttons .button-platform:hover {
-    background: #7E57C2;
     color: #fff;
-    letter-spacing: .05em;
-    font-weight: 400;
+}
+
+.validation .buttons .button-validation::before,
+.validation .buttons .button-platform::before {
+    content: '';
+    position: absolute;
+    background: #7E57C2;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: .7s width ease-in-out;
+    z-index: -1;
+}
+
+.validation .buttons .button-validation:hover::before,
+.validation .buttons .button-platform:hover::before {
+    width: 100%;
 }
