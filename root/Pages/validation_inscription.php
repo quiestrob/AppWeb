@@ -39,9 +39,10 @@
                                     Estado Inscripción
                                 </div>
                                 <div class="button-platform">
-                                    Plataforma
+                                    <a href="platform.php">Plataforma</a>
                                 </div>
                             </div>
+                            <span><a href="">Cerrar sesión</a></span>
                         </div>
                     </div>
                 </div>

@@ -197,7 +197,6 @@ html {
     border: 2px solid #7E57C2;
     padding: 5px 15px;
     cursor: pointer;
-    transition: background .3s ease-in-out, color .3s ease-in-out;
     user-select: none;
     margin: 20px 0;
     letter-spacing: .05em;
@@ -207,8 +206,17 @@ html {
     z-index: 1000;
 }
 
-.validation .buttons .button-validation:hover,
-.validation .buttons .button-platform:hover {
+.validation .buttons .button-platform a {
+    color: #7E57C2;
+    text-decoration: none;
+    transition: .7s color ease-in-out;
+}
+
+.validation .buttons .button-validation:hover {
+    color: #fff;
+}
+
+.validation .buttons .button-platform:hover a {
     color: #fff;
 }
 
@@ -228,4 +236,20 @@ html {
 .validation .buttons .button-validation:hover::before,
 .validation .buttons .button-platform:hover::before {
     width: 100%;
+}
+
+.validation span {
+    margin: 20px 0 0 0;
+}
+
+.validation span a {
+    font-size: 18px;
+    color: #7E57C2;
+    text-decoration: none;
+    transition: letter-spacing .2s linear;
+}
+
+.validation span:hover a {
+    letter-spacing: .07em;
+    text-decoration: underline;
 }
