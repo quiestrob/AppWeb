@@ -157,7 +157,7 @@ html {
     background: #D1C4E9;
     font-family: 'Poppins';
     width: 300px;
-    height: 450px;
+    height: 500px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -189,7 +189,7 @@ html {
 .form .input-data {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 300px;
     margin: 15px 0;
 }
 
@@ -205,8 +205,43 @@ html {
     user-select: none;
 }
 
-.form span:nth-child(3) {
+.form .input-data:nth-child(3),
+.form .input-data:nth-child(4),
+.form .input-data:nth-child(6) {
+    display: flex;
+    align-items: center;
+}
+
+.form .input-data:nth-child(4) span {
     cursor: pointer;
+}
+
+.form .input-data:nth-child(4) span a {
+    font-size: 16px;
+    color: #868686;
+    text-decoration: none;
+}
+
+.form .input-data:nth-child(4) span:hover a {
+    text-decoration: underline;
+}
+
+.form .separator {
+    background: #d9d9d9;
+    width: 300px;
+    height: 2px;
+
+}
+
+.form .input-data:nth-child(6) span a {
+    color: #7E57C2;
+    text-decoration: none;
+    transition: letter-spacing .2s linear;
+}
+
+.form .input-data:nth-child(6) span:hover a {
+    letter-spacing: .07em;
+    text-decoration: underline;
 }
 
 .form input {
@@ -227,11 +262,6 @@ html {
 
 .form input:focus {
     border: 2px solid #7E57C2;
-}
-
-.form .input-data:nth-child(4) {
-    display: flex;
-    align-items: center;
 }
 
 .form input[type=submit] {

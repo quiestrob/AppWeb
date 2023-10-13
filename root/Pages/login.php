@@ -49,11 +49,17 @@
                                 <div class="input-data">
                                     <span>Contraseña</span>
                                     <input type="password" id="pass" name="pass" required>
-                                </div>
-                                <span>¿Olvidaste tu contraseña?</span>
+                                </div>     
                                 <div class="input-data">
                                     <input type="submit" id="action" name="action" value="Ingresar">
                                 </div>
+                                <div class="input-data">
+                                    <span><a href="">¿Olvidaste tu contraseña?</a></span>
+                                </div>  
+                                <div class="separator"></div>
+                                <div class="input-data">
+                                    <span><a href="inscription.php">Inscribete</a></span>
+                                </div> 
                             </form>
                         </div>
                     </div>

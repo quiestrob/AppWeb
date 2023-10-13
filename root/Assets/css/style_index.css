@@ -203,6 +203,7 @@ body::-webkit-scrollbar-thumb {
 
 .information__section1 .button-inscription:hover i {
     animation: animationButton .5s ease-in-out;
+    animation-delay: .4s;
 }
 
 @keyframes animationButton {
