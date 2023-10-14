@@ -7,7 +7,6 @@
         public static $has_many = array (
             array('Actividades'),
             array('Informes')
-            array('Informacion')
         );
     }
 

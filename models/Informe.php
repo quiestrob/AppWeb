@@ -8,7 +8,6 @@
             array('Acudido'),
             array('Acudiente')
         );
-    }
-    
+    }  
 
 ?>
