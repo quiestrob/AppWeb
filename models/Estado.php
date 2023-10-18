@@ -4,7 +4,7 @@
 
     class Estado extends ActiveRecord\Model {
         public static $has_one = array (
-            array('inscripcion', 'class_name' => 'Inscripcion')
+            array('Inscripcion')
         );
     }
 

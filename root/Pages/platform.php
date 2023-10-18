@@ -23,67 +23,67 @@
 </head>
 <body>
     <div class="container">
-        <div class="container-profile">
+        <div class="container-navegation">  
             <div class="title">
                 <h1>CogniSphere</h1>
-            </div>
-            <div class="search">
-                <div class="search-bar">
-                    <i class="fi fi-rr-search"></i>
-                    <input type="text" placeholder="Buscar...">
+            </div>  
+            <div class="navegation">
+                <div class="nav nav-information">
+                    <i class="fi fi-rr-comment-info"></i>
+                    <span>Informacion</span>
+                </div>
+                <div class="nav nav-activities">
+                    <i class="fi fi-rr-note"></i>
+                    <span>Actividades</span>
+                </div>
+                <div class="nav nav-reports">
+                    <i class="fi fi-rr-document"></i>
+                    <span>Informes</span>
+                </div>
+                <div class="nav nav-teachers">
+                    <i class="fi fi-rr-chalkboard-user"></i>
+                    <span>Profesores</span>
+                </div>
+                <div class="separator"></div>
+                <div class="nav nav-donations">
+                    <i class="fi fi-rr-donate"></i>
+                    <span>Donaciones</span>
+                </div>
+                <div class="nav nav-inscriptions">
+                    <i class="fi fi-rr-user-add"></i>
+                    <span>Inscripciones</span>
                 </div>
             </div>
-            <div class="profile-options">
-                <div class="options">
-                    <i class="fi fi-rr-messages"></i>
-                </div>
-                <div class="profile">
-                    <div class="image-profile">
-                            
-                    </div>
-                    <div class="content-profile">
-                        <span><?= $a->nombre ?></span>
-                        <span><?= $type ?></span>
-                    </div>
-                </div>
+            <div class="logout">
+                <i class="fi fi-rr-sign-out-alt"></i>
+                <span>SALIR</span>
             </div>
         </div>
-        <div class="container-content">
-            <div class="container-navegation">    
-                <div class="navegation">
-                    <div class="nav nav-information">
-                        <i class="fi fi-rr-comment-info"></i>
-                        <span>Informacion</span>
+        <div class="background-content">
+            <div class="container-content">
+                <div class="container-profile">   
+                    <div class="search">
+                        <div class="search-bar">
+                            <i class="fi fi-rr-search"></i>
+                            <input type="text" placeholder="Buscar...">
+                        </div>
                     </div>
-                    <div class="nav nav-activities">
-                        <i class="fi fi-rr-note"></i>
-                        <span>Actividades</span>
-                    </div>
-                    <div class="nav nav-reports">
-                        <i class="fi fi-rr-document"></i>
-                        <span>Informes</span>
-                    </div>
-                    <div class="nav nav-teachers">
-                        <i class="fi fi-rr-chalkboard-user"></i>
-                        <span>Profesores</span>
-                    </div>
-                    <div class="separator"></div>
-                    <div class="nav nav-donations">
-                        <i class="fi fi-rr-donate"></i>
-                        <span>Donaciones</span>
-                    </div>
-                    <div class="nav nav-inscriptions">
-                        <i class="fi fi-rr-user-add"></i>
-                        <span>Inscripciones</span>
+                    <div class="profile-options">
+                        <div class="options">
+                            <i class="fi fi-rr-messages"></i>
+                        </div>
+                        <div class="profile">
+                            <div class="image-profile">
+                                    
+                            </div>
+                            <div class="content-profile">
+                                <span><?= $a->nombre ?></span>
+                                <span><?= $type ?></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="logout">
-                    <i class="fi fi-rr-sign-out-alt"></i>
-                    <span>SALIR</span>
-                </div>
-            </div>
-            <div class="container-sections">
-                <div class="background-sections">
+                <div class="container-sections">                  
                     <section id="section-information">
                         <div class="section-title">
                             <h2>Información</h2>
@@ -96,7 +96,7 @@
                     </section>
                     <section id="section-reports">
                         <div class="section-title">
-                            <h2>Informes</h2>
+                             <h2>Informes</h2>
                         </div>
                     </section>
                     <section id="section-proffesors">
@@ -113,7 +113,7 @@
                         <div class="section-title">
                             <h2>Inscripciones</h2>
                         </div>
-                    </section>
+                     </section> 
                 </div>
             </div>
         </div>

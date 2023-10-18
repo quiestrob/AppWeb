@@ -53,3 +53,10 @@ const navInscription = document.querySelector('.navegation .nav-inscriptions');
 if (type.textContent === 'Acudiente' || type.textContent === 'Profesor' || type.textContent === 'Estudiante') {
     navInscription.style.display = 'none';
 }
+
+//Funcion boton titulo
+const buttonTitle = document.querySelector('.container-navegation .title');
+
+buttonTitle.addEventListener('click', () => {
+    window.location.href = '../../root/pages/platform.php';
+});
