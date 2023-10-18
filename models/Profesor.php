@@ -8,6 +8,7 @@
             array('Actividades'),
             array('Informes')
         );
+        public static $table_name = 'Profesores';
     }
 
 ?>

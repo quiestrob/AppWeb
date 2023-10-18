@@ -2,6 +2,8 @@
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
 
     class InscriptionController {
         public static function executeAction() {
@@ -54,17 +56,59 @@
 
                 try {
                     $a->save();
-                    $msj = "Inscripcion exitosa.";
-    
-                    header("Location: ../root/pages/inscription.php?msj=$msj");
-                    exit;
+
+                    $estado = "Pendiente";
+                    $descripcion = "Su inscripción aún esta siendo revisada. Por favor, verifique en los próximos días.";
+
+                    $e = new Estado();
+                    $e->estado = $estado;
+                    $e->descripcion = $descripcion;
+
+                    try {
+                        $e->save();
+
+                        $fecha = date("Y/m/d");
+                        $id_status = $e->id;
+                        
+                        $i = new Inscripcion();
+                        $i->fecha_inscripcion = $fecha;
+                        $i->id_estado = $id_status;
+                        $i->identificacion_acudido = $id;
+
+                        try {
+                            $i->save();
+                            $msj = "Inscripcion exitosa.";
+
+                            header("Location: ../root/pages/inscription.php?msj=$msj");
+                            exit;
+                        } catch (Exception $error) {
+                            if (strstr($error->getMessage(), "Duplicate")) {
+                                $msj = "La inscripcion ya existe.";
+                            } else {
+                                $msj = "Ocurrio un error.";
+                            }
+                            
+                            header("Location: ../root/pages/inscription.php?msj=$msj");
+                            exit;
+                        }
+
+                    } catch (Exception $error) {
+                        if (strstr($error->getMessage(), "Duplicate")) {
+                            $msj = "El estado ya existe.";
+                        } else {
+                            $msj = "Ocurrio un error.";
+                        }
+                        
+                        header("Location: ../root/pages/inscription.php?msj=$msj");
+                        exit;
+                    }
                 } catch (Exception $error) {
                     if (strstr($error->getMessage(), "Duplicate")) {
                         $msj = "El usuario $id ya existe.";
                     } else {
                         $msj = "Ocurrio un error.";
                     }
-        
+                    
                     header("Location: ../root/pages/inscription.php?msj=$msj");
                     exit;
                 }
@@ -81,6 +125,7 @@
             }
 
         }
+
     }
 
     InscriptionController::executeAction();

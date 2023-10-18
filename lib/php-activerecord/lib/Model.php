@@ -849,8 +849,13 @@ class Model
 		{
 			$column = $table->get_column_by_inflected_name($pk);
 
-			if ($column->auto_increment || $use_sequence)
-				$this->attributes[$pk] = static::connection()->insert_id($table->sequence);
+			if ($column !== null) {
+				if ($column->auto_increment || $use_sequence) {
+					$this->attributes[$pk] = static::connection()->insert_id($table->sequence);
+				}
+			} else {
+				
+			}
 		}
 
 		$this->__new_record = false;

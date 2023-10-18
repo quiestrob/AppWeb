@@ -23,7 +23,7 @@ function next(input, data, point, line, text) {
                 input.style.border = '2px solid #d9d9d9';
                 input.removeAttribute('placeholder');
             });
-        } else {
+        } else if (input.value !== "") {
             data.style.opacity = 0;
             data.style.zIndex = -1;
             paint(point, line, text);
@@ -57,3 +57,17 @@ const span = document.querySelector('.message span');
 if (span.textContent == "") {
     message.style.animation = 'none';
 }
+
+const imageAttended = document.getElementById('image-attended');
+const imageAttendant = document.getElementById('image-attendant');
+
+const inputAte = document.getElementById('input-attended');
+const inputAta = document.getElementById('input-attendant');
+
+inputAte.addEventListener('change', (e) => {    
+    imageAttended.src = URL.createObjectURL(e.target.files[0]);
+});
+
+inputAta.addEventListener('change', (e) => {    
+    imageAttendant.src = URL.createObjectURL(e.target.files[0]);
+});

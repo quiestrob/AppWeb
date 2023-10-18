@@ -101,44 +101,25 @@ html {
     text-align: center;
     opacity: 0;
     height: 40px;
+    padding: 5px 15px;
     background: #D1C4E9;
     border-radius: 30px;
-    animation: message 10s ease-in-out;
+    animation: message 5s ease-in-out;
 }
 
 .message span {
     font-family: 'Poppins';
     color: #fff;
-    animation: messageText 10s ease-in-out;
 }
 
 @keyframes message {
-    0% {
-        opacity: 0;
-        width: 0;
-    }
-    15% {
-        opacity: 1;
-        width: 250px;
-    }
-    85% {
-        opacity: 1;
-        width: 250px;
-    }
-    100% {
-        opacity: 0;
-        width: 0;
-    }
-}
-
-@keyframes messageText {
     0% {
         opacity: 0;
     }
     30% {
         opacity: 1;
     }
-    65% {
+    85% {
         opacity: 1;
     }
     100% {
@@ -400,8 +381,18 @@ html {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    cursor: pointer;
     object-fit: cover;
+    cursor: pointer;
+}
+
+.form .data .container-profile .profile input {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
 }
 
 .form .data .container-profile .profile span {

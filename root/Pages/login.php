@@ -1,8 +1,6 @@
 <?php
 
-    require_once "session_validation.php";
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    session_start();
 
     $msj = @$_REQUEST['msj'];
     $a = @$_SESSION['usuario.login'];

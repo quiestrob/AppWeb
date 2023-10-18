@@ -124,11 +124,13 @@
                                             <span>Imagen de perfil</span>
                                             <div class="container-profile">
                                                 <div class="profile">
-                                                    <img src="../Assets/media/niña.jpg" alt="">
+                                                    <img src="../Assets/media/profile.jpg" alt="" id="image-attended">
+                                                    <input type="file" accept="image/png, image/jpg" id="input-attended">
                                                     <span id="profileAttended">Nombre</span>
                                                 </div>
                                                 <div class="profile">
-                                                    <img src="../Assets/media/nikol.jpg" alt="">
+                                                    <img src="../Assets/media/profile.jpg" alt="" id="image-attendant">
+                                                    <input type="file" accept="image/png, image/jpg" id="input-attendant">
                                                     <span id="profileAttendant">Nombre</span>
                                                 </div>
                                             </div>
