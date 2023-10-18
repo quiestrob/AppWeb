@@ -38,6 +38,7 @@
 }
 
 .container-status .status span {
+    text-align: center;
     font-family: 'Poppins';
     font-size: 25px;
     color: #fff;
@@ -49,6 +50,10 @@
 
 .container-status .status span:nth-child(2) {
     font-size: 18px;
+}
+
+.container-status .status .hidden {
+    display: none;
 }
 
 .container-header {

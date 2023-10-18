@@ -4,9 +4,7 @@
 
     class Informe extends ActiveRecord\Model {
         public static $belongs_to = array (
-            array('Profesor'),
-            array('Acudido'),
-            array('Acudiente')
+            array('Profesor', 'Acudido', 'Acudiente')
         );
     }  
 

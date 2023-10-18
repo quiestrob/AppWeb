@@ -41,6 +41,7 @@
                         <div class="welcome">
                             <h2>Empieza tu aventura con nosotros.</h2>
                             <h3>Únete a nosotros y juntos hagamos una diferencia en las vidas que tocamos.</h3>
+                            <span><?= $msj ?></span>
                         </div>
                         <div class="form">
                             <form action="../../controllers/LoginController.php" method="POST">

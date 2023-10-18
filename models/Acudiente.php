@@ -5,8 +5,7 @@
     class Acudiente extends ActiveRecord\Model {
         public static $primary_key = 'Identificacion';
         public static $has_many = array (
-            array('Acudidos'),
-            array('Informes')
+            array('Acudidos', 'Informes')
         );
     }
 

@@ -10,7 +10,8 @@
     $a = @unserialize($a);
 
     $status = @$_SESSION['usuario.status'];
-
+    $status = @unserialize($status);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,20 @@
             <i class="fi fi-br-cross"></i>
             <div class="status">
                 <span>Hola <?= $a->nombre ?>,</span>
-                <span><?= $status->Descripcion ?></span>
+                <span>
+                    <?php 
+                        foreach($status as $s) {
+                            echo $s->descripcion;
+                        } 
+                    ?>
+                </span>
+                <span class="hidden">
+                    <?php 
+                        foreach($status as $s) {
+                            echo $s->estado;
+                        } 
+                    ?>
+                </span>
             </div>
         </div>
         <div class="container-header">
@@ -51,7 +65,7 @@
                                     Estado Inscripción
                                 </div>
                                 <div class="button-platform">
-                                    <a href="platform.php">Plataforma</a>
+                                    <a href="#">Plataforma</a>
                                 </div>
                             </div>
                             <form action="session_destroy.php" method="POST">

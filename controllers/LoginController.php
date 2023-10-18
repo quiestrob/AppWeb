@@ -28,19 +28,22 @@
 
             try {
                 $a = Acudido::find($identification);
-
+                
                 if ($a->contraseña == $pass) {
                     $a = serialize($a);
                     $_SESSION['usuario.login'] = $a;
-                    $_SESSION['usuario.type'] = 'Estudiante';
+                    $_SESSION['usuario.type'] = 'Estudiante';   
 
                     $statusInscription = Estado::find('all', array(
-                        'joins' => array('Acudidos', 'Inscripciones'), 
-                        'select' => 'Estados.Estado AS Estado, Estados.Descripcion AS Descripcion',
-                        'conditions' => "Acudidos.Identificacion = '$identification'"
+                        'joins' => array(
+                            'INNER JOIN inscripciones ON estados.ID = inscripciones.estado_id',
+                            'INNER JOIN acudidos ON inscripciones.identificacion_acudido = acudidos.identificacion'
+                        ),
+                        'select' => 'Estados.Estado, Estados.Descripcion',
+                        'conditions' => "acudidos.identificacion = '$identification'"
                     ));
                     
-                    
+                    $statusInscription = serialize($statusInscription);
                     $_SESSION['usuario.status'] = $statusInscription; 
 
                     header("Location: ../root/pages/validation_inscription.php");
@@ -102,7 +105,7 @@
                         exit;
                     }
                 } else {
-                    $msj = "Ocurrio un error.";
+                    $msj = $error->getMessage();
                 }
 
                 header("Location: ../root/pages/login.php?msj=$msj");
