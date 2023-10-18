@@ -71,3 +71,13 @@ inputAte.addEventListener('change', (e) => {
 inputAta.addEventListener('change', (e) => {    
     imageAttendant.src = URL.createObjectURL(e.target.files[0]);
 });
+
+const buttonPlatform = document.querySelector('.container-nav nav .button-inscription');
+
+buttonPlatform.onmousemove = function(e) {
+    const x = e.pageX  - buttonPlatform.offsetLeft;
+    const y = e.pageY  - buttonPlatform.offsetTop;
+
+    buttonPlatform.style.setProperty('--x', x + 'px');
+    buttonPlatform.style.setProperty('--y', y + 'px');
+}

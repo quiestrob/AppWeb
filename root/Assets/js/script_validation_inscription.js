@@ -23,3 +23,30 @@ buttonPlatform.addEventListener('click', () => {
         window.location.href = '../../root/pages/platform.php';
     }
 });
+
+const buttonInscription = document.querySelector('.button-validation');
+const buttonPlatform2 = document.querySelector('.container-nav nav .button-inscription');
+
+buttonPlatform.onmousemove = function(e) {
+    const x = e.pageX  - buttonPlatform.offsetLeft;
+    const y = e.pageY  - buttonPlatform.offsetTop;
+
+    buttonPlatform.style.setProperty('--x', x + 'px');
+    buttonPlatform.style.setProperty('--y', y + 'px');
+}
+
+buttonInscription.onmousemove = function(e) {
+    const x = e.pageX  - buttonInscription.offsetLeft;
+    const y = e.pageY  - buttonInscription.offsetTop;
+
+    buttonInscription.style.setProperty('--x', x + 'px');
+    buttonInscription.style.setProperty('--y', y + 'px');
+}
+
+buttonPlatform2.onmousemove = function(e) {
+    const x = e.pageX  - buttonPlatform2.offsetLeft;
+    const y = e.pageY  - buttonPlatform2.offsetTop;
+
+    buttonPlatform2.style.setProperty('--x', x + 'px');
+    buttonPlatform2.style.setProperty('--y', y + 'px');
+}

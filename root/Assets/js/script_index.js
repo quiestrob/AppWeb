@@ -43,3 +43,22 @@ for (let i = 0; i < button.length; i++) {
         }
     });
 }
+
+const buttonPlatform = document.querySelector('.container-nav nav .button-inscription');
+const buttonInscription = document.querySelector('.information__section1 .button-inscription');
+
+buttonPlatform.onmousemove = function(e) {
+    const x = e.pageX  - buttonPlatform.offsetLeft;
+    const y = e.pageY  - buttonPlatform.offsetTop;
+
+    buttonPlatform.style.setProperty('--x', x + 'px');
+    buttonPlatform.style.setProperty('--y', y + 'px');
+}
+
+buttonInscription.onmousemove = function(e) {
+    const x = e.pageX  - buttonInscription.offsetLeft;
+    const y = e.pageY  - buttonInscription.offsetTop;
+
+    buttonInscription.style.setProperty('--x', x + 'px');
+    buttonInscription.style.setProperty('--y', y + 'px');
+}

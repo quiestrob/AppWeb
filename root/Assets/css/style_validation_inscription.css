@@ -102,26 +102,31 @@
     font-weight: 500;
     color: #7E57C2;
     border: 2px solid #7E57C2;
+    border-radius: 15px;
     padding: 5px 15px;
     letter-spacing: .05em;
     cursor: pointer;
     user-select: none;
+    overflow: hidden;
 }
 
 .container-nav nav .button-inscription::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
+    top: var(--y);
+    left: var(--x);
     background: #7E57C2;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
     width: 0;
-    height: 100%;
-    transition: .7s width ease-in-out;
+    height: 0;
+    transition: .5s width, .5s height;
     z-index: -1;
 }
 
 .container-nav nav .button-inscription:hover::before {
-    width: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .container-nav nav .button-inscription a {
@@ -129,7 +134,7 @@
     color: #7E57C2;
     text-decoration: none;
     letter-spacing: .1em;
-    transition: .7s color ease-in-out;
+    transition: .5s color ease-in-out;
 }
 
 .container-nav nav .button-inscription:hover a {
@@ -244,21 +249,23 @@
     font-weight: 500;
     color: #7E57C2;
     border: 2px solid #7E57C2;
+    border-radius: 15px;
     padding: 5px 15px;
     cursor: pointer;
     user-select: none;
     margin: 20px 0;
     letter-spacing: .05em;
-    transition: .7s color ease-in-out;
+    transition: .5s color ease-in-out;
     width: 200px;
     height: 40px;
     z-index: 1000;
+    overflow: hidden;
 }
 
 .validation .buttons .button-platform a {
     color: #7E57C2;
     text-decoration: none;
-    transition: .7s color ease-in-out;
+    transition: .5s color ease-in-out;
 }
 
 .validation .buttons .button-validation:hover {
@@ -274,17 +281,20 @@
     content: '';
     position: absolute;
     background: #7E57C2;
-    top: 0;
-    left: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    top: var(--y);
+    left: var(--x);
     width: 0;
-    height: 100%;
-    transition: .7s width ease-in-out;
+    height: 0;
+    transition: .5s width, .5s height;
     z-index: -1;
 }
 
 .validation .buttons .button-validation:hover::before,
 .validation .buttons .button-platform:hover::before {
-    width: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .validation input {

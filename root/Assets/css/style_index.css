@@ -65,26 +65,31 @@ body::-webkit-scrollbar-thumb {
     font-weight: 600;
     color: #7E57C2;
     border: 2px solid #7E57C2;
+    border-radius: 15px;
     padding: 5px 15px;
     letter-spacing: .05em;
     cursor: pointer;
     user-select: none;
+    overflow: hidden;
 }
 
 .container-nav nav .button-inscription::before {
     content: '';
     position: absolute;
-    width: 0%;
-    height: 100%;
+    width: 0;
+    height: 0;
     background: #7E57C2;
-    top: 0;
-    left: 0;
-    transition: .7s width ease-in-out;
+    border-radius: 50%;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    transition: .5s width, .5s height;
     z-index: -1;
 }
 
 .container-nav nav .button-inscription:hover::before {
-    width: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .container-nav nav .button-inscription a {
@@ -93,7 +98,7 @@ body::-webkit-scrollbar-thumb {
     color: #7E57C2;
     text-decoration: none;  
     letter-spacing: .1em;
-    transition: .7s color linear;
+    transition: .5s color linear;
 }
 .container-nav nav .button-inscription:hover a {
     color: #fff;
@@ -138,6 +143,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .information__section1 a {
+    display: inline-block;
     text-decoration: none;
 }
 
@@ -150,26 +156,31 @@ body::-webkit-scrollbar-thumb {
     height: 40px;
     color: #7E57C2;
     border: 2px solid #7E57C2;
+    border-radius: 15px;
     padding: 5px 15px;
     cursor: pointer;
     user-select: none;
     margin: 15px 0;
+    overflow: hidden;
 }
 
 .information__section1 .button-inscription::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
+    top: var(--y);
+    left: var(--x);
     width: 0;
-    height: 100%;
+    height: 0;
     background: #7E57C2;
-    transition: .7s width ease-in-out; 
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s width, .5s height; 
     z-index: 1;
 }
 
 .information__section1 .button-inscription:hover::before {
-    width: 100%;
+    width: 100px;
+    height: 100px;
 }
 
 .information__section1 .button-inscription span {
@@ -177,7 +188,7 @@ body::-webkit-scrollbar-thumb {
     font-weight: 500;
     font-size: 15px;
     letter-spacing: .05em;
-    transition: .7s color ease-in-out;
+    transition: .5s color ease-in-out;
     z-index: 1000;
 }
 
@@ -203,7 +214,7 @@ body::-webkit-scrollbar-thumb {
 
 .information__section1 .button-inscription:hover i {
     animation: animationButton .5s ease-in-out;
-    animation-delay: .4s;
+    animation-delay: .3s;
 }
 
 @keyframes animationButton {

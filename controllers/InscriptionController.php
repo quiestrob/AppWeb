@@ -72,7 +72,7 @@
                         
                         $i = new Inscripcion();
                         $i->fecha_inscripcion = $fecha;
-                        $i->id_estado = $id_status;
+                        $i->estado_id = $id_status;
                         $i->identificacion_acudido = $id;
 
                         try {
@@ -132,13 +132,17 @@
 
                 if ($inscripcion == null){
                     $_SESSION['inscripcion.all'] = null;
-                    $msj = "No hay inscripciones disponibles para listar!"
-                }else{
+                    $msj = "No hay inscripciones disponibles para listar!";
+                } else {
                   $total = count($inscripcion);
                   $inscripcion = serialize($inscripcion);
                   $_SESSION['incripcion.all'] = $inscripcion;  
                 }
                 $msj ="TOTAL DE INSCRIPCIONES: $total";
+                header("Location: .../controllers/listar.php?msj=$msj");
+            }catch(Exception $error){
+                 $_SESSION['inscripcion.all'] = null;
+                 header("LocationL: .../controllers/listar.php?msj=Total Inscripciones: 0");
 
             }
         }
