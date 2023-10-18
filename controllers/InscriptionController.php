@@ -126,6 +126,23 @@
 
         }
 
+        public static function listar(){
+            try{
+                $inscripcion = Inscripcion::all();
+
+                if ($inscripcion == null){
+                    $_SESSION['inscripcion.all'] = null;
+                    $msj = "No hay inscripciones disponibles para listar!"
+                }else{
+                  $total = count($inscripcion);
+                  $inscripcion = serialize($inscripcion);
+                  $_SESSION['incripcion.all'] = $inscripcion;  
+                }
+                $msj ="TOTAL DE INSCRIPCIONES: $total";
+
+            }
+        }
+
     }
 
     InscriptionController::executeAction();
