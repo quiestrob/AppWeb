@@ -1,6 +1,6 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/lib/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/lib/config.php';
 
     class Acudiente extends ActiveRecord\Model {
         public static $primary_key = 'Identificacion';

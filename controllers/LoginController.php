@@ -2,11 +2,11 @@
 
     session_start();
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Profesor.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudido.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Profesor.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Estado.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Inscripcion.php';
 
     class LoginController {
         public static function executeAction() {
@@ -45,7 +45,7 @@
                     
                     $statusInscription = serialize($statusInscription);
                     $_SESSION['usuario.status'] = $statusInscription; 
-
+                    LoginController::listarEstudiantes();
                     header("Location: ../root/pages/validation_inscription.php");
                     exit;
                 } else {
@@ -110,6 +110,23 @@
 
                 header("Location: ../root/pages/login.php?msj=$msj");
                 exit;
+            }
+        }
+
+        public static function listarEstudiantes(){
+            try {
+                $estudiantes = Acudido::all();
+
+                if ($estudiantes == null){
+                    $_SESSION['estudiante.all'] = null;
+                } else {
+                  $estudiantes = serialize($estudiantes);
+                  $_SESSION['estudiante.all'] = $estudiantes;
+                }
+                header("Location: ../root/pages/validation_inscription.php");
+            } catch(Exception $error){
+                $msj='Ocurrio un error';
+                header("Location: ../root/pages/validation_inscription.php?msj=$msj");
             }
         }
     }

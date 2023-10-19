@@ -6,7 +6,7 @@
     $a = @unserialize($a);
 
     if (!$a) {
-        $urlBase = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']."/proaulav2/root/pages/login.php";
+        $urlBase = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']."/proaula_webespecial/root/pages/login.php";
         header("Location: $urlBase");
         exit;
     }

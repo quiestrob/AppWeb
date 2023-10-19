@@ -49,10 +49,17 @@ nav.forEach(function(navClick) {
 //Ocultar opciones segun tipo de usuario
 const type = document.querySelector('.container-profile span:nth-child(2)');
 const navInscription = document.querySelector('.navegation .nav-inscriptions');
+const navStudents = document.querySelector('.navegation .nav-students');
+
 
 if (type.textContent === 'Acudiente' || type.textContent === 'Profesor' || type.textContent === 'Estudiante') {
     navInscription.style.display = 'none';
 }
+/* DESBLOQUEAR CUANDO TERMINE EL COD
+if (type.textContent === 'Acudiente' || type.textContent === 'Estudiante'){
+    navStudents.style.display = 'none';
+}
+*/
 
 //Funcion boton titulo
 const buttonTitle = document.querySelector('.container-navegation .title');

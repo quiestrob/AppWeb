@@ -1,8 +1,8 @@
 <?php
     
     require_once "session_validation.php";
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudido.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudiente.php';
 
     $inscripcion = @$_SESSION['incripcion.all'];
     $inscripcion = @unserialize($inscripcion);
@@ -11,7 +11,9 @@
     $a = @unserialize($a);
 
     $type = @$_SESSION['usuario.type'];
-
+    $estudiantes = @$_SESSION['estudiante.all'];
+    $estudiantes = @unserialize($estudiantes);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +36,11 @@
                 <div class="nav nav-information">
                     <i class="fi fi-rr-comment-info"></i>
                     <span>Informacion</span>
+
+                </div>
+                <div class="nav nav-students">
+                    <i class="fi fi-rr-note"></i>
+                    <span>Estudiantes</span>
                 </div>
                 <div class="nav nav-activities">
                     <i class="fi fi-rr-note"></i>
@@ -91,6 +98,31 @@
                         <div class="section-title">
                             <h2>Información</h2>
                         </div>
+                    </section>
+                    <section id="section-students">
+                        <div class="section-title">
+                            <h2>Estudiantes</h2>
+                        </div>
+                        <table>
+                            <tr>
+                                <th>Identificación</th>
+                                <th>Nombre</th>
+                                <th>Género</th>
+                                <th>Discapacidad</th>
+                            </tr> 
+                            <?php 
+                                foreach ($estudiantes as $est){
+                            ?>
+                            <tr>
+                                <td><?=$est->identificacion?></td>
+                                <td><?=$est->nombre?></td>
+                                <td><?=$est->genero?></td>
+                                <td><?=$est->discapacidad?></td>
+                            </tr>
+                            <?php
+                                }
+                            ?>
+                        </table>
                     </section>
                     <section id="section-activities">
                         <div class="section-title">
