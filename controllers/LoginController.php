@@ -2,11 +2,11 @@
 
     session_start();
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudiente.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Profesor.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Estado.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Inscripcion.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Profesor.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
 
     class LoginController {
         public static function executeAction() {
@@ -89,9 +89,33 @@
                                 }  
                             } catch (Exception $error) {
                                 if (strstr($error->getMessage(), $identification)) {
-                                    $msj = "El usuario no existe.";
+                                    try {
+                                        $f = Fundador::find($identification);
+                
+                                        if ($f->contraseña == $pass) {
+                                            $f = serialize($f);
+                                            $_SESSION['usuario.login'] = $f;
+                                            $_SESSION['usuario.type'] = 'Administrador';
+                        
+                                            header("Location: ../root/pages/validation_inscription.php");
+                                            exit;
+                                        } else {
+                                            $_SESSION['usuario.login'] = null;
+                                            header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
+                                            exit;
+                                        }  
+                                    } catch (Exception $error) {
+                                        if (strstr($error->getMessage(), $identification)) {
+                                            $msj = "El usuario no existe.";
+                                        } else {
+                                            $msj = "Ocurrio un error.";
+                                        }
+        
+                                        header("Location: ../root/pages/login.php?msj=$msj");
+                                        exit;
+                                    }
                                 } else {
-                                    $msj = "Ocurrio un error.";
+                                    $msj = $error->getMessage();
                                 }
 
                                 header("Location: ../root/pages/login.php?msj=$msj");
