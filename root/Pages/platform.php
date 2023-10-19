@@ -4,6 +4,9 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
 
+    $inscripcion = @$_SESSION['incripcion.all'];
+    $inscripcion = @unserialize($inscripcion);
+
     $a = @$_SESSION['usuario.login'];
     $a = @unserialize($a);
 
@@ -111,7 +114,28 @@
                     </section>
                     <section id="section-inscriptions">
                         <div class="section-title">
+                        <div class="section-title">
                             <h2>Inscripciones</h2>
+                            <fieldset style="width: 70%;">
+                            <table>
+                                <tr>
+                                    <th>ID Inscripcion</th>
+                                    <th>Fecha de inscripcion</th>
+                                    <th>Estado de la inscripcion</th>
+                                </tr>    
+                                <?php
+                                foreach ($inscripcion as $i => $u) {
+                                    ?>
+                                    <tr>
+                                        <td><?=($i + 1) ?></td>
+                                        <td><?= $u->id ?></td>
+                                        <td><?= $u ->Fecha ?></td>
+                                    </tr>
+                                     <?php   
+                                }
+                                ?>
+                                </table>
+                            </fieldset>
                         </div>
                      </section> 
                 </div>

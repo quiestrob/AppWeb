@@ -145,7 +145,7 @@
                  header("LocationL: .../controllers/listar.php?msj=Total Inscripciones: 0");
 
             }
-        }
+        
 
     }
 
