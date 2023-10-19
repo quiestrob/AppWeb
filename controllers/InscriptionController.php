@@ -1,9 +1,9 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Acudiente.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Estado.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaula_webespecial/models/Inscripcion.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
 
     class InscriptionController {
         public static function executeAction() {
@@ -18,7 +18,6 @@
                     exit;
             }
         }
-
 
         public static function save() {
             $idAttendant = @$_REQUEST['idAttendant'];

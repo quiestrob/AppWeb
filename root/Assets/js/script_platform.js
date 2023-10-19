@@ -55,11 +55,10 @@ const navStudents = document.querySelector('.navegation .nav-students');
 if (type.textContent === 'Acudiente' || type.textContent === 'Profesor' || type.textContent === 'Estudiante') {
     navInscription.style.display = 'none';
 }
-/* DESBLOQUEAR CUANDO TERMINE EL COD
+
 if (type.textContent === 'Acudiente' || type.textContent === 'Estudiante'){
     navStudents.style.display = 'none';
 }
-*/
 
 //Funcion boton titulo
 const buttonTitle = document.querySelector('.container-navegation .title');
