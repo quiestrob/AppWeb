@@ -5,7 +5,7 @@
     class Acudido_Grupo extends ActiveRecord\Model {
         public static $table_name = 'Acudidos_Grupos';
         public static $has_many = array (
-            array('Grupos', 'Acudidos')
+            array('Grupo', 'Acudido')
         );
     }
 

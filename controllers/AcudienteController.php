@@ -1,6 +1,6 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'../models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
 
     class AcudienteController {
         public static function executeAction() {

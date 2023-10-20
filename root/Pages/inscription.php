@@ -34,7 +34,7 @@
                             <h3>Únete a nosotros y juntos hagamos una diferencia en las vidas que tocamos.</h3>
                         </div>
                         <div class="form">
-                            <form action="../../controllers/InscriptionController.php" method="POST">
+                            <form action="../../controllers/InscriptionsController.php" method="POST">
                                 <div class="timeline">
                                     <div class="point">
                                         <div class="circle"></div>
@@ -65,11 +65,11 @@
                                             <span>Género</span>
                                             <div class="container-radio">
                                                 <div class="container-radio__radio">
-                                                    <input type="radio" name="radio-gender" value="male" checked required>
+                                                    <input type="radio" name="radio-gender" value="Masculino" checked required>
                                                     <span>Masculino</span>
                                                 </div>
                                                 <div class="container-radio__radio">
-                                                    <input type="radio" name="radio-gender" value="female" required>
+                                                    <input type="radio" name="radio-gender" value="Femenino" required>
                                                     <span>Femenino</span>
                                                 </div>
                                             </div> 

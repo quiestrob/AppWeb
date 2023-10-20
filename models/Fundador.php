@@ -6,7 +6,7 @@
         public static $primary_key = "Identificacion";
         public static $table_name = "Fundadores";
         public static $has_many = array (
-            array('Inscripciones')
+            array('Inscripcion')
         );
     }
 

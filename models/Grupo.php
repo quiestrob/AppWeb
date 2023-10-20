@@ -4,7 +4,7 @@
 
     class Grupo extends ActiveRecord\Model {
         public static $has_many = array (
-            array('Actividades')
+            array('Actividad')
         );
     }
 

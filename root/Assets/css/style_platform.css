@@ -79,7 +79,7 @@
     width: 80%;
     height: 1px;  
     background: #fff;
-    margin: 30px 0 0 0;
+    margin: 30px 0;
 }
 
 .container-navegation .logout {
@@ -139,8 +139,9 @@
     align-items: center;
     width: 500px;
     height: 35px;
-    background: #D1C4E9;
+    background: #fff;
     border-radius: 20px;
+    border: 2px solid #d9d9d9;
     margin: 0 30px;
 }
 
@@ -149,8 +150,8 @@
     align-items: center;
     justify-content: center;
     font-size: 18px;
+    color: #000;
     margin: 0 10px;
-    color: #fff;
 }
 
 .container-profile .search .search-bar input {
@@ -159,14 +160,14 @@
     height: 25px;
     border: none;
     background: transparent;
-    color: #fff;
+    color: #000;
 }
 
 .container-profile .search .search-bar input::placeholder {
-    color: #fff;
+    color: #000;
 }
 
-.container-profile .search .search-bar input:focus {
+.container-profile .search .search-bar input:focus  {
     outline: none;
 }
 
@@ -251,10 +252,136 @@
     height: 100%;
 }
 
-.container-content .container-sections section h2 {
+.container-content .container-sections section .section-title h2 {
     display: inline-block;
     font-family: 'Poppins';
     font-weight: 500;
-    color: #000; 
-    margin: 30px 30px;
+    color: #7E57C2; 
+    margin: 0 50px;
+    user-select: none;
+}
+
+.container-content .container-sections .section-content {
+    margin: 20px 50px;
+}
+
+.container-content .container-sections .section-content .card {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-content .container-sections .section-content .card .imgBx {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: #f00;
+    border-radius: 15px;
+    background-size: cover;
+}
+
+.container-content .container-sections .section-content .card .imgBx::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -10px 10px 0 #fff;
+}
+
+.container-content .container-sections .section-content .card .imgBx::after {
+    content: '';
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -10px 10px 0 #fff;
+}
+
+.container-content .container-sections .section-content .card .content {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: #7E57C2;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    padding: 0 35px;
+    user-select: none;
+}
+
+.container-content .container-sections .section-content .card .content ul {
+    color: #fff;
+    margin: 30px 0;
+    font-family: 'Poppins';
+    font-size: 18px;
+    list-style: none;
+}
+
+.container-content .container-sections .section-content .card .content ul li i {
+    margin: 0 5px 0 0;
+}
+
+.container-content .container-sections .section-content .card .content .identification {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    height: 80px;
+    width: 50%;
+    background: #7E57C2;
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-top-right-radius: 25px;
+}
+
+.container-content .container-sections .section-content .card .content .identification a {
+    position: relative;
+    background: #fff;
+    color: #7E57C2;
+    padding: 10px 20px;
+    margin: 15px;
+    display: block;
+    border-radius: 7px;
+    font-family: 'Quicksand';
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.container-content .container-sections .section-content .card .content .identification::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -10px -10px 0 #fff;
+}
+
+.container-content .container-sections .section-content .card .content .identification::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -25px;
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: -10px 10px 0 #7E57C2;
+}
+
+.container-content .container-sections .section-content table {
+    font-family: 'Poppins';
+}
+
+.container-content .container-sections .section-content table th,
+.container-content .container-sections .section-content table td {
+    padding: 0 30px;
 }

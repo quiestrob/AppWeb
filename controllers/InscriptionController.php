@@ -11,7 +11,7 @@
             
             switch ($action) {
                 case 'Inscribir':
-                    InscriptionController::save();
+                    InscriptionsController::save();
                     break;
                 default:
                     header("Location: ../root/pages/error.php");
@@ -124,27 +124,6 @@
                 exit;
             }
 
-        }
-
-        public static function listar(){
-            try{
-                $inscripcion = Inscripcion::all();
-
-                if ($inscripcion == null){
-                    $_SESSION['inscripcion.all'] = null;
-                    $msj = "No hay inscripciones disponibles para listar!";
-                } else {
-                  $total = count($inscripcion);
-                  $inscripcion = serialize($inscripcion);
-                  $_SESSION['incripcion.all'] = $inscripcion;  
-                }
-                $msj ="TOTAL DE INSCRIPCIONES: $total";
-                header("Location: .../controllers/listar.php?msj=$msj");
-            }catch(Exception $error){
-                 $_SESSION['inscripcion.all'] = null;
-                 header("LocationL: .../controllers/listar.php?msj=Total Inscripciones: 0");
-
-            }
         }
 
     }

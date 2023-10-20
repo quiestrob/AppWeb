@@ -7,7 +7,7 @@
             array('Inscripcion')
         );
         public static $has_many = array (
-            array('Informes')
+            array('Informe')
         );
         public static $primary_key = 'Identificacion';
     }

@@ -4,15 +4,16 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
 
-    $inscripcion = @$_SESSION['incripcion.all'];
-    $inscripcion = @unserialize($inscripcion);
-
     $a = @$_SESSION['usuario.login'];
     $a = @unserialize($a);
 
     $type = @$_SESSION['usuario.type'];
+    
     $estudiantes = @$_SESSION['estudiante.all'];
     $estudiantes = @unserialize($estudiantes);
+
+    $inscripcion = @$_SESSION['inscripcion.all'];
+    $inscripcion = @unserialize($inscripcion);
     
 ?>
 <!DOCTYPE html>
@@ -36,10 +37,9 @@
                 <div class="nav nav-information">
                     <i class="fi fi-rr-comment-info"></i>
                     <span>Informacion</span>
-
                 </div>
                 <div class="nav nav-students">
-                    <i class="fi fi-rr-note"></i>
+                    <i class="fi fi-rr-graduation-cap"></i>
                     <span>Estudiantes</span>
                 </div>
                 <div class="nav nav-activities">
@@ -71,7 +71,7 @@
         </div>
         <div class="background-content">
             <div class="container-content">
-                <div class="container-profile">   
+                <div class="container-profile">  
                     <div class="search">
                         <div class="search-bar">
                             <i class="fi fi-rr-search"></i>
@@ -103,26 +103,47 @@
                         <div class="section-title">
                             <h2>Estudiantes</h2>
                         </div>
-                        <table>
-                            <tr>
-                                <th>Identificación</th>
-                                <th>Nombre</th>
-                                <th>Género</th>
-                                <th>Discapacidad</th>
-                            </tr> 
+                        <div class="section-content">
                             <?php 
-                                foreach ($estudiantes as $est){
+                                foreach ($estudiantes as $est) {
                             ?>
-                            <tr>
-                                <td><?=$est->identificacion?></td>
-                                <td><?=$est->nombre?></td>
-                                <td><?=$est->genero?></td>
-                                <td><?=$est->discapacidad?></td>
-                            </tr>
+                            <div class="card">
+                                <div class="imgBx"></div>
+                                <div class="content">
+                                    <span class="identification">
+                                        <a href="#"><?= $est->identificacion ?></a>
+                                    </span>
+                                    <ul>
+                                        <li><i class="fi fi-rr-user"></i> <?= $est->nombre ?></li>
+                                        <li><i class="fi fi-rr-venus-mars"></i> <?= $est->genero ?></li>
+                                        <li><i class="fi fi-rr-wheelchair"></i> <?= $est->discapacidad ?></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <?php
                                 }
                             ?>
-                        </table>
+                        <!-- <table>
+                                <tr>
+                                    <th>Identificación</th>
+                                    <th>Nombre</th>
+                                    <th>Género</th>
+                                    <th>Discapacidad</th>
+                                </tr> 
+                                <?php 
+                                    foreach ($estudiantes as $est) {
+                                ?>
+                                <tr>
+                                    <td><?=$est->identificacion?></td>
+                                    <td><?=$est->nombre?></td>
+                                    <td><?=$est->genero?></td>
+                                    <td><?=$est->discapacidad?></td>
+                                </tr>
+                                <?php
+                                    }
+                                ?>
+                            </table> -->
+                        </div>
                     </section>
                     <section id="section-activities">
                         <div class="section-title">
@@ -146,28 +167,31 @@
                     </section>
                     <section id="section-inscriptions">
                         <div class="section-title">
-                        <div class="section-title">
                             <h2>Inscripciones</h2>
-                            <fieldset style="width: 70%;">
+                        </div>
+                        <div class="section-content">
                             <table>
                                 <tr>
-                                    <th>ID Inscripcion</th>
-                                    <th>Fecha de inscripcion</th>
-                                    <th>Estado de la inscripcion</th>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Fecha</th>
+                                    <th>Discapacidad</th>
+                                    <th>Estado</th>
                                 </tr>    
                                 <?php
-                                foreach ($inscripcion as $i => $u) {
-                                    ?>
-                                    <tr>
-                                        <td><?=($i + 1) ?></td>
-                                        <td><?= $u->id ?></td>
-                                        <td><?= $u ->Fecha ?></td>
-                                    </tr>
-                                     <?php   
-                                }
+                                    foreach ($inscripcion as $i) {
                                 ?>
-                                </table>
-                            </fieldset>
+                                    <tr>
+                                        <td><?= $i->id ?></td>
+                                        <td><?= $i->nombre ?></td>
+                                        <td><?= $i->fecha_inscripcion ?></td>
+                                        <td><?= $i->discapacidad ?></td>
+                                        <td><?= $i->estado ?></td>
+                                    </tr>
+                                <?php   
+                                    }
+                                ?>
+                            </table>
                         </div>
                      </section> 
                 </div>

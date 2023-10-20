@@ -66,3 +66,14 @@ const buttonTitle = document.querySelector('.container-navegation .title');
 buttonTitle.addEventListener('click', () => {
     window.location.href = '../../root/pages/platform.php';
 });
+
+const input = document.querySelector('.container-profile .search input');
+const search = document.querySelector('.container-profile .search .search-bar');
+
+input.addEventListener('focus', () => {
+    search.style.border = '2px solid #7E57C2';
+});
+
+input.addEventListener('blur', () => {
+    search.style.border = '2px solid #d9d9d9';
+});

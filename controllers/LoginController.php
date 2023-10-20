@@ -9,6 +9,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudidoController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
 
     class LoginController {
         public static function executeAction() {
@@ -83,6 +84,8 @@
                                     $p = serialize($p);
                                     $_SESSION['usuario.login'] = $p;
                                     $_SESSION['usuario.type'] = 'Profesor';
+
+                                    AcudidoController::listarEstudiantes();
                 
                                     header("Location: ../root/pages/validation_inscription.php");
                                     exit;
@@ -100,6 +103,9 @@
                                             $f = serialize($f);
                                             $_SESSION['usuario.login'] = $f;
                                             $_SESSION['usuario.type'] = 'Administrador';
+
+                                            AcudidoController::listarEstudiantes();
+                                            InscripcionController::listar();
                         
                                             header("Location: ../root/pages/validation_inscription.php");
                                             exit;
