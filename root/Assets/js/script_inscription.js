@@ -64,13 +64,19 @@ const imageAttendant = document.getElementById('image-attendant');
 const inputAte = document.getElementById('input-attended');
 const inputAta = document.getElementById('input-attendant');
 
+const srcAte = document.getElementById('src-attended');
+const srcAta = document.getElementById('src-attendant');
+
 inputAte.addEventListener('change', (e) => {    
-    imageAttended.src = URL.createObjectURL(e.target.files[0]);
+    srcAte.value = URL.createObjectURL(e.target.files[0]);
+    imageAttended.src = URL.createObjectURL(e.target.files[0]);  
 });
 
-inputAta.addEventListener('change', (e) => {    
+inputAta.addEventListener('change', (e) => {  
+    srcAta.value = URL.createObjectURL(e.target.files[0]);  
     imageAttendant.src = URL.createObjectURL(e.target.files[0]);
 });
+
 
 const buttonPlatform = document.querySelector('.container-nav nav .button-inscription');
 

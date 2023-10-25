@@ -9,6 +9,8 @@
     $a = @$_SESSION['usuario.login'];
     $a = @unserialize($a);
 
+    $type = @$_SESSION['usuario.type'];
+
     $status = @$_SESSION['usuario.status'];
     $status = @unserialize($status);
     
@@ -44,6 +46,9 @@
                             echo $s->estado;
                         } 
                     ?>
+                </span>
+                <span class="hidden-type">
+                    <?= $type ?>
                 </span>
             </div>
         </div>

@@ -49,8 +49,6 @@
                     $statusInscription = serialize($statusInscription);
                     $_SESSION['usuario.status'] = $statusInscription; 
 
-                    AcudidoController::listarEstudiantes();
-
                     header("Location: ../root/pages/validation_inscription.php");
                     exit;
                 } else {
@@ -67,6 +65,19 @@
                             $ac = serialize($ac);
                             $_SESSION['usuario.login'] = $ac;
                             $_SESSION['usuario.type'] = 'Acudiente';
+
+                            $statusInscription = Estado::find('all', array(
+                                'joins' => array(
+                                    'INNER JOIN Inscripciones ON Estados.ID = Inscripciones.estado_id',
+                                    'INNER JOIN Acudidos ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion',
+                                    'INNER JOIN Acudientes ON Acudientes.Identificacion = Acudidos.Identificacion_acudiente'
+                                ),
+                                'select' => 'Estados.Estado, Estados.Descripcion',
+                                'conditions' => "Acudientes.identificacion = '$identification'"
+                            ));
+                            
+                            $statusInscription = serialize($statusInscription);
+                            $_SESSION['usuario.status'] = $statusInscription; 
         
                             header("Location: ../root/pages/validation_inscription.php");
                             exit;

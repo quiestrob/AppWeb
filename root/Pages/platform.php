@@ -3,6 +3,7 @@
     require_once "session_validation.php";
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
 
     $a = @$_SESSION['usuario.login'];
     $a = @unserialize($a);
@@ -72,19 +73,16 @@
         <div class="background-content">
             <div class="container-content">
                 <div class="container-profile">  
-                    <div class="search">
-                        <div class="search-bar">
-                            <i class="fi fi-rr-search"></i>
-                            <input type="text" placeholder="Buscar...">
-                        </div>
-                    </div>
                     <div class="profile-options">
                         <div class="options">
                             <i class="fi fi-rr-messages"></i>
                         </div>
                         <div class="profile">
                             <div class="image-profile">
-                                    
+                                <?php 
+                                    $foto = base64_encode($a->foto);
+                                ?>
+                                <img src="data:image/jpeg;base64,<?= $foto ?>">    
                             </div>
                             <div class="content-profile">
                                 <span><?= $a->nombre ?></span>
@@ -108,7 +106,12 @@
                                 foreach ($estudiantes as $est) {
                             ?>
                             <div class="card">
-                                <div class="imgBx"></div>
+                                <div class="imgBx">
+                                    <?php 
+                                        $fotoEst = base64_encode($est->foto);
+                                    ?>
+                                    <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                </div>
                                 <div class="content">
                                     <span class="identification">
                                         <a href="#"><?= $est->identificacion ?></a>
@@ -123,26 +126,6 @@
                             <?php
                                 }
                             ?>
-                        <!-- <table>
-                                <tr>
-                                    <th>Identificación</th>
-                                    <th>Nombre</th>
-                                    <th>Género</th>
-                                    <th>Discapacidad</th>
-                                </tr> 
-                                <?php 
-                                    foreach ($estudiantes as $est) {
-                                ?>
-                                <tr>
-                                    <td><?=$est->identificacion?></td>
-                                    <td><?=$est->nombre?></td>
-                                    <td><?=$est->genero?></td>
-                                    <td><?=$est->discapacidad?></td>
-                                </tr>
-                                <?php
-                                    }
-                                ?>
-                            </table> -->
                         </div>
                     </section>
                     <section id="section-activities">
@@ -177,16 +160,57 @@
                                     <th>Fecha</th>
                                     <th>Discapacidad</th>
                                     <th>Estado</th>
+                                    <th>Accion</th>
                                 </tr>    
                                 <?php
                                     foreach ($inscripcion as $i) {
+
+                                        $fecha = date('d/m/Y', strtotime($i->fecha_inscripcion));
                                 ?>
                                     <tr>
                                         <td><?= $i->id ?></td>
                                         <td><?= $i->nombre ?></td>
-                                        <td><?= $i->fecha_inscripcion ?></td>
+                                        <td><?= $fecha ?></td>
                                         <td><?= $i->discapacidad ?></td>
                                         <td><?= $i->estado ?></td>
+                                        <td>
+                                            <?php
+                                                if ($i->estado == "Aceptada") {
+                                            ?>
+                                                <div class="button-accept active">
+                                                    <i class="fi fi-br-check"></i>
+                                                    <span>Aceptar</span>
+                                                </div>
+                                                <div class="button-decline">
+                                                    <i class="fi fi-br-x"></i>
+                                                    <span>Rechazar</span>
+                                                </div>
+                                            <?php
+                                                } else if ($i->estado == "Rechazada") {
+                                            ?>
+                                                <div class="button-accept">
+                                                    <i class="fi fi-br-check"></i>
+                                                    <span>Aceptar</span>
+                                                </div>
+                                                <div class="button-decline active">
+                                                    <i class="fi fi-br-x"></i>
+                                                    <span>Rechazar</span>
+                                                </div>
+                                            <?php
+                                                } else {
+                                            ?>
+                                                <div class="button-accept" onclick="accept(<?= $i->estado_id ?>, <?= $a->identificacion ?>, <?= $i->id ?>)">
+                                                    <i class="fi fi-br-check"></i>
+                                                    <span>Aceptar</span>
+                                                </div>
+                                                <div class="button-decline" onclick="decline(<?= $i->estado_id ?>, <?= $a->identificacion ?>, <?= $i->id ?>)">
+                                                    <i class="fi fi-br-x"></i>
+                                                    <span>Rechazar</span>
+                                                </div>
+                                            <?php
+                                                }
+                                            ?>
+                                        </td>
                                     </tr>
                                 <?php   
                                     }

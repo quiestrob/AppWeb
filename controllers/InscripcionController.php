@@ -20,12 +20,12 @@
                     $_SESSION['inscripcion.all'] = $inscripcion;
                 } 
 
-                header("Location: ../root/pages/validation_inscription.php");
             } catch(Exception $error){
                 $_SESSION['inscripcion.all'] = null;
-                header("Location: ../root/pages/validation_inscription.php?msj=Ocurrio un error.");
             }
         }
     }
+
+    InscripcionController::listar();
 
 ?>

@@ -34,7 +34,7 @@
                             <h3>Únete a nosotros y juntos hagamos una diferencia en las vidas que tocamos.</h3>
                         </div>
                         <div class="form">
-                            <form action="../../controllers/InscriptionsController.php" method="POST">
+                            <form action="../../controllers/InscriptionController.php" method="POST">
                                 <div class="timeline">
                                     <div class="point">
                                         <div class="circle"></div>
@@ -124,19 +124,21 @@
                                             <span>Imagen de perfil</span>
                                             <div class="container-profile">
                                                 <div class="profile">
-                                                    <img src="../Assets/media/profile.jpg" alt="" id="image-attended">
-                                                    <input type="file" accept="image/png, image/jpg" id="input-attended">
+                                                    <input type="file" name="img-attended" id="input-attended" accept="image/png, image/jpg">
+                                                    <input type="hidden" id="src-attended" name="src-attended" value="../Assets/media/profile.jpg">
+                                                    <img src="../Assets/media/profile.jpg" alt="image-attended" id="image-attended">
                                                     <span id="profileAttended">Nombre</span>
                                                 </div>
                                                 <div class="profile">
-                                                    <img src="../Assets/media/profile.jpg" alt="" id="image-attendant">
-                                                    <input type="file" accept="image/png, image/jpg" id="input-attendant">
+                                                    <input type="file" name="img-attendant" id="input-attendant" accept="image/png, image/jpg">
+                                                    <input type="hidden" id="src-attendant" name="src-attendant" value="../Assets/media/profile.jpg">
+                                                    <img src="../Assets/media/profile.jpg" alt="image-attendant" id="image-attendant">
                                                     <span id="profileAttendant">Nombre</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="input-data">
-                                            <input type="submit" id="action" name="action" value="Inscribir">
+                                            <input type="submit" name="action" value="Inscribir">
                                         </div>
                                     </div>
                                 </div>

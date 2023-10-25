@@ -60,20 +60,74 @@ if (type.textContent === 'Acudiente' || type.textContent === 'Estudiante'){
     navStudents.style.display = 'none';
 }
 
-//Funcion boton titulo
-const buttonTitle = document.querySelector('.container-navegation .title');
+//Manejar respuesta botones inscripcion
+function accept(id, identificacion, idI) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "../../controllers/EstadoController.php?estado=" + id + "&action=Aceptar" + "&fundador=" + identificacion + "&id=" + idI, true);
 
-buttonTitle.addEventListener('click', () => {
-    window.location.href = '../../root/pages/platform.php';
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const content = document.querySelector('#section-inscriptions .section-content');
+            content.innerHTML = xhr.responseText;
+
+            updateInscription()
+        }
+    };
+
+    xhr.send();
+}
+
+function decline(id, identificacion, idI) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "../../controllers/EstadoController.php?estado=" + id + "&action=Rechazar" + "&fundador=" + identificacion + "&id=" + idI, true);
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const content = document.querySelector('#section-inscriptions .section-content');
+            content.innerHTML = xhr.responseText;
+
+            updateInscription()
+        }
+    };
+
+    xhr.send();
+}
+
+function updateInscription() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "../../controllers/InscripcionController.php", true);
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            
+        }
+    };
+
+    xhr.send();
+}
+
+//Animacion boton aceptar y eliminar
+const buttonAccept = document.querySelectorAll('#section-inscriptions .button-accept');
+const buttonDecline = document.querySelectorAll('#section-inscriptions .button-decline');
+
+buttonAccept.forEach((e) => {
+    e.addEventListener('click', () => {
+        e.classList.add('active');
+    });
 });
 
-const input = document.querySelector('.container-profile .search input');
-const search = document.querySelector('.container-profile .search .search-bar');
+for (let i = 0; i < buttonDecline.length; i++) {
+    if (buttonDecline[i].classList.contains('active')) {
+        buttonAccept[i].style.display = 'none';
+    }
 
-input.addEventListener('focus', () => {
-    search.style.border = '2px solid #7E57C2';
-});
-
-input.addEventListener('blur', () => {
-    search.style.border = '2px solid #d9d9d9';
-});
+    buttonDecline[i].addEventListener('click', () => { 
+        if (buttonDecline[i].classList.contains('active')) {
+            
+        } else {
+            buttonDecline[i].classList.add('active');
+            buttonAccept[i].style.display = 'none';
+            console.log(i);
+        } 
+    });
+}

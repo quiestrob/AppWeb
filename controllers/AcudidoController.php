@@ -4,8 +4,16 @@
 
     class AcudidoController {  
         public static function listarEstudiantes(){
+            $estado = 'Aceptada';
             try {
-                $estudiantes = Acudido::all();
+                $estudiantes = Acudido::find('all', array(
+                    'joins' => array(
+                        'INNER JOIN Inscripciones ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion',
+                        'INNER JOIN Estados ON Estados.ID = Inscripciones.estado_id'
+                    ),
+                    'select' => 'Inscripciones.*, Acudidos.*, Estados.Estado AS Estado',
+                    'conditions' => "Estados.Estado = '$estado'"
+                ));
 
                 if ($estudiantes == null){
                     $_SESSION['estudiante.all'] = null;
@@ -14,10 +22,8 @@
                   $_SESSION['estudiante.all'] = $estudiantes;
                 }
 
-                header("Location: ../root/pages/validation_inscription.php");
             } catch(Exception $error){
                 $_SESSION['estudiante.all'] = null;
-                header("Location: ../root/pages/validation_inscription.php?msj=Ocurrio un error.");
             }
         }
     }

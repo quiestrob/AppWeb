@@ -7,11 +7,11 @@
 
     class InscriptionController {
         public static function executeAction() {
-            $action = $_REQUEST['action'];
-            
+            $action = @$_REQUEST['action'];
+
             switch ($action) {
                 case 'Inscribir':
-                    InscriptionsController::save();
+                    InscriptionController::save();
                     break;
                 default:
                     header("Location: ../root/pages/error.php");
@@ -25,8 +25,8 @@
             $phone = @$_REQUEST['phone'];
             $mail = @$_REQUEST['mail'];
             $address = @$_REQUEST['address'];
-            $passAttendant = @$_REQUEST['passAttendant'];
-
+            $passAttendant = @$_REQUEST['passAttendant'];    
+            
             $at = new Acudiente();
             $at->identificacion = $idAttendant;
             $at->nombre = $nameAttendant;
@@ -77,7 +77,7 @@
 
                         try {
                             $i->save();
-                            $msj = "Inscripcion exitosa.";
+                            $msj = "Inscripcion exitosa.";                          
 
                             header("Location: ../root/pages/inscription.php?msj=$msj");
                             exit;
