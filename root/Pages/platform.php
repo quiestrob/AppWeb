@@ -15,6 +15,9 @@
 
     $inscripcion = @$_SESSION['inscripcion.all'];
     $inscripcion = @unserialize($inscripcion);
+
+    $profesor = @$_SESSION['profesor.all'];
+    $profesor = @unserialize($profesor);
     
 ?>
 <!DOCTYPE html>
@@ -26,6 +29,7 @@
     <link rel="stylesheet" href="../assets/css/style_platform.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -141,6 +145,32 @@
                     <section id="section-proffesors">
                         <div class="section-title">
                             <h2>Profesores</h2>
+                        </div>
+                        <div class="section-content">
+                            <?php 
+                                foreach ($profesor as $pro) {
+                            ?>
+                            <div class="card">
+                                <div class="imgBx">
+                                    <?php 
+                                        $fotoEst = base64_encode($pro->foto);
+                                    ?>
+                                    <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                </div>
+                                <div class="content">
+                                    <span class="identification">
+                                        <a href="#"><?= $pro->identificacion ?></a>
+                                    </span>
+                                    <ul>
+                                        <li><i class="fi fi-rr-user"></i> <?= $pro->nombre ?></li>
+                                        <li><i class="fi fi-rr-phone-call"></i> <?= $pro->telefono ?></li>
+                                        <li><i class="fi fi-rr-envelope"></i> <?= $pro->correo ?></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <?php
+                                }
+                            ?>
                         </div>
                     </section>
                     <section id="section-donations">

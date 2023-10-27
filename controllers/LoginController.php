@@ -10,6 +10,7 @@
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudidoController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/ProfesorController.php';
 
     class LoginController {
         public static function executeAction() {
@@ -117,6 +118,7 @@
 
                                             AcudidoController::listarEstudiantes();
                                             InscripcionController::listar();
+                                            ProfesorController::listarProfesores();
                         
                                             header("Location: ../root/pages/validation_inscription.php");
                                             exit;

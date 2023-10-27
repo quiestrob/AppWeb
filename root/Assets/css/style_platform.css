@@ -395,7 +395,7 @@
     box-shadow: -10px 10px 0 #7E57C2;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table {
+.container-content .container-sections .section-content table {
     font-family: 'Poppins';
     user-select: none;
     border-collapse: separate;
@@ -403,33 +403,33 @@
     margin: 0 0 0 15px;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table th {
+.container-content .container-sections .section-content table th {
     font-weight: 500;
     color: #7E57C2;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table th,
-.container-content .container-sections #section-inscriptions .section-content table td {
+.container-content .container-sections .section-content table th,
+.container-content .container-sections .section-content table td {
     text-align: left;
     padding: 0 50px;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table td {
+.container-content .container-sections .section-content table td {
     padding: 5px 50px;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table td:first-child {
+.container-content .container-sections .section-content table td:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table td:last-child {
+.container-content .container-sections .section-content table td:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table .button-accept,
-.container-content .container-sections #section-inscriptions .section-content table .button-decline {
+.container-content .container-sections .section-content table .button-accept,
+.container-content .container-sections .section-content table .button-decline {
     width: 90px;
     height: 35px;
     display: inline-flex;
@@ -441,77 +441,77 @@
     transition: .7s ease-in-out, background .3s, color .3s;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table .button-accept.active,
-.container-content .container-sections #section-inscriptions .section-content table .button-decline.active {
+.container-content .container-sections .section-content table .button-accept.active,
+.container-content .container-sections .section-content table .button-decline.active {
     cursor: default;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr .button-accept i,
-.container-content .container-sections #section-inscriptions .section-content table tr .button-decline i {
+.container-content .container-sections .section-content table tr .button-accept i,
+.container-content .container-sections .section-content table tr .button-decline i {
     display: none;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) {
+.container-content .container-sections .section-content table tr:nth-child(even) {
     background: #D1C4E9;
     color: #fff;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) .button-accept, 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) .button-decline {
+.container-content .container-sections .section-content table tr:nth-child(even) .button-accept, 
+.container-content .container-sections .section-content table tr:nth-child(even) .button-decline {
     border: 2px solid #fff;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) .button-accept:hover, 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) .button-decline:hover {
+.container-content .container-sections .section-content table tr:nth-child(even) .button-accept:hover, 
+.container-content .container-sections .section-content table tr:nth-child(even) .button-decline:hover {
     background: #fff;
     color: #000;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) .button-accept.active:hover, 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(even) .button-decline.active:hover {
+.container-content .container-sections .section-content table tr:nth-child(even) .button-accept.active:hover, 
+.container-content .container-sections .section-content table tr:nth-child(even) .button-decline.active:hover {
     background: transparent;
     color: #fff;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) {
+.container-content .container-sections .section-content table tr:nth-child(odd) {
     background: #fff;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) .button-accept,
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) .button-decline {
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-accept,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline {
     border: 2px solid #D1C4E9;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) .button-accept:hover,
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) .button-decline:hover {
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-accept:hover,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline:hover {
     background: #D1C4E9;
     color: #fff;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) .button-accept.active:hover,
-.container-content .container-sections #section-inscriptions .section-content table tr:nth-child(odd) .button-decline.active:hover {
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-accept.active:hover,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline.active:hover {
     background: transparent;
     color: #000;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table .button-accept.active,
-.container-content .container-sections #section-inscriptions .section-content table .button-decline.active {
+.container-content .container-sections .section-content table .button-accept.active,
+.container-content .container-sections .section-content table .button-decline.active {
     width: 35px;
     border-radius: 50%;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table .button-accept.active i,
-.container-content .container-sections #section-inscriptions .section-content table .button-decline.active i {
+.container-content .container-sections .section-content table .button-accept.active i,
+.container-content .container-sections .section-content table .button-decline.active i {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table .button-accept.active span,
-.container-content .container-sections #section-inscriptions .section-content table .button-decline.active span {
+.container-content .container-sections .section-content table .button-accept.active span,
+.container-content .container-sections .section-content table .button-decline.active span {
     display: none;
 }
 
-.container-content .container-sections #section-inscriptions .section-content table .button-accept.active ~ .button-decline {
+.container-content .container-sections .section-content table .button-accept.active ~ .button-decline {
     display: none;
 }
