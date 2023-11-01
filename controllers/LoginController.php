@@ -50,6 +50,8 @@
                     $statusInscription = serialize($statusInscription);
                     $_SESSION['usuario.status'] = $statusInscription; 
 
+                    ProfesorController::listarProfesoresGrupo($identification);
+
                     header("Location: ../root/pages/validation_inscription.php");
                     exit;
                 } else {
@@ -79,6 +81,8 @@
                             
                             $statusInscription = serialize($statusInscription);
                             $_SESSION['usuario.status'] = $statusInscription; 
+
+                            ProfesorController::listarProfesoresGrupoA($identification);
         
                             header("Location: ../root/pages/validation_inscription.php");
                             exit;

@@ -46,6 +46,23 @@ nav.forEach(function(navClick) {
     });
 }); 
 
+//Mostrar mensajes
+const mensajes = document.querySelector('.container-messages');
+const iconMessage = document.querySelector('.container-profile .options i');
+const container = document.querySelector('.container-sections');
+
+console.log(iconMessage);
+
+iconMessage.addEventListener('click', ()=> {
+    mensajes.style.opacity = 1;
+    mensajes.style.zIndex = 100;
+});
+
+container.addEventListener('click', ()=> {
+    mensajes.style.opacity = 0;
+    mensajes.style.zIndex = -1;
+});
+
 //Ocultar opciones segun tipo de usuario
 const type = document.querySelector('.container-profile span:nth-child(2)');
 const navInscription = document.querySelector('.navegation .nav-inscriptions');
@@ -131,3 +148,18 @@ for (let i = 0; i < buttonDecline.length; i++) {
         } 
     });
 }
+
+//Visualizacion de grupo estudiante
+const ident = document.querySelector('.section-content .card .content .identification a');
+const group = document.querySelector('.section-content .card .content .group a');
+
+ident.addEventListener('click', ()=> {
+    group.style.opacity = 1;
+    group.style.zIndex = 2;
+});
+
+group.addEventListener('click', ()=> {
+    group.style.opacity = 0;
+    group.style.zIndex = 0;
+});
+

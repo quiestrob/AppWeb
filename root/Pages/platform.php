@@ -18,6 +18,12 @@
 
     $profesor = @$_SESSION['profesor.all'];
     $profesor = @unserialize($profesor);
+
+    $profesorGrupo = @$_SESSION['profesor_grupo.all'];
+    $profesorGrupo = @unserialize($profesorGrupo);
+
+    $profesorGrupoA = @$_SESSION['profesor_grupoA.all'];
+    $profesorGrupoA = @unserialize($profesorGrupoA);
     
 ?>
 <!DOCTYPE html>
@@ -33,6 +39,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container-messages">
+        <div class="profile-message">
+            <div class="image-profile">
+                <?php 
+                    $foto = base64_encode($a->foto);
+                ?>
+                    <img src="data:image/jpeg;base64,<?= $foto ?>">    
+            </div>
+            <div class="content-profile">
+                <span><?= $a->nombre ?></span>
+                <span>Online</span>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="container-navegation">  
             <div class="title">
@@ -120,6 +140,9 @@
                                     <span class="identification">
                                         <a href="#"><?= $est->identificacion ?></a>
                                     </span>
+                                    <span class="group">
+                                        <a href="#"><?= $est->aula ?></a>
+                                    </span>
                                     <ul>
                                         <li><i class="fi fi-rr-user"></i> <?= $est->nombre ?></li>
                                         <li><i class="fi fi-rr-venus-mars"></i> <?= $est->genero ?></li>
@@ -147,28 +170,76 @@
                             <h2>Profesores</h2>
                         </div>
                         <div class="section-content">
-                            <?php 
-                                foreach ($profesor as $pro) {
-                            ?>
-                            <div class="card">
-                                <div class="imgBx">
-                                    <?php 
-                                        $fotoEst = base64_encode($pro->foto);
-                                    ?>
-                                    <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
-                                </div>
-                                <div class="content">
-                                    <span class="identification">
-                                        <a href="#"><?= $pro->identificacion ?></a>
-                                    </span>
-                                    <ul>
-                                        <li><i class="fi fi-rr-user"></i> <?= $pro->nombre ?></li>
-                                        <li><i class="fi fi-rr-phone-call"></i> <?= $pro->telefono ?></li>
-                                        <li><i class="fi fi-rr-envelope"></i> <?= $pro->correo ?></li>
-                                    </ul>
-                                </div>
-                            </div>
                             <?php
+                                if ($type === "Estudiante") {
+                                    foreach ($profesorGrupo as $proG) {
+                            ?>
+                                        <div class="card">
+                                            <div class="imgBx">
+                                                <?php 
+                                                    $fotoEst = base64_encode($proG->foto);
+                                                ?>
+                                                <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                            </div>
+                                            <div class="content">
+                                                <span class="identification">
+                                                    <a href="#"><?= $proG->identificacion ?></a>
+                                                </span>
+                                                <ul>
+                                                    <li><i class="fi fi-rr-user"></i> <?= $proG->nombre ?></li>
+                                                    <li><i class="fi fi-rr-phone-call"></i> <?= $proG->telefono ?></li>
+                                                    <li><i class="fi fi-rr-envelope"></i> <?= $proG->correo ?></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                            <?php
+                                    }
+                                } else if ($type === "Acudiente") {
+                                    foreach ($profesorGrupoA as $proGA) {
+                            ?>
+                                        <div class="card">
+                                            <div class="imgBx">
+                                                <?php 
+                                                    $fotoEst = base64_encode($proGA->foto);
+                                                ?>
+                                                <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                            </div>
+                                            <div class="content">
+                                                <span class="identification">
+                                                    <a href="#"><?= $proGA->identificacion ?></a>
+                                                </span>
+                                                <ul>
+                                                    <li><i class="fi fi-rr-user"></i> <?= $proGA->nombre ?></li>
+                                                    <li><i class="fi fi-rr-phone-call"></i> <?= $proGA->telefono ?></li>
+                                                    <li><i class="fi fi-rr-envelope"></i> <?= $proGA->correo ?></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                            <?php
+                                    }
+                                } else if ($type === "Administrador") {
+                                    foreach ($profesor as $pro) {
+                            ?>
+                                        <div class="card">
+                                            <div class="imgBx">
+                                                <?php 
+                                                    $fotoEst = base64_encode($pro->foto);
+                                                ?>
+                                                <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                            </div>
+                                            <div class="content">
+                                                <span class="identification">
+                                                    <a href="#"><?= $pro->identificacion ?></a>
+                                                </span>
+                                                <ul>
+                                                    <li><i class="fi fi-rr-user"></i> <?= $pro->nombre ?></li>
+                                                    <li><i class="fi fi-rr-phone-call"></i> <?= $pro->telefono ?></li>
+                                                    <li><i class="fi fi-rr-envelope"></i> <?= $pro->correo ?></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                            <?php
+                                    }
                                 }
                             ?>
                         </div>

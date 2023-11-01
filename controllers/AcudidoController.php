@@ -9,9 +9,10 @@
                 $estudiantes = Acudido::find('all', array(
                     'joins' => array(
                         'INNER JOIN Inscripciones ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion',
-                        'INNER JOIN Estados ON Estados.ID = Inscripciones.estado_id'
+                        'INNER JOIN Estados ON Estados.ID = Inscripciones.estado_id',
+                        'INNER JOIN Grupos ON Grupos.ID = Acudidos.id_grupo'
                     ),
-                    'select' => 'Inscripciones.*, Acudidos.*, Estados.Estado AS Estado',
+                    'select' => 'Inscripciones.*, Acudidos.*, Grupos.*, Estados.Estado AS Estado',
                     'conditions' => "Estados.Estado = '$estado'"
                 ));
 
