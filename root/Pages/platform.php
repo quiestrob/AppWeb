@@ -16,6 +16,9 @@
     $inscripcion = @$_SESSION['inscripcion.all'];
     $inscripcion = @unserialize($inscripcion);
 
+    $acudiente = @$_SESSION['acudiente.all'];
+    $acudiente = @unserialize($acudiente);
+
     $profesor = @$_SESSION['profesor.all'];
     $profesor = @unserialize($profesor);
 
@@ -40,18 +43,43 @@
 </head>
 <body>
     <div class="container-messages">
-        <div class="profile-message">
-            <div class="image-profile">
-                <?php 
-                    $foto = base64_encode($a->foto);
-                ?>
-                    <img src="data:image/jpeg;base64,<?= $foto ?>">    
-            </div>
-            <div class="content-profile">
-                <span><?= $a->nombre ?></span>
-                <span>Online</span>
-            </div>
-        </div>
+        <?php
+            if ($type === "Acudiente") {
+                foreach($profesor as $pro) {
+        ?>
+                    <div class="profile-message">
+                        <div class="image-profile">
+                            <?php 
+                                $foto = base64_encode($pro->foto);
+                            ?>
+                                <img src="data:image/jpeg;base64,<?= $foto ?>">    
+                        </div>
+                        <div class="content-profile">
+                            <span><?= $pro->nombre ?></span>
+                            <span>Online</span>
+                        </div>
+                    </div>
+        <?php
+                }
+            } else if ($type === "Profesor") {
+                foreach ($acudiente as $acu) {
+        ?>
+                    <div class="profile-message">
+                        <div class="image-profile">
+                            <?php 
+                                $foto = base64_encode($acu->foto);
+                            ?>
+                                <img src="data:image/jpeg;base64,<?= $foto ?>">    
+                        </div>
+                        <div class="content-profile">
+                            <span><?= $acu->nombre ?></span>
+                            <span>Online</span>
+                        </div>
+                    </div>
+        <?php
+                }
+            }
+        ?>
     </div>
     <div class="container">
         <div class="container-navegation">  

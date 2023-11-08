@@ -87,7 +87,7 @@ function accept(id, identificacion, idI) {
             const content = document.querySelector('#section-inscriptions .section-content');
             content.innerHTML = xhr.responseText;
 
-            updateInscription()
+            updateInscription();
         }
     };
 
@@ -103,7 +103,7 @@ function decline(id, identificacion, idI) {
             const content = document.querySelector('#section-inscriptions .section-content');
             content.innerHTML = xhr.responseText;
 
-            updateInscription()
+            updateInscription();
         }
     };
 

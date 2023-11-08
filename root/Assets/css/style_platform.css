@@ -21,6 +21,7 @@
 .container-navegation .title h1 {
     font-family: 'Quicksand';
     font-size: 30px;
+    font-weight: 600;
     color: #fff;
     cursor: pointer;
     user-select: none;
@@ -43,7 +44,7 @@
     padding: 10px 20px;
     cursor: pointer;
     user-select: none;
-    transition: transform .3s ease-in-out;
+    transition: transform .4s;
 }
 
 .container-navegation .navegation #selected {
@@ -54,26 +55,26 @@
     transform: scale(1.1);
 }
 
-.container-navegation .navegation .nav:hover i,
-.container-navegation .navegation .nav:hover span,
-.container-navegation .navegation #selected i,
-.container-navegation .navegation #selected span {
-    color: #fff;
-}
-
 .container-navegation .navegation .nav i {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    color: #efefef;
+    color: #d9d9d9;
 }
 
 .container-navegation .navegation .nav span {
     font-family: 'Poppins';
-    font-size: 18px;
-    color: #efefef;
+    font-size: 17px;
+    color: #d9d9d9;
     margin: 0 0 0 10px;
+}
+
+.container-navegation .navegation .nav:hover i,
+.container-navegation .navegation .nav:hover span,
+.container-navegation .navegation #selected i,
+.container-navegation .navegation #selected span {
+    color: #fff;
 }
 
 .separator {

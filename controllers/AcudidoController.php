@@ -1,20 +1,11 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/AcudidoService.php';
 
     class AcudidoController {  
-        public static function listarEstudiantes(){
-            $estado = 'Aceptada';
+        public static function listStudentStatus() {
             try {
-                $estudiantes = Acudido::find('all', array(
-                    'joins' => array(
-                        'INNER JOIN Inscripciones ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion',
-                        'INNER JOIN Estados ON Estados.ID = Inscripciones.estado_id',
-                        'INNER JOIN Grupos ON Grupos.ID = Acudidos.id_grupo'
-                    ),
-                    'select' => 'Inscripciones.*, Acudidos.*, Grupos.*, Estados.Estado AS Estado',
-                    'conditions' => "Estados.Estado = '$estado'"
-                ));
+                $estudiantes = AcudidoService::listStudentStatus();
 
                 if ($estudiantes == null){
                     $_SESSION['estudiante.all'] = null;

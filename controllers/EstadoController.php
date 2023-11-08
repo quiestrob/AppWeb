@@ -1,8 +1,7 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/EstadoService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/InscripcionService.php';
 
     class EstadoController {  
         public static function executeAction() {
@@ -10,10 +9,10 @@
 
             switch ($action) {
                 case 'Aceptar':
-                    EstadoController::aceptar();
+                    EstadoController::acceptStatus();
                     break;
                 case 'Rechazar':
-                    EstadoController::rechazar();
+                    EstadoController::declineStatus();
                     break;
                 default:
                     header("Location: ../root/pages/error.php");
@@ -21,74 +20,35 @@
             }
         }
 
-        public static function aceptar() {
-            $id = @$_GET['estado'];
-            $identificacion = @$_GET['fundador'];
-            $idI = @$_GET['id'];
+        public static function acceptStatus() {
+            $idStatus = @$_GET['estado'];
+            $identification = @$_GET['fundador'];
+            $idInscription = @$_GET['id'];
 
             try {
-                $estado = Estado::find($id);
-
-                if ($estado == null){
-                    //
-                } else {
-                    $estado->estado = "Aceptada";
-                    $estado->descripcion = "Su inscripción ha sido aceptada. Ya puede ingresar a la plataforma.";
-                    $estado->save();   
-
-                    EstadoController::actualizar();           
-
-                    try {
-                        $inscripcion = Inscripcion::find($idI);
-                        $inscripcion->identificacion_fundador = $identificacion;
-                        $inscripcion->save();
-                    } catch (Exception $error) {
-                        echo $error->getMessage();
-                    }
-                } 
-
+                EstadoService::acceptStatus($idInscription, $idStatus, $identification);
+                EstadoController::updateTable();
             } catch(Exception $error){
                echo $error->getMessage();
             }
         }
 
-        public static function rechazar() {
-            $id = @$_GET['estado'];
-            $identificacion = @$_GET['fundador'];
-            $idI = @$_GET['id'];
+        public static function declineStatus() {
+            $idStatus = @$_GET['estado'];
+            $identification = @$_GET['fundador'];
+            $idInscription = @$_GET['id'];
 
             try {
-                $estado = Estado::find($id);
-
-                if ($estado == null){
-                    //
-                } else {
-                    $estado->estado = "Rechazada";
-                    $estado->descripcion = "Su inscripción ha sido rechazada. Pongase en contacto con nosotros para más información.";
-                    $estado->save();
-
-                    EstadoController::actualizar();
-
-                    try {
-                        $inscripcion = Inscripcion::find($idI);
-                        $inscripcion->identificacion_fundador = $identificacion;
-                        $inscripcion->save();
-                    } catch (Exception $error) {
-                        echo $error->getMessage();
-                    }
-                } 
-
+                EstadoService::declineStatus($idInscription, $idStatus, $identification);
+                EstadoController::updateTable();
             } catch(Exception $error){
                echo $error->getMessage();
             }
         }
 
-        public static function actualizar() {
+        public static function updateTable() {
             try {
-                InscripcionController::listar();
-
-                $inscripcion = @$_SESSION['inscripcion.all'];
-                $inscripcion = @unserialize($inscripcion);
+                $inscripcion = InscripcionService::listInscription();            
 
                 echo "
                     <table>

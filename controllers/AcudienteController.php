@@ -1,26 +1,23 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/AcudienteService.php';
 
     class AcudienteController {
-        public static function executeAction() {
+        public static function listAttendant() {
+            try {
+                $attendant = AcudienteService::listAttendant();
 
-            $action = @$_REQUEST['action'];
+                if ($attendant == null){
+                    $_SESSION['acudiente.all'] = null;
+                } else {
+                  $attendant = serialize($attendant);
+                  $_SESSION['acudiente.all'] = $attendant;
+                }
 
-            switch ($action) {
-                case 'Save':
-                    AcudienteController::save();
-                    break;
-                default:
-                    header("Location: ../root/pages/error.php");
-                    exit;
+            } catch(Exception $error){
+                $_SESSION['acudiente.all'] = null;
             }
-        }
-
-        public static function save() {
-            
         }
     }
 
-    AcudienteController::executeAction();
 ?>

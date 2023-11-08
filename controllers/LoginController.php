@@ -11,6 +11,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudidoController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/ProfesorController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudienteController.php';
 
     class LoginController {
         public static function executeAction() {
@@ -82,6 +83,7 @@
                             $statusInscription = serialize($statusInscription);
                             $_SESSION['usuario.status'] = $statusInscription; 
 
+                            ProfesorController::listarProfesores();
                             ProfesorController::listarProfesoresGrupoA($identification);
         
                             header("Location: ../root/pages/validation_inscription.php");
@@ -101,7 +103,8 @@
                                     $_SESSION['usuario.login'] = $p;
                                     $_SESSION['usuario.type'] = 'Profesor';
 
-                                    AcudidoController::listarEstudiantes();
+                                    AcudienteController::listAttendant();
+                                    AcudidoController::listStudentStatus();
                 
                                     header("Location: ../root/pages/validation_inscription.php");
                                     exit;
@@ -120,8 +123,8 @@
                                             $_SESSION['usuario.login'] = $f;
                                             $_SESSION['usuario.type'] = 'Administrador';
 
-                                            AcudidoController::listarEstudiantes();
-                                            InscripcionController::listar();
+                                            AcudidoController::listStudentStatus();
+                                            InscripcionController::listInscription();
                                             ProfesorController::listarProfesores();
                         
                                             header("Location: ../root/pages/validation_inscription.php");

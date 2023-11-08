@@ -1,17 +1,11 @@
 <?php
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/InscripcionService.php';
 
     class InscripcionController {  
-        public static function listar() {
+        public static function listInscription() {
             try {
-                $inscripcion = Inscripcion::find('all', array(
-                    'joins' => array(
-                        'INNER JOIN Estados ON Estados.ID = Inscripciones.estado_id',
-                        'INNER JOIN Acudidos ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion'
-                    ),
-                    'select' => 'Inscripciones.*, Acudidos.*, Estados.Estado AS Estado'
-                ));
+                $inscripcion = InscripcionService::listInscription();
 
                 if ($inscripcion == null){
                     $_SESSION['inscripcion.all'] = null;
@@ -26,6 +20,6 @@
         }
     }
 
-    InscripcionController::listar();
+    InscripcionController::listInscription();
 
 ?>
