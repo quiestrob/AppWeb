@@ -177,18 +177,18 @@ for (let i = 0; i < chatUser.length; i++) {
 
                 const trMessage = document.querySelectorAll('.container-chat .container-content tr');
                 const textMessage = document.querySelectorAll('.container-chat .container-content td span');
-                const inputMessage = document.querySelector('.container-chat .container-content td input');
+                const nameMessage = document.querySelector('.container-profile .content-profile span:nth-child(1)');
                 const colorMessage = document.querySelectorAll('.container-chat .container-content #content-messages td');
                 
                 for (let i = 0; i < textMessage.length; i++) {
-                    if (textMessage[i].textContent === inputMessage.value) {
-                        colorMessage[i].style.background = '#D1C4E9';
-                    } else {
+                    if (textMessage[i].textContent === nameMessage.textContent) {
                         colorMessage[i].style.background = '#7E57C2';
                         textMessage[i].style.right = '12px';
-                        trMessage[i].style.textAlign = 'right';
+                        trMessage[i].style.textAlign = 'right'; 
+                    } else {
+                        colorMessage[i].style.background = '#D1C4E9';
                     }
-                }
+                }    
             }
         };
 
@@ -217,6 +217,21 @@ buttonSend.addEventListener('click', ()=> {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 const content = document.getElementById('content-messages');
                 content.innerHTML = xhr.responseText;
+
+                const trMessage = document.querySelectorAll('.container-chat .container-content tr');
+                const textMessage = document.querySelectorAll('.container-chat .container-content td span');
+                const nameMessage = document.querySelector('.container-profile .content-profile span:nth-child(1)');
+                const colorMessage = document.querySelectorAll('.container-chat .container-content #content-messages td');
+
+                for (let i = 0; i < textMessage.length; i++) {
+                    if (textMessage[i].textContent === nameMessage.textContent) {
+                        colorMessage[i].style.background = '#7E57C2';
+                        textMessage[i].style.right = '12px';
+                        trMessage[i].style.textAlign = 'right'; 
+                    } else {
+                        colorMessage[i].style.background = '#D1C4E9';
+                    }
+                } 
             }
         };
 
