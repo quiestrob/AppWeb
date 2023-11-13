@@ -1,8 +1,24 @@
 <?php
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/persistences/AcudidoCrud.php';
 
     class AcudidoService {  
+        public static function findAttended($identification) {
+            try {
+                $user = AcudidoCrud::findAttended($identification);
+
+                if ($user == null){
+                    return null;
+                } else {
+                    return $user;
+                }
+
+            } catch(Exception $error){
+                return null;
+            }
+        }
+
         public static function listStudentStatus() {
             $estado = 'Aceptada';
 
@@ -20,7 +36,7 @@
                 if ($estudiantes == null) {
                     return null;
                 } else {
-                  return $estudiantes;
+                    return $estudiantes;
                 }
 
             } catch(Exception $error){

@@ -2,16 +2,14 @@
 
     session_start();
 
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Profesor.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
-
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudidoController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/ProfesorController.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudienteController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/UsuarioController.php';
+
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/UsuarioService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/AcudidoService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/EstadoService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/FundadorService.php';
 
     class LoginController {
         public static function executeAction() {
@@ -31,27 +29,21 @@
             $identification = @$_REQUEST['identification'];
             $pass = @$_REQUEST['pass'];
 
-            try {
-                $a = Acudido::find($identification);
-                
-                if ($a->contraseña == $pass) {
-                    $a = serialize($a);
-                    $_SESSION['usuario.login'] = $a;
+            $attended = AcudidoService::findAttended($identification);
+            $verify = is_string($attended);
+            
+            if ($verify == false) {
+                if ($attended->contraseña == $pass) {
+                    $attended = serialize($attended);
+                    $_SESSION['usuario.login'] = $attended;
                     $_SESSION['usuario.type'] = 'Estudiante';   
 
-                    $statusInscription = Estado::find('all', array(
-                        'joins' => array(
-                            'INNER JOIN inscripciones ON estados.ID = inscripciones.estado_id',
-                            'INNER JOIN acudidos ON inscripciones.identificacion_acudido = acudidos.identificacion'
-                        ),
-                        'select' => 'Estados.Estado, Estados.Descripcion',
-                        'conditions' => "acudidos.identificacion = '$identification'"
-                    ));
+                    $statusInscription = EstadoService::listStatus($identification);
                     
                     $statusInscription = serialize($statusInscription);
                     $_SESSION['usuario.status'] = $statusInscription; 
 
-                    ProfesorController::listarProfesoresGrupo($identification);
+                    UsuarioController::listProffesorGroup($identification);
 
                     header("Location: ../root/pages/validation_inscription.php");
                     exit;
@@ -59,32 +51,43 @@
                     $_SESSION['usuario.login'] = null;
                     header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
                     exit;
-                }    
-            } catch (Exception $error) {
-                if (strstr($error->getMessage(), $identification)) {
-                    try {
-                        $ac = Acudiente::find($identification);
+                } 
+            } else {
+                $attendant = UsuarioService::findUserAttendant($identification);
+                $verify = is_string($attendant);
 
-                        if ($ac->contraseña == $pass) {
-                            $ac = serialize($ac);
-                            $_SESSION['usuario.login'] = $ac;
-                            $_SESSION['usuario.type'] = 'Acudiente';
+                if ($verify == false) {
+                    if ($attendant->contraseña == $pass) {
+                        $attendant = serialize($attendant);
+                        $_SESSION['usuario.login'] = $attendant;
+                        $_SESSION['usuario.type'] = 'Acudiente';
 
-                            $statusInscription = Estado::find('all', array(
-                                'joins' => array(
-                                    'INNER JOIN Inscripciones ON Estados.ID = Inscripciones.estado_id',
-                                    'INNER JOIN Acudidos ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion',
-                                    'INNER JOIN Acudientes ON Acudientes.Identificacion = Acudidos.Identificacion_acudiente'
-                                ),
-                                'select' => 'Estados.Estado, Estados.Descripcion',
-                                'conditions' => "Acudientes.identificacion = '$identification'"
-                            ));
-                            
-                            $statusInscription = serialize($statusInscription);
-                            $_SESSION['usuario.status'] = $statusInscription; 
+                        $statusInscription = EstadoService::listStatusAttendant($identification);
+                        
+                        $statusInscription = serialize($statusInscription);
+                        $_SESSION['usuario.status'] = $statusInscription; 
 
-                            ProfesorController::listarProfesores();
-                            ProfesorController::listarProfesoresGrupoA($identification);
+                        UsuarioController::listProffesorGroupAttendant($identification);
+    
+                        header("Location: ../root/pages/validation_inscription.php");
+                        exit;
+                    } else {
+                        $_SESSION['usuario.login'] = null;
+                        header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
+                        exit;
+                    } 
+                } else {
+                    $proffesor = UsuarioService::findUserProffesor($identification);
+                    $verify = is_string($proffesor);
+
+                    if ($verify == false) {
+                        if ($proffesor->contraseña == $pass) {
+                            $proffesor = serialize($proffesor);
+                            $_SESSION['usuario.login'] = $proffesor;
+                            $_SESSION['usuario.type'] = 'Profesor';
+
+                            UsuarioController::listAttendant();
+                            AcudidoController::listStudentStatus();
         
                             header("Location: ../root/pages/validation_inscription.php");
                             exit;
@@ -93,80 +96,38 @@
                             header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
                             exit;
                         }  
-                    } catch (Exception $error) {
-                        if (strstr($error->getMessage(), $identification)) {
-                            try {
-                                $p = Profesor::find($identification);
-        
-                                if ($p->contraseña == $pass) {
-                                    $p = serialize($p);
-                                    $_SESSION['usuario.login'] = $p;
-                                    $_SESSION['usuario.type'] = 'Profesor';
+                    } else {
+                        $founder = FundadorService::findFounder($identification);
+                        $verify = is_string($founder);
 
-                                    AcudienteController::listAttendant();
-                                    AcudidoController::listStudentStatus();
-                
-                                    header("Location: ../root/pages/validation_inscription.php");
-                                    exit;
-                                } else {
-                                    $_SESSION['usuario.login'] = null;
-                                    header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
-                                    exit;
-                                }  
-                            } catch (Exception $error) {
-                                if (strstr($error->getMessage(), $identification)) {
-                                    try {
-                                        $f = Fundador::find($identification);
-                
-                                        if ($f->contraseña == $pass) {
-                                            $f = serialize($f);
-                                            $_SESSION['usuario.login'] = $f;
-                                            $_SESSION['usuario.type'] = 'Administrador';
+                        if ($verify == false) {
+                            if ($founder->contraseña == $pass) {
+                                $founder = serialize($founder);
+                                $_SESSION['usuario.login'] = $founder;
+                                $_SESSION['usuario.type'] = 'Administrador';
 
-                                            AcudidoController::listStudentStatus();
-                                            InscripcionController::listInscription();
-                                            ProfesorController::listarProfesores();
-                        
-                                            header("Location: ../root/pages/validation_inscription.php");
-                                            exit;
-                                        } else {
-                                            $_SESSION['usuario.login'] = null;
-                                            header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
-                                            exit;
-                                        }  
-                                    } catch (Exception $error) {
-                                        if (strstr($error->getMessage(), $identification)) {
-                                            $msj = "El usuario no existe.";
-                                        } else {
-                                            $msj = "Ocurrio un error.";
-                                        }
-        
-                                        header("Location: ../root/pages/login.php?msj=$msj");
-                                        exit;
-                                    }
-                                } else {
-                                    $msj = $error->getMessage();
-                                }
-
-                                header("Location: ../root/pages/login.php?msj=$msj");
+                                AcudidoController::listStudentStatus();
+                                InscripcionController::listInscription();
+                                UsuarioController::listUserProffesor();
+            
+                                header("Location: ../root/pages/validation_inscription.php");
+                                exit;
+                            } else {
+                                $_SESSION['usuario.login'] = null;
+                                header("Location: ../root/pages/login.php?msj=Contraseña incorrecta.");
                                 exit;
                             }
                         } else {
-                            $msj = "Ocurrio un error.";
+                            $msj = "El usuario no existe.";
+                            header("Location: ../root/pages/login.php?msj=$msj");
+                            exit;
                         }
-
-                        header("Location: ../root/pages/login.php?msj=$msj");
-                        exit;
                     }
-                } else {
-                    $msj = $error->getMessage();
                 }
-
-                header("Location: ../root/pages/login.php?msj=$msj");
-                exit;
             }
         }
     }
 
     LoginController::executeAction();
+
 ?>

@@ -4,7 +4,7 @@
 
     class Mensaje extends ActiveRecord\Model {
         public static $has_many = array (
-            array('Profesor', 'Acudiente')
+            array('Usuario', 'Acudiente')
         );
     }
 

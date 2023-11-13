@@ -5,8 +5,8 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
 
-    $a = @$_SESSION['usuario.login'];
-    $a = @unserialize($a);
+    $user = @$_SESSION['usuario.login'];
+    $user = @unserialize($user);
 
     $type = @$_SESSION['usuario.type'];
     
@@ -16,10 +16,10 @@
     $inscripcion = @$_SESSION['inscripcion.all'];
     $inscripcion = @unserialize($inscripcion);
 
-    $acudiente = @$_SESSION['acudiente.all'];
+    $acudiente = @$_SESSION['usuario_attendant.all'];
     $acudiente = @unserialize($acudiente);
 
-    $profesor = @$_SESSION['profesor.all'];
+    $profesor = @$_SESSION['usuario_profesor.all'];
     $profesor = @unserialize($profesor);
 
     $profesorGrupo = @$_SESSION['profesor_grupo.all'];
@@ -34,7 +34,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CogniSphere - <?= $a->nombre ?></title>
+    <title>CogniSphere - <?= $user->nombre ?></title>
     <link rel="stylesheet" href="../assets/css/style_platform.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
@@ -45,9 +45,11 @@
     <div class="container-messages">
         <?php
             if ($type === "Acudiente") {
-                foreach($profesor as $pro) {
+                foreach($profesorGrupoA as $pro) {
         ?>
                     <div class="profile-message">
+                        <input type="hidden" id="idTransmitter" value="<?= $user->identificacion ?>">
+                        <input type="hidden" id="idReceiver" value="<?= $pro->identificacion ?>">
                         <div class="image-profile">
                             <?php 
                                 $foto = base64_encode($pro->foto);
@@ -65,6 +67,8 @@
                 foreach ($acudiente as $acu) {
         ?>
                     <div class="profile-message">
+                        <input type="hidden" id="idTransmitter" value="<?= $user->identificacion ?>">
+                        <input type="hidden" id="idReceiver" value="<?= $acu->identificacion ?>">
                         <div class="image-profile">
                             <?php 
                                 $foto = base64_encode($acu->foto);
@@ -80,6 +84,26 @@
                 }
             }
         ?>
+    </div>
+    <div class="container-chat">
+        <div class="container-chat__title">
+            <h2>Mensajes</h2>
+        </div>
+        <div class="container-chat__background">
+            <div class="container-content">
+                <table id="content-messages">
+                    
+                </table>
+            </div>
+            <div class="container-send">
+                <div class="bar-send">
+                    <input type="hidden" id="messageTransmitter">
+                    <input type="hidden" id="messageReceiver">
+                    <input type="text" placeholder="Mensaje..." id="message-content">
+                    <i class="fi fi-sr-paper-plane"></i>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="container-navegation">  
@@ -132,12 +156,12 @@
                         <div class="profile">
                             <div class="image-profile">
                                 <?php 
-                                    $foto = base64_encode($a->foto);
+                                    $foto = base64_encode($user->foto);
                                 ?>
                                 <img src="data:image/jpeg;base64,<?= $foto ?>">    
                             </div>
                             <div class="content-profile">
-                                <span><?= $a->nombre ?></span>
+                                <span><?= $user->nombre ?></span>
                                 <span><?= $type ?></span>
                             </div>
                         </div>

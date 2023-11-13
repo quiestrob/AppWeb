@@ -4,6 +4,51 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/persistences/InscripcionCrud.php';
 
     class EstadoService {
+        public static function listStatus($identification) {
+            try {
+                $statusInscription = Estado::find('all', array(
+                    'joins' => array(
+                        'INNER JOIN inscripciones ON estados.ID = inscripciones.estado_id',
+                        'INNER JOIN acudidos ON inscripciones.identificacion_acudido = acudidos.identificacion'
+                    ),
+                    'select' => 'Estados.Estado, Estados.Descripcion',
+                    'conditions' => "acudidos.identificacion = '$identification'"
+                ));
+
+                if ($statusInscription == null) {
+                    return null;
+                } else {
+                    return $statusInscription;
+                }
+
+            } catch(Exception $error) {
+                return null;
+            }
+        }
+
+        public static function listStatusAttendant($identification) {
+            try {
+                $statusInscription = Estado::find('all', array(
+                    'joins' => array(
+                        'INNER JOIN Inscripciones ON Estados.ID = Inscripciones.estado_id',
+                        'INNER JOIN Acudidos ON Inscripciones.Identificacion_acudido = Acudidos.Identificacion',
+                        'INNER JOIN Usuarios ON Usuarios.Identificacion = Acudidos.Identificacion_usuario'
+                    ),
+                    'select' => 'Estados.Estado, Estados.Descripcion',
+                    'conditions' => "Usuarios.identificacion = '$identification' AND Usuarios.Tipo_usuario = 'Acudiente'"
+                ));
+
+                if ($statusInscription == null) {
+                    return null;
+                } else {
+                    return $statusInscription;
+                }
+
+            } catch(Exception $error) {
+                return null;
+            }
+        }
+
         public static function acceptStatus($idInscription, $idStatus, $identification) {
             try {
                 $status = EstadoCrud::findStatus($idStatus);

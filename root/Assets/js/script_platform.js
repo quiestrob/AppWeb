@@ -149,6 +149,83 @@ for (let i = 0; i < buttonDecline.length; i++) {
     });
 }
 
+//Abrir chat
+const chat = document.querySelector('.container-chat');
+const chatUser = document.querySelectorAll('.container-messages .profile-message');
+
+const idTransmitter = document.querySelectorAll('#idTransmitter');
+const idReceiver = document.querySelectorAll('#idReceiver');
+
+const messageTransmitter = document.querySelector('#messageTransmitter');
+const messageReceiver = document.querySelector('#messageReceiver');
+
+for (let i = 0; i < chatUser.length; i++) {
+    chatUser[i].addEventListener('click', ()=> {
+        chat.style.opacity = 1;
+        chat.style.zIndex = 1000;
+
+        messageTransmitter.value = idTransmitter[i].value;
+        messageReceiver.value = idReceiver[i].value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "../../controllers/MensajeController.php?transmitter=" + idTransmitter[i].value + "&receiver=" + idReceiver[i].value + "&action=Listar", true);
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                const content = document.getElementById('content-messages');
+                content.innerHTML = xhr.responseText;
+
+                const trMessage = document.querySelectorAll('.container-chat .container-content tr');
+                const textMessage = document.querySelectorAll('.container-chat .container-content td span');
+                const inputMessage = document.querySelector('.container-chat .container-content td input');
+                const colorMessage = document.querySelectorAll('.container-chat .container-content #content-messages td');
+                
+                for (let i = 0; i < textMessage.length; i++) {
+                    if (textMessage[i].textContent === inputMessage.value) {
+                        colorMessage[i].style.background = '#D1C4E9';
+                    } else {
+                        colorMessage[i].style.background = '#7E57C2';
+                        textMessage[i].style.right = '12px';
+                        trMessage[i].style.textAlign = 'right';
+                    }
+                }
+            }
+        };
+
+        xhr.send();
+    });
+}
+
+//Cerrar chat
+const closeChat = document.querySelector('.container-chat__title h2');
+
+closeChat.addEventListener('click', ()=> {
+    chat.style.opacity = 0;
+    chat.style.zIndex = -1;
+});
+
+//Enviar mensaje
+const buttonSend = document.querySelector('.container-chat .container-send i');
+const inputMessage = document.getElementById('message-content');
+
+buttonSend.addEventListener('click', ()=> {
+    if (inputMessage.value != '') {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "../../controllers/MensajeController.php?transmitter=" + messageTransmitter.value + "&receiver=" + messageReceiver.value + "&message=" + inputMessage.value + "&action=Enviar", true);
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                const content = document.getElementById('content-messages');
+                content.innerHTML = xhr.responseText;
+            }
+        };
+
+        xhr.send();
+
+        inputMessage.value = '';
+    } 
+});
+
 //Visualizacion de grupo estudiante
 const ident = document.querySelector('.section-content .card .content .identification a');
 const group = document.querySelector('.section-content .card .content .group a');
@@ -162,4 +239,3 @@ group.addEventListener('click', ()=> {
     group.style.opacity = 0;
     group.style.zIndex = 0;
 });
-
