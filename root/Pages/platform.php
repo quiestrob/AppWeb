@@ -13,6 +13,9 @@
     $estudiantes = @$_SESSION['estudiante.all'];
     $estudiantes = @unserialize($estudiantes);
 
+    $actividad = @$_SESSION['actividad.all'];
+    $actividad = @unserialize($actividad);
+
     $inscripcion = @$_SESSION['inscripcion.all'];
     $inscripcion = @unserialize($inscripcion);
 
@@ -216,6 +219,32 @@
                     <section id="section-activities">
                         <div class="section-title">
                             <h2>Actividades</h2>
+                        </div>
+                        <div class="section-content">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>
+                                    <th>Archivo</th>
+                                    <th>Fecha</th>
+                                </tr>    
+                                <?php
+                                    foreach ($actividad as $a) {
+
+                                        $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                ?>
+                                    <tr>
+                                        <td><?= $a->id ?></td>
+                                        <td><?= $a->titulo ?></td>
+                                        <td><?= $a->descripcion ?></td>
+                                        <td><?= $a->titulo ?></td>
+                                        <td><?= $fecha ?></td>
+                                    </tr>
+                                <?php   
+                                    }
+                                ?>
+                            </table>
                         </div>
                     </section>
                     <section id="section-reports">

@@ -5,7 +5,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/AcudidoController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/UsuarioController.php';
-
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/ActividadController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/UsuarioService.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/AcudidoService.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/EstadoService.php';
@@ -44,7 +44,7 @@
                     $_SESSION['usuario.status'] = $statusInscription; 
 
                     UsuarioController::listProffesorGroup($identification);
-
+                    ActividadController::listActivities($identification);
                     header("Location: ../root/pages/validation_inscription.php");
                     exit;
                 } else {

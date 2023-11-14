@@ -18,7 +18,7 @@
             }
         }
 
-        public static function saveActiviy($activity) {
+        public static function saveActivity($activity) {
             try {
                 $activity->save();
             } catch(Exception $error) {
