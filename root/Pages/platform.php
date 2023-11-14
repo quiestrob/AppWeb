@@ -238,7 +238,7 @@
                                         <td><?= $a->id ?></td>
                                         <td><?= $a->titulo ?></td>
                                         <td><?= $a->descripcion ?></td>
-                                        <td><?= $a->titulo ?></td>
+                                        <td><?= $a->titulo ?>.pdf</td>
                                         <td><?= $fecha ?></td>
                                     </tr>
                                 <?php   
