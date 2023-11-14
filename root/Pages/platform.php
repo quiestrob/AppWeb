@@ -238,7 +238,11 @@
                                         <td><?= $a->id ?></td>
                                         <td><?= $a->titulo ?></td>
                                         <td><?= $a->descripcion ?></td>
-                                        <td><?= $a->titulo ?>.pdf</td>
+                                        <?php
+                                        $base64=base64_encode($a->archivo);
+                                        $ruta='data:application/pdf;base64,'.$base64;
+                                        ?>
+                                        <td><a href="<?php echo"$ruta"?>"download="<?php echo"$a->titulo"?>">Descargar</a></td>
                                         <td><?= $fecha ?></td>
                                     </tr>
                                 <?php   
