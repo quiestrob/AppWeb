@@ -46,23 +46,6 @@ nav.forEach(function(navClick) {
     });
 }); 
 
-//Mostrar mensajes
-const mensajes = document.querySelector('.container-messages');
-const iconMessage = document.querySelector('.container-profile .options i');
-const container = document.querySelector('.container-sections');
-
-console.log(iconMessage);
-
-iconMessage.addEventListener('click', ()=> {
-    mensajes.style.opacity = 1;
-    mensajes.style.zIndex = 100;
-});
-
-container.addEventListener('click', ()=> {
-    mensajes.style.opacity = 0;
-    mensajes.style.zIndex = -1;
-});
-
 //Ocultar opciones segun tipo de usuario
 const type = document.querySelector('.container-profile span:nth-child(2)');
 const navInscription = document.querySelector('.navegation .nav-inscriptions');
@@ -123,32 +106,6 @@ function updateInscription() {
     xhr.send();
 }
 
-//Animacion boton aceptar y eliminar
-const buttonAccept = document.querySelectorAll('#section-inscriptions .button-accept');
-const buttonDecline = document.querySelectorAll('#section-inscriptions .button-decline');
-
-buttonAccept.forEach((e) => {
-    e.addEventListener('click', () => {
-        e.classList.add('active');
-    });
-});
-
-for (let i = 0; i < buttonDecline.length; i++) {
-    if (buttonDecline[i].classList.contains('active')) {
-        buttonAccept[i].style.display = 'none';
-    }
-
-    buttonDecline[i].addEventListener('click', () => { 
-        if (buttonDecline[i].classList.contains('active')) {
-            
-        } else {
-            buttonDecline[i].classList.add('active');
-            buttonAccept[i].style.display = 'none';
-            console.log(i);
-        } 
-    });
-}
-
 //Abrir chat
 const chat = document.querySelector('.container-chat');
 const chatUser = document.querySelectorAll('.container-messages .profile-message');
@@ -181,7 +138,7 @@ for (let i = 0; i < chatUser.length; i++) {
                 const colorMessage = document.querySelectorAll('.container-chat .container-content #content-messages td');
                 
                 for (let i = 0; i < textMessage.length; i++) {
-                    if (textMessage[i].textContent === nameMessage.textContent) {
+                    if (textMessage[i].textContent === nameMessage.textContent + ":") {
                         colorMessage[i].style.background = '#7E57C2';
                         textMessage[i].style.right = '12px';
                         trMessage[i].style.textAlign = 'right'; 
@@ -204,6 +161,25 @@ closeChat.addEventListener('click', ()=> {
     chat.style.zIndex = -1;
 });
 
+//Mostrar mensajes
+const mensajes = document.querySelector('.container-messages');
+const iconMessage = document.querySelector('.container-profile .options i');
+const container = document.querySelector('.container-sections');
+
+console.log(iconMessage);
+
+iconMessage.addEventListener('click', ()=> {
+    mensajes.style.opacity = 1;
+    mensajes.style.zIndex = 100;
+    chat.style.right = '15%';
+});
+
+container.addEventListener('click', ()=> {
+    mensajes.style.opacity = 0;
+    mensajes.style.zIndex = -1;
+    chat.style.right = '2%';
+});
+
 //Enviar mensaje
 const buttonSend = document.querySelector('.container-chat .container-send i');
 const inputMessage = document.getElementById('message-content');
@@ -224,7 +200,7 @@ buttonSend.addEventListener('click', ()=> {
                 const colorMessage = document.querySelectorAll('.container-chat .container-content #content-messages td');
 
                 for (let i = 0; i < textMessage.length; i++) {
-                    if (textMessage[i].textContent === nameMessage.textContent) {
+                    if (textMessage[i].textContent === nameMessage.textContent + ":") {
                         colorMessage[i].style.background = '#7E57C2';
                         textMessage[i].style.right = '12px';
                         trMessage[i].style.textAlign = 'right'; 

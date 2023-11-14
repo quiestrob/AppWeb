@@ -319,11 +319,12 @@ body::-webkit-scrollbar-thumb {
     margin: 0 30px;
     cursor: pointer;
     user-select: none;
-    transition: box-shadow .2s ease-in-out;
+    transition: box-shadow .2s, transform .2s;
 }
 
 .container-cards .card:hover {
     box-shadow: 2px 2px 10px #7E57C2;
+    transform: translateY(-15px);
 }
 
 .container-cards .card i {

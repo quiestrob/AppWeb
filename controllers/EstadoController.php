@@ -73,33 +73,17 @@
                             <td>" . $i->estado . "</td>
                             <td>";
 
-                    if ($i->estado == 'Aceptada') {
+                    if ($i->estado == 'Aceptada' || $i->estado = 'Rechazada') {
                         echo "
-                            <div class='button-accept active'>
-                                <i class='fi fi-br-check'></i>
-                                <span>Aceptar</span>
-                            </div>
-                            <div class='button-decline'>
-                                <i class='fi fi-br-x'></i>
-                                <span>Rechazar</span>
-                            </div>";
-                    } else if ($i->estado == 'Rechazada') {
-                        echo "
-                            <div class='button-accept'>
-                                <i class='fi fi-br-check'></i>
-                                <span>Aceptar</span>
-                            </div>
-                            <div class='button-decline active'>
-                                <i class='fi fi-br-x'></i>
-                                <span>Rechazar</span>
-                            </div>";
+                            <span>No disponible</span>    
+                        ";
                     } else {
                         echo "
-                            <div class='button-accept' onclick='accept(" . $i->estado_id . ", " . $a->identificacion . ", " . $i->id . ")'>
+                            <div class='button-accept' onclick='accept(" . $i->estado_id . ", " . $user->identificacion . ", " . $i->id . ")'>
                                 <i class='fi fi-br-check'></i>
                                 <span>Aceptar</span>
                             </div>
-                            <div class='button-decline' onclick='decline(" . $i->estado_id . ", " . $a->identificacion . ", " . $i->id . ")'>
+                            <div class='button-decline' onclick='decline(" . $i->estado_id . ", " . $user->identificacion . ", " . $i->id . ")'>
                                 <i class='fi fi-br-x'></i>
                                 <span>Rechazar</span>
                             </div>";

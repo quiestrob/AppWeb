@@ -150,9 +150,15 @@
             <div class="container-content">
                 <div class="container-profile">  
                     <div class="profile-options">
-                        <div class="options">
-                            <i class="fi fi-rr-messages"></i>
-                        </div>
+                        <?php
+                            if ($type == 'Acudiente' || $type == 'Profesor') {
+                        ?>
+                                <div class="options">
+                                    <i class="fi fi-rr-messages"></i>
+                                </div>
+                        <?php
+                            }
+                        ?>
                         <div class="profile">
                             <div class="image-profile">
                                 <?php 
@@ -328,37 +334,17 @@
                                         <td><?= $i->estado ?></td>
                                         <td>
                                             <?php
-                                                if ($i->estado == "Aceptada") {
+                                                if ($i->estado == "Aceptada" || $i->estado == 'Rechazada') {
                                             ?>
-                                                <div class="button-accept active">
-                                                    <i class="fi fi-br-check"></i>
-                                                    <span>Aceptar</span>
-                                                </div>
-                                                <div class="button-decline">
-                                                    <i class="fi fi-br-x"></i>
-                                                    <span>Rechazar</span>
-                                                </div>
-                                            <?php
-                                                } else if ($i->estado == "Rechazada") {
-                                            ?>
-                                                <div class="button-accept">
-                                                    <i class="fi fi-br-check"></i>
-                                                    <span>Aceptar</span>
-                                                </div>
-                                                <div class="button-decline active">
-                                                    <i class="fi fi-br-x"></i>
-                                                    <span>Rechazar</span>
-                                                </div>
+                                                <span>No disponible</span>
                                             <?php
                                                 } else {
                                             ?>
-                                                <div class="button-accept" onclick="accept(<?= $i->estado_id ?>, <?= $a->identificacion ?>, <?= $i->id ?>)">
+                                                <div class="button-accept" onclick="accept(<?= $i->estado_id ?>, <?= $user->identificacion ?>, <?= $i->id ?>)">
                                                     <i class="fi fi-br-check"></i>
-                                                    <span>Aceptar</span>
                                                 </div>
-                                                <div class="button-decline" onclick="decline(<?= $i->estado_id ?>, <?= $a->identificacion ?>, <?= $i->id ?>)">
+                                                <div class="button-decline" onclick="decline(<?= $i->estado_id ?>, <?= $user->identificacion ?>, <?= $i->id ?>)">
                                                     <i class="fi fi-br-x"></i>
-                                                    <span>Rechazar</span>
                                                 </div>
                                             <?php
                                                 }

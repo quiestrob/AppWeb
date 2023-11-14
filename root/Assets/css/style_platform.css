@@ -444,25 +444,23 @@ body {
 
 .container-content .container-sections .section-content table .button-accept,
 .container-content .container-sections .section-content table .button-decline {
-    width: 90px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 2px 10px;
+    margin: 0 3px;
     transition: .7s ease-in-out, background .3s, color .3s;
 }
 
-.container-content .container-sections .section-content table .button-accept.active,
-.container-content .container-sections .section-content table .button-decline.active {
-    cursor: default;
-}
-
-.container-content .container-sections .section-content table tr .button-accept i,
-.container-content .container-sections .section-content table tr .button-decline i {
-    display: none;
+.container-content .container-sections .section-content table .button-accept i,
+.container-content .container-sections .section-content table .button-decline i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) {
@@ -472,19 +470,12 @@ body {
 
 .container-content .container-sections .section-content table tr:nth-child(even) .button-accept, 
 .container-content .container-sections .section-content table tr:nth-child(even) .button-decline {
-    border: 2px solid #fff;
-}
-
-.container-content .container-sections .section-content table tr:nth-child(even) .button-accept:hover, 
-.container-content .container-sections .section-content table tr:nth-child(even) .button-decline:hover {
     background: #fff;
-    color: #000;
 }
 
-.container-content .container-sections .section-content table tr:nth-child(even) .button-accept.active:hover, 
-.container-content .container-sections .section-content table tr:nth-child(even) .button-decline.active:hover {
-    background: transparent;
-    color: #fff;
+.container-content .container-sections .section-content table tr:nth-child(even) .button-accept i, 
+.container-content .container-sections .section-content table tr:nth-child(even) .button-decline i {
+    color: #000;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(odd) {
@@ -493,41 +484,12 @@ body {
 
 .container-content .container-sections .section-content table tr:nth-child(odd) .button-accept,
 .container-content .container-sections .section-content table tr:nth-child(odd) .button-decline {
-    border: 2px solid #D1C4E9;
-}
-
-.container-content .container-sections .section-content table tr:nth-child(odd) .button-accept:hover,
-.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline:hover {
     background: #D1C4E9;
+}
+
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-accept i,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline i {
     color: #fff;
-}
-
-.container-content .container-sections .section-content table tr:nth-child(odd) .button-accept.active:hover,
-.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline.active:hover {
-    background: transparent;
-    color: #000;
-}
-
-.container-content .container-sections .section-content table .button-accept.active,
-.container-content .container-sections .section-content table .button-decline.active {
-    width: 35px;
-    border-radius: 50%;
-}
-
-.container-content .container-sections .section-content table .button-accept.active i,
-.container-content .container-sections .section-content table .button-decline.active i {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container-content .container-sections .section-content table .button-accept.active span,
-.container-content .container-sections .section-content table .button-decline.active span {
-    display: none;
-}
-
-.container-content .container-sections .section-content table .button-accept.active ~ .button-decline {
-    display: none;
 }
 
 .container-messages {
@@ -559,7 +521,7 @@ body {
     z-index: -1;
     opacity: 0;
     user-select: none;
-    transition: opacity 1s;
+    transition: opacity 1s, right 1s;
 }
 
 .container-chat__title {

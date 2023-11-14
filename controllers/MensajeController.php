@@ -49,7 +49,13 @@
                 if ($messages == null && $reverseMessages == null) {
                     echo "<span style='font-family: Poppins; display: flex; justify-content: center; align-items: center; padding: 50% 0' >No hay mensajes</span>";
                 } else {
-                    $combinedData = array_merge($messages, $reverseMessages);
+                    if ($messages == null) {
+                        $combinedData = array_merge($reverseMessages);
+                    } else if ($reverseMessages == null) {
+                        $combinedData = array_merge($messages);
+                    } else {
+                        $combinedData = array_merge($messages, $reverseMessages);
+                    }
 
                     usort($combinedData, function ($a, $b) {
                         return $a->id - $b->id;
@@ -58,9 +64,8 @@
                     foreach ($combinedData as $combined) { 
                         echo "
                             <tr style='position: relative'>                              
-                                <td>
-                                <input type='hidden' value='$combined->nombre'>
-                                <span>$combined->nombre</span>"
+                                <td>   
+                                <span>$combined->nombre:</span>"
                                 . $combined->mensaje .
                                 "</td>
                             </tr>
