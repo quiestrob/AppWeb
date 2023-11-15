@@ -106,6 +106,20 @@ function updateInscription() {
     xhr.send();
 }
 
+//Visualizacion de grupo estudiante
+const ident = document.querySelector('.section-content .card .content .identification a');
+const group = document.querySelector('.section-content .card .content .group a');
+
+ident.addEventListener('click', ()=> {
+    group.style.opacity = 1;
+    group.style.zIndex = 2;
+});
+
+group.addEventListener('click', ()=> {
+    group.style.opacity = 0;
+    group.style.zIndex = 0;
+});
+
 //Abrir chat
 const chat = document.querySelector('.container-chat');
 const chatUser = document.querySelectorAll('.container-messages .profile-message');
@@ -215,18 +229,4 @@ buttonSend.addEventListener('click', ()=> {
 
         inputMessage.value = '';
     } 
-});
-
-//Visualizacion de grupo estudiante
-const ident = document.querySelector('.section-content .card .content .identification a');
-const group = document.querySelector('.section-content .card .content .group a');
-
-ident.addEventListener('click', ()=> {
-    group.style.opacity = 1;
-    group.style.zIndex = 2;
-});
-
-group.addEventListener('click', ()=> {
-    group.style.opacity = 0;
-    group.style.zIndex = 0;
 });

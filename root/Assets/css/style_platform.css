@@ -276,6 +276,59 @@ body {
     margin: 20px 50px 0 20px;
 }
 
+.container-content .container-sections .section-content .container-information {
+    margin: 0 20px;
+}
+
+.container-content .container-sections .section-content .container-information .image-profile {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.container-content .container-sections .section-content .container-information .image-profile img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.container-content .container-sections .section-content .container-information .information {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    font-family: 'Poppins';
+    user-select: none;
+}
+
+.container-content .container-sections .section-content .container-information .information h2 {
+    color: #7E57C2;
+    font-size: 28px;
+}
+
+.container-content .container-sections .section-content .container-information .information .span-information {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.container-content .container-sections .section-content .container-information .information .span-information:nth-child(2) {
+    margin: 10px 0 5px 0;
+}
+
+.container-content .container-sections .section-content .container-information .information i {
+    font-size: 18px;
+    color: #7E57C2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-content .container-sections .section-content .container-information .information span {
+    font-size: 18px;
+    margin: 0 10px;
+}
+
 .container-content .container-sections .section-content .card {
     position: relative;
     width: 320px;
@@ -432,6 +485,11 @@ body {
     padding: 5px 50px;
 }
 
+.container-content .container-sections .section-content table td a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .container-content .container-sections .section-content table td:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -443,7 +501,9 @@ body {
 }
 
 .container-content .container-sections .section-content table .button-accept,
-.container-content .container-sections .section-content table .button-decline {
+.container-content .container-sections .section-content table .button-decline,
+.container-content .container-sections .section-content table .button-edit,
+.container-content .container-sections .section-content table .button-delete {
     width: 30px;
     height: 30px;
     display: inline-flex;
@@ -457,10 +517,13 @@ body {
 }
 
 .container-content .container-sections .section-content table .button-accept i,
-.container-content .container-sections .section-content table .button-decline i {
+.container-content .container-sections .section-content table .button-decline i,
+.container-content .container-sections .section-content table .button-edit i,
+.container-content .container-sections .section-content table .button-delete i {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 18px;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) {
@@ -469,12 +532,16 @@ body {
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) .button-accept, 
-.container-content .container-sections .section-content table tr:nth-child(even) .button-decline {
+.container-content .container-sections .section-content table tr:nth-child(even) .button-decline,
+.container-content .container-sections .section-content table tr:nth-child(even) .button-edit,
+.container-content .container-sections .section-content table tr:nth-child(even) .button-delete {
     background: #fff;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) .button-accept i, 
-.container-content .container-sections .section-content table tr:nth-child(even) .button-decline i {
+.container-content .container-sections .section-content table tr:nth-child(even) .button-decline i,
+.container-content .container-sections .section-content table tr:nth-child(even) .button-edit i,
+.container-content .container-sections .section-content table tr:nth-child(even) .button-delete i {
     color: #000;
 }
 
@@ -483,12 +550,16 @@ body {
 }
 
 .container-content .container-sections .section-content table tr:nth-child(odd) .button-accept,
-.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline {
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-edit,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-delete {
     background: #D1C4E9;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(odd) .button-accept i,
-.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline i {
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-decline i,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-edit i,
+.container-content .container-sections .section-content table tr:nth-child(odd) .button-delete i {
     color: #fff;
 }
 

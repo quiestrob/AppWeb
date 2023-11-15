@@ -42,6 +42,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -181,6 +182,100 @@
                         <div class="section-title">
                             <h2>Información</h2>
                         </div>
+                        <div class="section-content">
+                            <?php
+                                if ($type == 'Estudiante') {
+                            ?>
+                                    <div class="container-information">
+                                        <div class="image-profile">
+                                            <?php 
+                                                $foto = base64_encode($user->foto);
+                                            ?>
+                                            <img src="data:image/jpeg;base64,<?= $foto ?>">
+                                        </div>
+                                        <div class="information">
+                                            <h2><?= $user->nombre ?></h2>
+                                            <div class="span-information">
+                                                <i class="fi fi-ss-user"></i>
+                                                <span><?= $user->identificacion ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-rr-venus-mars"></i>
+                                                <span><?= $user->genero ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-ss-cake-birthday"></i>
+                                                <?php
+                                                    $fecha = date('d/m/Y', strtotime($user->fecha_nacimiento));
+                                                ?>
+                                                <span><?= $fecha ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-balloons"></i>
+                                                <span><?= $user->edad ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-br-wheelchair"></i>
+                                                <span><?= $user->discapacidad ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                } else if ($type == 'Administrador') {
+                            ?>
+                                    <div class="container-information">
+                                        <div class="image-profile">
+                                            <?php 
+                                                $foto = base64_encode($user->foto);
+                                            ?>
+                                            <img src="data:image/jpeg;base64,<?= $foto ?>">
+                                        </div>
+                                        <div class="information">
+                                            <h2><?= $user->nombre ?></h2>
+                                            <div class="span-information">
+                                                <i class="fi fi-ss-user"></i>
+                                                <span><?= $user->identificacion ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-envelope"></i>
+                                                <span><?= $user->correo ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                } else {
+                            ?>
+                                    <div class="container-information">
+                                        <div class="image-profile">
+                                            <?php 
+                                                $foto = base64_encode($user->foto);
+                                            ?>
+                                            <img src="data:image/jpeg;base64,<?= $foto ?>">
+                                        </div>
+                                        <div class="information">
+                                            <h2><?= $user->nombre ?></h2>
+                                            <div class="span-information">
+                                                <i class="fi fi-ss-user"></i>
+                                                <span><?= $user->identificacion ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-phone-flip"></i>
+                                                <span><?= $user->telefono ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-envelope"></i>
+                                                <span><?= $user->correo ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-house-chimney-blank"></i>
+                                                <span><?= $user->direccion ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            ?> 
+                        </div>
                     </section>
                     <section id="section-students">
                         <div class="section-title">
@@ -228,26 +323,66 @@
                                     <th>Descripcion</th>
                                     <th>Archivo</th>
                                     <th>Fecha</th>
+                                    <?php
+                                        if ($type == 'Administrador') {
+                                            //
+                                        } else {
+                                    ?>
+                                            <th>Grupo</th>
+                                            <th>Accion</th>
+                                    <?php
+                                        }
+                                    ?>
                                 </tr>    
                                 <?php
-                                    foreach ($actividad as $a) {
+                                    if ($type == 'Administrador') {
 
-                                        $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                        foreach ($actividad as $a) {
+
+                                            $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
                                 ?>
-                                    <tr>
-                                        <td><?= $a->id ?></td>
-                                        <td><?= $a->titulo ?></td>
-                                        <td><?= $a->descripcion ?></td>
-                                        <?php
-                                        $base64=base64_encode($a->archivo);
-                                        $ruta='data:application/pdf;base64,'.$base64;
-                                        ?>
-                                        <td><a href="<?php echo"$ruta"?>"download="<?php echo"$a->titulo"?>">Descargar</a></td>
-                                        <td><?= $fecha ?></td>
-                                    </tr>
-                                <?php   
+                                            <tr>
+                                                <td><?= $a->id ?></td>
+                                                <td><?= $a->titulo ?></td>
+                                                <td><?= $a->descripcion ?></td>
+                                                <?php
+                                                    $base64=base64_encode($a->archivo);
+                                                    $ruta='data:application/pdf;base64,'.$base64;
+                                                ?>
+                                                <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
+                                                <td><?= $fecha ?></td>
+                                            </tr>
+                                <?php
+                                        }
+                                    } else {
+                                        foreach ($actividad as $a) {
+
+                                            $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                ?>
+                                            <tr>
+                                                <td><?= $a->id ?></td>
+                                                <td><?= $a->titulo ?></td>
+                                                <td><?= $a->descripcion ?></td>
+                                                <?php
+                                                    $base64=base64_encode($a->archivo);
+                                                    $ruta='data:application/pdf;base64,'.$base64;
+                                                ?>
+                                                <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
+                                                <td><?= $fecha ?></td>
+                                                <td><?= $a->aula ?></td>
+                                                <td>
+                                                    <div class="button-edit">
+                                                        <i class="fi fi-sr-edit"></i>
+                                                    </div>
+                                                    <div class="button-delete">
+                                                        <i class="fi fi-sr-trash"></i>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                <?php
+                                        }
                                     }
-                                ?>
+                                ?>            
                             </table>
                         </div>
                     </section>

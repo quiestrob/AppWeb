@@ -70,6 +70,7 @@
                         $_SESSION['usuario.status'] = $statusInscription; 
 
                         UsuarioController::listProffesorGroupAttendant($identification);
+                        ActividadController::listActivitiesAttendant($identification);
     
                         header("Location: ../root/pages/validation_inscription.php");
                         exit;
@@ -111,6 +112,7 @@
                                 AcudidoController::listStudentStatus();
                                 InscripcionController::listInscription();
                                 UsuarioController::listUserProffesor();
+                                ActividadController::listAllActivities();
             
                                 header("Location: ../root/pages/validation_inscription.php");
                                 exit;
