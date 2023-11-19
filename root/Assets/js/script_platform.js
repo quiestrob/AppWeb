@@ -21,7 +21,6 @@ for (let i = 0; i < nav.length; i++) {
 
 const button = document.querySelector('.logout span');
 
-
 //Funcion boton cerrar sesion
 button.addEventListener('click', ()=> {
     window.location.href = '../../root/pages/session_destroy.php';
@@ -106,20 +105,6 @@ function updateInscription() {
     xhr.send();
 }
 
-//Visualizacion de grupo estudiante
-const ident = document.querySelector('.section-content .card .content .identification a');
-const group = document.querySelector('.section-content .card .content .group a');
-
-ident.addEventListener('click', ()=> {
-    group.style.opacity = 1;
-    group.style.zIndex = 2;
-});
-
-group.addEventListener('click', ()=> {
-    group.style.opacity = 0;
-    group.style.zIndex = 0;
-});
-
 //Abrir chat
 const chat = document.querySelector('.container-chat');
 const chatUser = document.querySelectorAll('.container-messages .profile-message');
@@ -180,8 +165,6 @@ const mensajes = document.querySelector('.container-messages');
 const iconMessage = document.querySelector('.container-profile .options i');
 const container = document.querySelector('.container-sections');
 
-console.log(iconMessage);
-
 iconMessage.addEventListener('click', ()=> {
     mensajes.style.opacity = 1;
     mensajes.style.zIndex = 100;
@@ -230,3 +213,53 @@ buttonSend.addEventListener('click', ()=> {
         inputMessage.value = '';
     } 
 });
+
+//Abrir edicion perfil
+const editContainerProfile = document.querySelector('.container-edit-profile');
+const editContainerActivity = document.querySelector('.container-edit-activity');
+const openEdit = document.querySelector('.container-content .container-sections .section-content .container-information .information .span-information:last-child');
+
+openEdit.addEventListener('click', ()=> {
+    editContainerProfile.style.zIndex = 100;
+});
+
+//Cerrar edicion perfil
+const closeEditProfile = document.querySelector('.container-edit-profile .close-edit i');
+const closeEditActivity = document.querySelector('.container-edit-activity .close-edit i');
+
+closeEditProfile.addEventListener('click', ()=> {
+    editContainerProfile.style.zIndex = -1;
+});
+
+closeEditActivity.addEventListener('click', ()=> {
+    editContainerActivity.style.zIndex = -1;
+});
+
+//Visualizacion de grupo estudiante
+const showIdent = document.querySelector('.section-content .card .content .identification a');
+const showGroup = document.querySelector('.section-content .card .content .group a');
+
+showIdent.addEventListener('click', ()=> {
+    showGroup.style.opacity = 1;
+    showGroup.style.zIndex = 100;
+});
+
+showGroup.addEventListener('click', ()=> {
+    showGroup.style.opacity = 0;
+    showGroup.style.zIndex = 0;
+});
+
+//Ocultar opcion mensajes
+const options = document.querySelector('.container-profile .options');
+const spanOption = document.querySelector('.container-profile .content-profile span:nth-child(2)');
+
+if (spanOption.textContent.replace(/\s/g, "") === 'Profesor' || spanOption.textContent.replace(/\s/g, "") === 'Acudiente') {
+    
+} else {
+    options.style.display = 'none'
+}
+
+function openEditActivity() {
+    const editContainerActivity = document.querySelector('.container-edit-activity');
+    editContainerActivity.style.zIndex = 100;
+}

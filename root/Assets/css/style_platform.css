@@ -278,12 +278,20 @@ body {
 
 .container-content .container-sections .section-content .container-information {
     margin: 0 20px;
+    width: 400px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: #D1C4E9;
 }
 
 .container-content .container-sections .section-content .container-information .image-profile {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    padding: 10px;
 }
 
 .container-content .container-sections .section-content .container-information .image-profile img {
@@ -296,28 +304,57 @@ body {
 .container-content .container-sections .section-content .container-information .information {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 20px;
     font-family: 'Poppins';
     user-select: none;
 }
 
-.container-content .container-sections .section-content .container-information .information h2 {
+.container-content .container-sections .section-content .container-information .information .title-information {
+    text-align: center;
+}
+
+.container-content .container-sections .section-content .container-information .information .title-information h2 {
     color: #7E57C2;
     font-size: 28px;
+}
+
+.container-content .container-sections .section-content .container-information .information .title-information span {
+    color: #fff;
+    font-size: 16px;
 }
 
 .container-content .container-sections .section-content .container-information .information .span-information {
     display: flex;
     align-items: center;
     margin: 5px 0;
+    cursor: pointer;
+    transition: transform .4s ease-in-out;
+}
+
+.container-content .container-sections .section-content .container-information .information .span-information:hover {
+    transform: scale(1.05);
 }
 
 .container-content .container-sections .section-content .container-information .information .span-information:nth-child(2) {
-    margin: 10px 0 5px 0;
+    margin: 20px 0 5px 0;
+}
+
+.container-content .container-sections .section-content .container-information .information .span-information:last-child span {
+    color: #7E57C2;
+    transition: letter-spacing .5s;
+}
+
+.container-content .container-sections .section-content .container-information .information .span-information:last-child:hover {
+    transform: scale(1);
+}
+
+.container-content .container-sections .section-content .container-information .information .span-information:last-child:hover span {
+    letter-spacing: .07em;
 }
 
 .container-content .container-sections .section-content .container-information .information i {
-    font-size: 18px;
+    font-size: 17px;
     color: #7E57C2;
     display: flex;
     justify-content: center;
@@ -325,7 +362,7 @@ body {
 }
 
 .container-content .container-sections .section-content .container-information .information span {
-    font-size: 18px;
+    font-size: 17px;
     margin: 0 10px;
 }
 
@@ -428,6 +465,7 @@ body {
     font-weight: 600;
     text-decoration: none;
     text-align: center;
+    cursor: pointer;
 }
 
 .container-content .container-sections .section-content .card .content .identification a {
@@ -485,11 +523,6 @@ body {
     padding: 5px 50px;
 }
 
-.container-content .container-sections .section-content table td a {
-    text-decoration: none;
-    color: #fff;
-}
-
 .container-content .container-sections .section-content table td:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -523,12 +556,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) {
     background: #D1C4E9;
     color: #fff;
+}
+
+.container-content .container-sections .section-content table tr:nth-child(even) td a {
+    color: #efefef;
+    text-decoration: none;
+}
+
+.container-content .container-sections .section-content table tr:nth-child(odd) td a {
+    color: #000;
+    text-decoration: none;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) .button-accept, 
@@ -542,7 +585,7 @@ body {
 .container-content .container-sections .section-content table tr:nth-child(even) .button-decline i,
 .container-content .container-sections .section-content table tr:nth-child(even) .button-edit i,
 .container-content .container-sections .section-content table tr:nth-child(even) .button-delete i {
-    color: #000;
+    color: #D1C4E9;
 }
 
 .container-content .container-sections .section-content table tr:nth-child(odd) {
@@ -703,4 +746,144 @@ body {
     color: #7E57C2;
     font-size: 18px;
     cursor: pointer;
+}
+
+.container-edit-profile,
+.container-edit-activity {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, .8);
+    z-index: -1;
+}
+
+.container-edit-profile .edit-profile,
+.container-edit-activity .edit-activity {
+    width: 500px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 0;
+    position: absolute;
+    max-height: 700px;
+    overflow-y: scroll;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+}
+
+.container-edit-profile .edit-profile::-webkit-scrollbar,
+.container-edit-activity .edit-activity::-webkit-scrollbar {
+    width: 0;
+}
+
+.container-edit-profile .edit-profile .close-edit i,
+.container-edit-activity .edit-activity .close-edit i {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border-radius: 50%;
+    padding: 7px;
+    cursor: pointer;
+    color: #7E57C2;
+}
+
+.container-edit-profile .edit-profile .close-edit i:hover,
+.container-edit-activity .edit-activity .close-edit i:hover {
+    background: #D1C4E9;
+}
+
+.container-edit-profile .edit-profile .input-data,
+.container-edit-activity .edit-activity .input-data {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 15px 0;
+}
+
+.container-edit-profile .edit-profile span,
+.container-edit-activity .edit-activity span {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    color: #868686;
+    user-select: none;
+}
+
+.container-edit-profile .edit-profile input,
+.container-edit-activity .edit-activity input {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    height: 70px;
+    border: 2px solid #d9d9d9;
+    border-radius: 20px;
+    padding: 0 25px;
+    margin: 5px 0 0 0;
+    outline: none;
+}
+
+.container-edit-profile .edit-profile input:focus,
+.container-edit-activity .edit-activity input:focus {
+    border: 2px solid #7E57C2;
+}
+
+.container-edit-profile .edit-profile .container-radio {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-edit-profile .edit-profile .container-radio__radio {
+    width: 180px;
+    height: 70px;
+    border: 2px solid #d9d9d9;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-edit-profile .edit-profile .container-radio__radio input {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+    border-color: #7E57C2;
+}
+
+.container-edit-profile .edit-profile .container-radio__radio input:checked {
+    accent-color: #7E57C2;
+}
+
+.container-edit-profile .edit-profile .container-radio__radio span {
+    color: #000;
+    margin: 0 0 0 5px;
+}
+
+.container-edit-profile .edit-profile .input-data:last-child,
+.container-edit-activity .edit-activity .input-data:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-edit-profile .edit-profile input[type=submit],
+.container-edit-activity .edit-activity input[type=submit] {
+    width: 170px;
+    height: 60px;
+    background: #7E57C2;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: .03em;
+    cursor: pointer;
+    transition: letter-spacing .2s linear;
+}
+
+.container-edit-profile .edit-profile input[type=submit]:hover,
+.container-edit-activity .edit-activity input[type=submit]:hover {
+    letter-spacing: .1em;
 }

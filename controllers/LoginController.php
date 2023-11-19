@@ -91,6 +91,7 @@
 
                             UsuarioController::listAttendant();
                             AcudidoController::listStudentStatus();
+                            ActividadController::listActivitiesProffesor($identification);
         
                             header("Location: ../root/pages/validation_inscription.php");
                             exit;

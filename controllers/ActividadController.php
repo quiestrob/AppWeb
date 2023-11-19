@@ -48,6 +48,21 @@
                 echo "Error: " + $error->getMessage();
             }
         }
+
+        public static function listActivitiesProffesor($identification) {
+            try {
+                $activities = ActividadService::listActivitiesProffesor($identification);
+
+                if ($activities == null) {
+                    $_SESSION['actividad.all'] = null;
+                } else {
+                    $activities = serialize($activities);
+                    $_SESSION['actividad.all'] = $activities; 
+                }
+            } catch(Exception $error){
+                echo "Error: " + $error->getMessage();
+            }
+        }
     }
 
 ?>

@@ -18,7 +18,7 @@ closed.addEventListener('click', () => {
 const buttonPlatform = document.querySelector('.button-platform');
 const span = document.querySelector('.hidden');
 
-if (span.textContent.replace(/\s/g, "") === 'Pendiente') {
+if (span.textContent.replace(/\s/g, "") === 'Pendiente' || span.textContent.replace(/\s/g, "") === 'Rechazada') {
     buttonPlatform.style.display = 'none'
 } else {
     buttonPlatform.addEventListener('click', () => {

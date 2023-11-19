@@ -46,6 +46,157 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container-edit-activity">
+        <div class="edit-activity">
+            <div class="close-edit">
+                <i class="fi fi-br-x"></i>
+            </div>
+            <div class="input-data">
+                <span>Titulo</span>
+                <input type="number" id="title" name="title" value="" readonly>
+            </div>
+            <div class="input-data">
+                <span>Descripcion</span>
+                <input type="text" id="description" name="description" value="" readonly>
+            </div>
+            <div class="input-data">
+                <span>Archivo</span>
+                <input type="file" id="archive" name="archive" value="" readonly>
+            </div>
+            <div class="input-data">
+                <input type="submit" name="action" value="Editar">
+            </div>
+        </div>
+    </div>
+    <div class="container-edit-profile">
+        <?php
+            if ($type == 'Estudiante') {
+        ?>
+                <div class="edit-profile">
+                    <div class="close-edit">
+                        <i class="fi fi-br-x"></i>
+                    </div>
+                    <div class="input-data">
+                        <span>Identificación</span>
+                        <input type="number" id="idAttended" name="idAttended" value="<?= $user->identificacion ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <span>Nombre</span>
+                        <input type="text" id="nameAttended" name="nameAttended" value="<?= $user->nombre ?>" required>
+                    </div>
+                    <div class="input-data">
+                        <span>Género</span>
+                        <?php
+                            if ($user->genero == 'Masculino') {
+                        ?>
+                                <div class="container-radio">
+                                    <div class="container-radio__radio">
+                                        <input type="radio" name="radio-gender" value="Masculino" checked required>
+                                        <span>Masculino</span>
+                                    </div>
+                                    <div class="container-radio__radio">
+                                        <input type="radio" name="radio-gender" value="Femenino" required>
+                                        <span>Femenino</span>
+                                    </div>
+                                </div>
+                        <?php
+                            } else {
+                        ?> 
+                                <div class="container-radio">
+                                    <div class="container-radio__radio">
+                                        <input type="radio" name="radio-gender" value="Masculino" required>
+                                        <span>Masculino</span>
+                                    </div>
+                                    <div class="container-radio__radio">
+                                        <input type="radio" name="radio-gender" value="Femenino" checked required>
+                                        <span>Femenino</span>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                    <div class="input-data">
+                        <?php
+                            $fecha = date('Y-m-d', strtotime($user->fecha_nacimiento));
+                        ?>
+                        <span>Fecha de nacimiento</span>
+                        <input type="date" id="date" name="date" value="<?= $fecha ?>" readonly>
+                    </div>
+                        <div class="input-data">
+                        <span>Discapacidad</span>
+                        <input type="text" id="disability" name="disability" value="<?= $user->discapacidad ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <input type="submit" name="action" value="Editar">
+                    </div>
+                </div>
+        <?php
+            } else if ($type == 'Profesor' || $type == 'Acudiente') {
+        ?>
+                <div class="edit-profile">
+                    <div class="close-edit">
+                        <i class="fi fi-br-x"></i>
+                    </div>
+                    <div class="input-data">
+                        <span>Identificación</span>
+                        <input type="number" id="identification" name="idAttended" value="<?= $user->identificacion ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <span>Nombre</span>
+                        <input type="text" id="name" name="name" value="<?= $user->nombre ?>" required>
+                    </div>
+                    <div class="input-data">
+                        <span>Telefono</span>
+                        <input type="number" id="phone" name="phone" value="<?= $user->telefono ?>" required>
+                    </div>
+                    <div class="input-data">
+                        <span>Correo</span>
+                        <input type="email" id="email" name="email" value="<?= $user->correo ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <span>Contraseña</span>
+                        <input type="password" id="pass" name="pass" value="<?= $user->contraseña ?>" required>
+                    </div>
+                    <div class="input-data">
+                        <span>Direccion</span>
+                        <input type="text" id="address" name="address" value="<?= $user->direccion ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <input type="submit" name="action" value="Editar">
+                    </div>
+                </div> 
+        <?php
+            } else {
+        ?>
+                <div class="edit-profile">
+                    <div class="close-edit">
+                        <i class="fi fi-br-x"></i>
+                    </div>
+                    <div class="input-data">
+                        <span>Identificación</span>
+                        <input type="number" id="identification" name="idAttended" value="<?= $user->identificacion ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <span>Nombre</span>
+                        <input type="text" id="name" name="name" value="<?= $user->nombre ?>" required>
+                    </div>
+                    <div class="input-data">
+                        <span>Correo</span>
+                        <input type="email" id="email" name="email" value="<?= $user->correo ?>" readonly>
+                    </div>
+                    <div class="input-data">
+                        <span>Contraseña</span>
+                        <input type="password" id="pass" name="pass" value="<?= $user->contraseña ?>" required>
+                    </div>
+                    <div class="input-data">
+                        <input type="submit" name="action" value="Editar">
+                    </div>
+                </div> 
+        <?php
+            }
+        ?>
+    </div>
     <div class="container-messages">
         <?php
             if ($type === "Acudiente") {
@@ -153,16 +304,10 @@
         <div class="background-content">
             <div class="container-content">
                 <div class="container-profile">  
-                    <div class="profile-options">
-                        <?php
-                            if ($type == 'Acudiente' || $type == 'Profesor') {
-                        ?>
-                                <div class="options">
-                                    <i class="fi fi-rr-messages"></i>
-                                </div>
-                        <?php
-                            }
-                        ?>
+                    <div class="profile-options">  
+                        <div class="options">
+                            <i class="fi fi-rr-messages"></i>
+                        </div>
                         <div class="profile">
                             <div class="image-profile">
                                 <?php 
@@ -194,7 +339,10 @@
                                             <img src="data:image/jpeg;base64,<?= $foto ?>">
                                         </div>
                                         <div class="information">
-                                            <h2><?= $user->nombre ?></h2>
+                                            <div class="title-information">
+                                                <h2><?= $user->nombre ?></h2>
+                                                <span><?= $type ?></span>
+                                            </div>
                                             <div class="span-information">
                                                 <i class="fi fi-ss-user"></i>
                                                 <span><?= $user->identificacion ?></span>
@@ -218,6 +366,13 @@
                                                 <i class="fi fi-br-wheelchair"></i>
                                                 <span><?= $user->discapacidad ?></span>
                                             </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-key"></i>
+                                                <span><?= str_repeat('*', strlen($user->contraseña)) ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <span>Editar</span>
+                                            </div>
                                         </div>
                                     </div>
                             <?php
@@ -231,7 +386,10 @@
                                             <img src="data:image/jpeg;base64,<?= $foto ?>">
                                         </div>
                                         <div class="information">
-                                            <h2><?= $user->nombre ?></h2>
+                                            <div class="title-information">
+                                                <h2><?= $user->nombre ?></h2>
+                                                <span><?= $type ?></span>
+                                            </div>
                                             <div class="span-information">
                                                 <i class="fi fi-ss-user"></i>
                                                 <span><?= $user->identificacion ?></span>
@@ -239,6 +397,13 @@
                                             <div class="span-information">
                                                 <i class="fi fi-sr-envelope"></i>
                                                 <span><?= $user->correo ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <i class="fi fi-sr-key"></i>
+                                                <span><?= str_repeat('*', strlen($user->contraseña)) ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <span>Editar</span>
                                             </div>
                                         </div>
                                     </div>
@@ -253,7 +418,10 @@
                                             <img src="data:image/jpeg;base64,<?= $foto ?>">
                                         </div>
                                         <div class="information">
-                                            <h2><?= $user->nombre ?></h2>
+                                            <div class="title-information">
+                                                <h2><?= $user->nombre ?></h2>
+                                                <span><?= $type ?></span>
+                                            </div>
                                             <div class="span-information">
                                                 <i class="fi fi-ss-user"></i>
                                                 <span><?= $user->identificacion ?></span>
@@ -267,8 +435,15 @@
                                                 <span><?= $user->correo ?></span>
                                             </div>
                                             <div class="span-information">
+                                                <i class="fi fi-sr-key"></i>
+                                                <span><?= str_repeat('*', strlen($user->contraseña)) ?></span>
+                                            </div>
+                                            <div class="span-information">
                                                 <i class="fi fi-sr-house-chimney-blank"></i>
                                                 <span><?= $user->direccion ?></span>
+                                            </div>
+                                            <div class="span-information">
+                                                <span>Editar</span>
                                             </div>
                                         </div>
                                     </div>
@@ -294,10 +469,10 @@
                                 </div>
                                 <div class="content">
                                     <span class="identification">
-                                        <a href="#"><?= $est->identificacion ?></a>
+                                        <a><?= $est->identificacion ?></a>
                                     </span>
                                     <span class="group">
-                                        <a href="#"><?= $est->aula ?></a>
+                                        <a><?= $est->aula ?></a>
                                     </span>
                                     <ul>
                                         <li><i class="fi fi-rr-user"></i> <?= $est->nombre ?></li>
@@ -326,12 +501,16 @@
                                     <?php
                                         if ($type == 'Administrador') {
                                             //
-                                        } else {
+                                        } else if ($type == 'Profesor') {
                                     ?>
                                             <th>Grupo</th>
                                             <th>Accion</th>
                                     <?php
-                                        }
+                                        } else {
+                                    ?>
+                                            <th>Grupo</th>
+                                    <?php
+                                        } 
                                     ?>
                                 </tr>    
                                 <?php
@@ -354,7 +533,7 @@
                                             </tr>
                                 <?php
                                         }
-                                    } else {
+                                    } else if ($type == 'Profesor') {
                                         foreach ($actividad as $a) {
 
                                             $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
@@ -371,13 +550,32 @@
                                                 <td><?= $fecha ?></td>
                                                 <td><?= $a->aula ?></td>
                                                 <td>
-                                                    <div class="button-edit">
-                                                        <i class="fi fi-sr-edit"></i>
+                                                    <div class="button-edit" onclick="openEditActivity()">
+                                                        <i class="fi fi-sr-select"></i>
                                                     </div>
                                                     <div class="button-delete">
                                                         <i class="fi fi-sr-trash"></i>
                                                     </div>
                                                 </td>
+                                            </tr>
+                                <?php
+                                        }
+                                    } else {
+                                        foreach ($actividad as $a) {
+
+                                            $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                ?>
+                                            <tr>
+                                                <td><?= $a->id ?></td>
+                                                <td><?= $a->titulo ?></td>
+                                                <td><?= $a->descripcion ?></td>
+                                                <?php
+                                                    $base64=base64_encode($a->archivo);
+                                                    $ruta='data:application/pdf;base64,'.$base64;
+                                                ?>
+                                                <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
+                                                <td><?= $fecha ?></td>
+                                                <td><?= $a->aula ?></td>
                                             </tr>
                                 <?php
                                         }
@@ -409,7 +607,7 @@
                                             </div>
                                             <div class="content">
                                                 <span class="identification">
-                                                    <a href="#"><?= $proG->identificacion ?></a>
+                                                    <a><?= $proG->identificacion ?></a>
                                                 </span>
                                                 <ul>
                                                     <li><i class="fi fi-rr-user"></i> <?= $proG->nombre ?></li>
@@ -432,7 +630,7 @@
                                             </div>
                                             <div class="content">
                                                 <span class="identification">
-                                                    <a href="#"><?= $proGA->identificacion ?></a>
+                                                    <a><?= $proGA->identificacion ?></a>
                                                 </span>
                                                 <ul>
                                                     <li><i class="fi fi-rr-user"></i> <?= $proGA->nombre ?></li>
