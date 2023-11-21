@@ -100,20 +100,21 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 25px;
-    color: #efefef;
+    color: #d9d9d9;
 }
 
 .container-navegation .logout span {
     font-family: 'Poppins';
-    font-weight: 500;
-    color: #efefef;
-    letter-spacing: .07em;
+    font-weight: 400;
+    color: #d9d9d9;
     margin:  0 0 0 5px;
+    transition: letter-spacing .3s;
 }
 
 .container-navegation .logout:hover i,
 .container-navegation .logout:hover span {
     color: #fff;
+    letter-spacing: .05em;
 }
 
 .background-content {
@@ -150,7 +151,7 @@ body {
     align-items: center;
     width: 50px;
     height: 50px;
-    margin: 0 30px;
+    margin: 0 50px;
 }
 
 .container-profile .options i {
@@ -169,24 +170,46 @@ body {
     justify-content: space-evenly;
     width: 200px;
     height: 60px;
-    background: #7E57C2;
     border-radius: 20px;
     margin: 0 30px 0 0;
     user-select: none;
 }
 
+.container-profile .profile {
+    flex-direction: row-reverse;
+}
+
 .container-messages .profile-message {
-    width: 190px;
+    position: relative;
+    width: 220px;
     background: #fff;
-    margin: 10px 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .25);
+    border-radius: 10px;
+    margin: 0;
     cursor: pointer;
+    transition: .5s;
+}
+
+.container-messages .profile-message:nth-child(1) {
+    transform: translateZ(-75px) translateY(20px);
+    opacity: .6;
+}
+
+.container-messages .profile-message:nth-child(3) {
+    transform: translateZ(75px) translateY(-30px);
+    opacity: .6;
+}
+
+.container-messages .profile-message:nth-child(4) {
+    transform: translateZ(150px) translateY(-75px);
+    opacity: .6;
 }
 
 .container-profile .profile .image-profile,
 .container-messages .profile-message .image-profile {
     position: relative;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: #fff;
     border: 1px solid #fff;
@@ -218,12 +241,16 @@ body {
     flex-direction: column;
 }
 
+.container-profile .profile .content-profile {
+    align-items: end;
+}
+
 .container-profile .profile .content-profile span,
 .container-messages .profile-message .content-profile span {
     font-family: 'Poppins';
     font-size: 15px;
     font-weight: 500;
-    color: #fff;
+    color: #7E57C2;
 }
 
 .container-messages .profile-message .content-profile span {
@@ -232,7 +259,7 @@ body {
 
 .container-profile .profile .content-profile span:nth-child(2),
 .container-messages .profile-message .content-profile span:nth-child(2) {
-    color: #d9d9d9;
+    color: #868686;
     font-weight: 400;
 }
 
@@ -272,8 +299,8 @@ body {
 
 .container-content .container-sections .section-content {
     display: flex;
-    flex-wrap: wrap;
-    margin: 20px 50px 0 20px;
+    flex-wrap: wrap;  
+    margin: 20px 0 0 20px;
 }
 
 .container-content .container-sections .section-content .container-information {
@@ -523,6 +550,14 @@ body {
     padding: 5px 50px;
 }
 
+.container-content .container-sections .section-content table td img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: flex;
+}
+
 .container-content .container-sections .section-content table td:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -565,7 +600,7 @@ body {
 }
 
 .container-content .container-sections .section-content table tr:nth-child(even) td a {
-    color: #efefef;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -606,20 +641,43 @@ body {
     color: #fff;
 }
 
+.container-content .container-sections .section-content .add-activity {
+    width: 25px;
+    height: 25px;
+    margin: 20px 0 0 20px;
+}
+
+.container-content .container-sections .section-content .add-activity i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7E57C2;
+    cursor: pointer;
+}
+
 .container-messages {
     position: absolute;
-    width: 220px;
-    height: 80vh;
-    background: #7E57C2;
-    right: 2%;
-    top: 15%;
-    border-radius: 20px;
+    right: 11%;
+    top: 12%;   
+    transform-style: preserve-3d;
+    perspective: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0;
     opacity: 0;
     z-index: -1;
-    transition: 1s;
+    transition: .5s;
+}
+
+.container-messages:hover {
+    gap: 10px;
+    top: 15%;
+}
+
+.container-messages:hover .profile-message {
+    opacity: 1;
+    transform: translateZ(0) translateY(0);
 }
 
 .container-chat {
@@ -628,7 +686,7 @@ body {
     height: 450px;
     background: #7E57C2;
     bottom: 5%;
-    right: 15%;
+    right: 3%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;

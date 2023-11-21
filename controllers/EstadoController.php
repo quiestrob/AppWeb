@@ -53,7 +53,7 @@
                 echo "
                     <table>
                         <tr>
-                            <th>ID</th>
+                            <th>Foto</th>
                             <th>Nombre</th>
                             <th>Fecha</th>
                             <th>Discapacidad</th>
@@ -62,11 +62,14 @@
                         </tr>";
 
                 foreach ($inscripcion as $i) {
-                    $fecha = date('d/m/Y', strtotime($i->fecha_inscripcion));
+                    $fecha = date('d/m/Y', strtotime($i->fecha_inscripcion)); 
+                    $foto = base64_encode($i->foto);                
                     
                     echo "
                         <tr>
-                            <td>" . $i->id . "</td>
+                            <td>
+                                <img src='data:image/jpeg;base64,". $foto ."'>
+                            </td>
                             <td>" . $i->nombre . "</td>
                             <td>" . $fecha . "</td>
                             <td>" . $i->discapacidad . "</td>

@@ -306,7 +306,7 @@
                 <div class="container-profile">  
                     <div class="profile-options">  
                         <div class="options">
-                            <i class="fi fi-rr-messages"></i>
+                            <i class="fi fi-sr-comments"></i>
                         </div>
                         <div class="profile">
                             <div class="image-profile">
@@ -493,7 +493,6 @@
                         <div class="section-content">
                             <table>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Titulo</th>
                                     <th>Descripcion</th>
                                     <th>Archivo</th>
@@ -521,7 +520,6 @@
                                             $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
                                 ?>
                                             <tr>
-                                                <td><?= $a->id ?></td>
                                                 <td><?= $a->titulo ?></td>
                                                 <td><?= $a->descripcion ?></td>
                                                 <?php
@@ -539,7 +537,6 @@
                                             $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
                                 ?>
                                             <tr>
-                                                <td><?= $a->id ?></td>
                                                 <td><?= $a->titulo ?></td>
                                                 <td><?= $a->descripcion ?></td>
                                                 <?php
@@ -566,7 +563,6 @@
                                             $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
                                 ?>
                                             <tr>
-                                                <td><?= $a->id ?></td>
                                                 <td><?= $a->titulo ?></td>
                                                 <td><?= $a->descripcion ?></td>
                                                 <?php
@@ -582,6 +578,9 @@
                                     }
                                 ?>            
                             </table>
+                            <!--<div class="add-activity">
+                                <i class="fi fi-br-plus"></i>
+                            </div>-->
                         </div>
                     </section>
                     <section id="section-reports">
@@ -680,7 +679,7 @@
                         <div class="section-content">
                             <table>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Foto</th>
                                     <th>Nombre</th>
                                     <th>Fecha</th>
                                     <th>Discapacidad</th>
@@ -693,7 +692,12 @@
                                         $fecha = date('d/m/Y', strtotime($i->fecha_inscripcion));
                                 ?>
                                     <tr>
-                                        <td><?= $i->id ?></td>
+                                        <?php 
+                                            $foto = base64_encode($i->foto);
+                                        ?>
+                                        <td>
+                                            <img src="data:image/jpeg;base64,<?= $foto ?>">
+                                        </td>
                                         <td><?= $i->nombre ?></td>
                                         <td><?= $fecha ?></td>
                                         <td><?= $i->discapacidad ?></td>

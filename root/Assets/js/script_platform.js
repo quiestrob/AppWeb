@@ -105,6 +105,21 @@ function updateInscription() {
     xhr.send();
 }
 
+//Mostrar mensajes
+const mensajes = document.querySelector('.container-messages');
+const iconMessage = document.querySelector('.container-profile .options i');
+const container = document.querySelector('.container-sections');
+
+iconMessage.addEventListener('click', ()=> {
+    mensajes.style.opacity = 1;
+    mensajes.style.zIndex = 100;
+});
+
+container.addEventListener('click', ()=> {
+    mensajes.style.opacity = 0;
+    mensajes.style.zIndex = -1;
+});
+
 //Abrir chat
 const chat = document.querySelector('.container-chat');
 const chatUser = document.querySelectorAll('.container-messages .profile-message');
@@ -119,6 +134,9 @@ for (let i = 0; i < chatUser.length; i++) {
     chatUser[i].addEventListener('click', ()=> {
         chat.style.opacity = 1;
         chat.style.zIndex = 1000;
+
+        mensajes.style.opacity = 0;
+        mensajes.style.zIndex = -1;
 
         messageTransmitter.value = idTransmitter[i].value;
         messageReceiver.value = idReceiver[i].value;
@@ -158,23 +176,6 @@ const closeChat = document.querySelector('.container-chat__title h2');
 closeChat.addEventListener('click', ()=> {
     chat.style.opacity = 0;
     chat.style.zIndex = -1;
-});
-
-//Mostrar mensajes
-const mensajes = document.querySelector('.container-messages');
-const iconMessage = document.querySelector('.container-profile .options i');
-const container = document.querySelector('.container-sections');
-
-iconMessage.addEventListener('click', ()=> {
-    mensajes.style.opacity = 1;
-    mensajes.style.zIndex = 100;
-    chat.style.right = '15%';
-});
-
-container.addEventListener('click', ()=> {
-    mensajes.style.opacity = 0;
-    mensajes.style.zIndex = -1;
-    chat.style.right = '2%';
 });
 
 //Enviar mensaje
