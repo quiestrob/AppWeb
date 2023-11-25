@@ -40,15 +40,15 @@
 
             try {
                 EstadoService::declineStatus($idInscription, $idStatus, $identification);
-                EstadoController::updateTable();
+                EstadoController::updateTable($identification);
             } catch(Exception $error){
                echo $error->getMessage();
             }
         }
 
-        public static function updateTable() {
+        public static function updateTable($identification) {
             try {
-                $inscripcion = InscripcionService::listInscription();            
+                $inscripcion = InscripcionService::listInscription();           
 
                 echo "
                     <table>
@@ -76,19 +76,17 @@
                             <td>" . $i->estado . "</td>
                             <td>";
 
-                    if ($i->estado == 'Aceptada' || $i->estado = 'Rechazada') {
+                    if ($i->estado == 'Aceptada' || $i->estado == 'Rechazada') {
                         echo "
                             <span>No disponible</span>    
                         ";
                     } else {
                         echo "
-                            <div class='button-accept' onclick='accept(" . $i->estado_id . ", " . $user->identificacion . ", " . $i->id . ")'>
-                                <i class='fi fi-br-check'></i>
-                                <span>Aceptar</span>
+                            <div class='button-accept' onclick='accept(" . $i->estado_id . ", " . $identification . ", " . $i->id . ")'>
+                                <i class='fi fi-sr-checkbox'></i>
                             </div>
-                            <div class='button-decline' onclick='decline(" . $i->estado_id . ", " . $user->identificacion . ", " . $i->id . ")'>
-                                <i class='fi fi-br-x'></i>
-                                <span>Rechazar</span>
+                            <div class='button-decline' onclick='decline(" . $i->estado_id . ", " . $identification . ", " . $i->id . ")'>
+                                <i class='fi fi-sr-trash'></i>
                             </div>";
                     }
 

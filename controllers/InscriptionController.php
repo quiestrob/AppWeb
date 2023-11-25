@@ -1,9 +1,14 @@
 <?php
 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Usuario.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudido.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Acudiente.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Estado.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
+
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/UsuarioService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/AcudidoService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/EstadoService.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/InscripcionService.php';
 
     class InscriptionController {
         public static function executeAction() {
@@ -25,18 +30,21 @@
             $phone = @$_REQUEST['phone'];
             $mail = @$_REQUEST['mail'];
             $address = @$_REQUEST['address'];
-            $passAttendant = @$_REQUEST['passAttendant'];    
+            $passAttendant = @$_REQUEST['passAttendant']; 
+            $fotoAttendant = file_get_contents(@$_FILES['img-attendant']['tmp_name']); 
             
-            $at = new Acudiente();
-            $at->identificacion = $idAttendant;
-            $at->nombre = $nameAttendant;
-            $at->telefono = $phone;
-            $at->correo = $mail;
-            $at->direccion = $address;
-            $at->contraseña = $passAttendant;
+            $attendant = new Usuario();
+            $attendant->identificacion = $idAttendant;
+            $attendant->nombre = $nameAttendant;
+            $attendant->telefono = $phone;
+            $attendant->correo = $mail;
+            $attendant->direccion = $address;
+            $attendant->contraseña = $passAttendant;
+            $attendant->tipo_usuario = "Acudiente";
+            $attendant->foto = $fotoAttendant;
 
             try {
-                $at->save(); 
+                UsuarioService::saveUser($attendant); 
                 
                 $id = @$_REQUEST['idAttended'];
                 $name = @$_REQUEST['nameAttended'];
@@ -44,39 +52,41 @@
                 $date = @$_REQUEST['date'];
                 $disability = @$_REQUEST['disability'];
                 $pass = @$_REQUEST['passAttended'];
+                $fotoAttended = file_get_contents(@$_FILES['img-attended']['tmp_name']); 
 
-                $a = new Acudido();
-                $a->identificacion = $id;
-                $a->nombre = $name;
-                $a->genero = $gender;
-                $a->fecha_nacimiento = $date;
-                $a->discapacidad = $disability;
-                $a->contraseña = $pass;
-                $a->identificacion_acudiente = $idAttendant;
+                $attended = new Acudido();
+                $attended->identificacion = $id;
+                $attended->nombre = $name;
+                $attended->genero = $gender;
+                $attended->fecha_nacimiento = $date;
+                $attended->discapacidad = $disability;
+                $attended->contraseña = $pass;
+                $attended->identificacion_usuario = $idAttendant;
+                $attended->foto = $fotoAttended;
 
                 try {
-                    $a->save();
+                    AcudidoService::saveAttended($attended);
 
                     $estado = "Pendiente";
                     $descripcion = "Su inscripción aún esta siendo revisada. Por favor, verifique en los próximos días.";
 
-                    $e = new Estado();
-                    $e->estado = $estado;
-                    $e->descripcion = $descripcion;
+                    $status = new Estado();
+                    $status->estado = $estado;
+                    $status->descripcion = $descripcion;
 
                     try {
-                        $e->save();
+                        EstadoService::saveStatus($status);
 
                         $fecha = date("Y/m/d");
-                        $id_status = $e->id;
+                        $id_status = $status->id;
                         
-                        $i = new Inscripcion();
-                        $i->fecha_inscripcion = $fecha;
-                        $i->estado_id = $id_status;
-                        $i->identificacion_acudido = $id;
+                        $inscription = new Inscripcion();
+                        $inscription->fecha_inscripcion = $fecha;
+                        $inscription->estado_id = $id_status;
+                        $inscription->identificacion_acudido = $id;
 
                         try {
-                            $i->save();
+                            InscripcionService::saveInscription($inscription);
                             $msj = "Inscripcion exitosa.";                          
 
                             header("Location: ../root/pages/inscription.php?msj=$msj");

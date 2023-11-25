@@ -6,6 +6,8 @@
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InscripcionController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/UsuarioController.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/ActividadController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/DonacionController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/controllers/InformeController.php';
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/UsuarioService.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/services/AcudidoService.php';
@@ -46,6 +48,7 @@
 
                     UsuarioController::listProffesorGroup($identification);
                     ActividadController::listActivities($identification);
+                    InformeController::listReport($identification);
 
                     header("Location: ../root/pages/validation_inscription.php");
                     exit;
@@ -71,6 +74,8 @@
 
                         UsuarioController::listProffesorGroupAttendant($identification);
                         ActividadController::listActivitiesAttendant($identification);
+                        DonacionController::countDonation($identification);
+                        InformeController::listReportAttendant($identification);
     
                         header("Location: ../root/pages/validation_inscription.php");
                         exit;
@@ -91,7 +96,10 @@
 
                             UsuarioController::listAttendant();
                             AcudidoController::listStudentStatus();
+                            UsuarioController::listUserProffesor();
                             ActividadController::listActivitiesProffesor($identification);
+                            DonacionController::countDonation($identification);
+                            InformeController::listReport($identification);
         
                             header("Location: ../root/pages/validation_inscription.php");
                             exit;
@@ -114,6 +122,7 @@
                                 InscripcionController::listInscription();
                                 UsuarioController::listUserProffesor();
                                 ActividadController::listAllActivities();
+                                DonacionController::countDonation($identification);
             
                                 header("Location: ../root/pages/validation_inscription.php");
                                 exit;

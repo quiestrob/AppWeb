@@ -77,7 +77,6 @@ inputAta.addEventListener('change', (e) => {
     imageAttendant.src = URL.createObjectURL(e.target.files[0]);
 });
 
-
 const buttonPlatform = document.querySelector('.container-nav nav .button-inscription');
 
 buttonPlatform.onmousemove = function(e) {

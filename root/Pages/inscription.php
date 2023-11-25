@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somos arcoiris - Inscripción</title>
     <link rel="stylesheet" href="../Assets/css/style_inscription.css">
+    <link rel="icon" href="../assets/media/arcoiris.png">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-thin-rounded/css/uicons-thin-rounded.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,7 +35,7 @@
                             <h3>Únete a nosotros y juntos hagamos una diferencia en las vidas que tocamos.</h3>
                         </div>
                         <div class="form">
-                            <form action="../../controllers/InscriptionController.php" method="POST">
+                            <form action="../../controllers/InscriptionController.php" method="POST" enctype="multipart/form-data">
                                 <div class="timeline">
                                     <div class="point">
                                         <div class="circle"></div>
@@ -124,13 +125,13 @@
                                             <span>Imagen de perfil</span>
                                             <div class="container-profile">
                                                 <div class="profile">
-                                                    <input type="file" name="img-attended" id="input-attended" accept="image/png, image/jpg">
+                                                    <input type="file" name="img-attended" id="input-attended" accept="image/jpg">
                                                     <input type="hidden" id="src-attended" name="src-attended" value="../Assets/media/profile.jpg">
                                                     <img src="../Assets/media/profile.jpg" alt="image-attended" id="image-attended">
                                                     <span id="profileAttended">Nombre</span>
                                                 </div>
                                                 <div class="profile">
-                                                    <input type="file" name="img-attendant" id="input-attendant" accept="image/png, image/jpg">
+                                                    <input type="file" name="img-attendant" id="input-attendant" accept="image/jpg">
                                                     <input type="hidden" id="src-attendant" name="src-attendant" value="../Assets/media/profile.jpg">
                                                     <img src="../Assets/media/profile.jpg" alt="image-attendant" id="image-attendant">
                                                     <span id="profileAttendant">Nombre</span>

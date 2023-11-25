@@ -197,12 +197,17 @@ body {
 
 .container-messages .profile-message:nth-child(3) {
     transform: translateZ(75px) translateY(-30px);
-    opacity: .6;
+    opacity: .7;
 }
 
 .container-messages .profile-message:nth-child(4) {
-    transform: translateZ(150px) translateY(-75px);
-    opacity: .6;
+    transform: translateZ(110px) translateY(-55px);
+    opacity: .8;
+}
+
+.container-messages .profile-message:nth-child(n + 5) {
+    transform: translateZ(150px) translateY(-80px);
+    opacity: .8;
 }
 
 .container-profile .profile .image-profile,
@@ -268,15 +273,10 @@ body {
 }
 
 .container-content .container-sections {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-
-.container-content .container-sections {
-    position: relative;
     width: 97%;
     height: 95%;
     border-radius: 20px;
@@ -297,10 +297,80 @@ body {
     user-select: none;
 }
 
+
+.container-content .container-sections .sorter-add {
+    display: flex;
+    align-items: center;
+    margin: 30px 0 30px 50px;
+}
+
+.container-content .container-sections .sorter-add .button-add i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #7E57C2;
+    cursor: pointer;
+}
+
+.container-content .container-sections .sorter-add .sorter-by span {
+    font-family: 'Poppins';
+    font-size: 14px;
+    margin: 0 0 0 20px;
+}
+
+.container-content .container-sections .sorter-add .sorter-by select {
+    margin: 0 0 0 5px;
+    border: none;
+    background: #D1C4E9;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    appearance: none;
+}
+
+.container-content .container-sections .sorter-add .sorter-by select:focus {
+    outline: none;
+}
+
+.container-content .container-sections .sorter-add .search {
+    margin: 0 50px;
+}
+
+.container-content .container-sections .sorter-add .search input {
+    border: none;
+    background: #D1C4E9;
+    border-radius: 20px;
+    font-family: 'Poppins';
+    font-size: 14px;
+    color: #fff;
+    padding: 3px 15px;
+}
+
+.container-content .container-sections .sorter-add .search input:focus {
+    outline: none;
+}
+
+.container-content .container-sections .sorter-add .search input::placeholder {
+    color: #fff;
+}
+
 .container-content .container-sections .section-content {
     display: flex;
     flex-wrap: wrap;  
+    overflow-y: scroll;
+    max-height: 90%;
     margin: 20px 0 0 20px;
+}
+
+.container-content .container-sections #section-donations .section-content {
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.container-content .container-sections .section-content::-webkit-scrollbar {
+    width: 0;
 }
 
 .container-content .container-sections .section-content .container-information {
@@ -400,7 +470,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 20px;
+    margin: 10px 20px;
 }
 
 .container-content .container-sections .section-content .card .imgBx {
@@ -578,7 +648,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 7px;
     padding: 2px 10px;
     margin: 0 3px;
     transition: .7s ease-in-out, background .3s, color .3s;
@@ -641,18 +711,103 @@ body {
     color: #fff;
 }
 
-.container-content .container-sections .section-content .add-activity {
-    width: 25px;
-    height: 25px;
-    margin: 20px 0 0 20px;
+.container-content .container-sections .section-content .container-data-donations {
+    display: inline-flex;
+    margin: 30px;
 }
 
-.container-content .container-sections .section-content .add-activity i {
+.container-content .container-sections .section-content .container-data-donations .total-donation,
+.container-content .container-sections .section-content .container-data-donations .mount-donation {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 80px;
+    background: #D1C4E9;
+    padding: 10px;
+    border-radius: 10px;
+    user-select: none;
+    margin: 0 30px 0 0;
+    box-shadow: 2px 2px 10px #7E57C2;
+}
+
+.container-content .container-sections .section-content .container-data-donations .total-donation span,
+.container-content .container-sections .section-content .container-data-donations .mount-donation span {
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: #fff;
+}
+
+.container-content .container-sections .section-content .container-data-donations .total-donation span:nth-child(1),
+.container-content .container-sections .section-content .container-data-donations .mount-donation span:nth-child(1) {
     color: #7E57C2;
-    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.container-content .container-sections .section-content .container-donation {
+    margin: 30px;
+}
+
+.container-content .container-sections .section-content .container-donation h2 {
+    color: #7E57C2;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.container-content .container-sections .section-content .container-donation input {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    height: 70px;
+    border: 2px solid #d9d9d9;
+    border-radius: 20px;
+    padding: 0 25px;
+    margin: 5px 0 0 0;
+    outline: none;
+}
+
+.container-content .container-sections .section-content .container-donation input:focus {
+    border: 2px solid #7E57C2;
+}
+
+#paypal-button-container {
+    width: 500px;
+    padding: 0 30px;
+}
+
+.container-content .container-sections .section-content .container-report {
+    display: flex;
+    margin: 0 30px;
+}
+
+.container-content .container-sections .section-content .container-report span {
+    font-family: 'Poppins';
+}
+
+.container-content .container-sections .section-content .container-report .card-report {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #D1C4E9;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 20px 0 0;
+    width: 400px;
+    max-height: 500px;
+}
+
+.container-content .container-sections .section-content .container-report .card-report span {
+    font-family: 'Poppins';
+    font-size: 16px;
+    color: #fff;
+}
+
+.container-content .container-sections .section-content .container-report .card-report span:last-child {
+    margin: 30px 0 0 0;
 }
 
 .container-messages {
@@ -693,7 +848,7 @@ body {
     z-index: -1;
     opacity: 0;
     user-select: none;
-    transition: opacity 1s, right 1s;
+    transition: opacity 1s, z-index 1s;
 }
 
 .container-chat__title {
@@ -807,7 +962,9 @@ body {
 }
 
 .container-edit-profile,
-.container-edit-activity {
+.container-edit-activity, 
+.container-add-activity,
+.container-add-report {
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -817,7 +974,9 @@ body {
 }
 
 .container-edit-profile .edit-profile,
-.container-edit-activity .edit-activity {
+.container-edit-activity .edit-activity,
+.container-add-activity .add-activity,
+.container-add-report .add-report {
     width: 500px;
     background: #fff;
     border-radius: 20px;
@@ -835,12 +994,25 @@ body {
 }
 
 .container-edit-profile .edit-profile::-webkit-scrollbar,
-.container-edit-activity .edit-activity::-webkit-scrollbar {
+.container-edit-activity .edit-activity::-webkit-scrollbar,
+.container-add-activity .add-activity::-webkit-scrollbar,
+.container-add-report .add-report::-webkit-scrollbar {
     width: 0;
 }
 
+.container-edit-profile .edit-profile .close-edit,
+.container-edit-activity .edit-activity .close-edit,
+.container-add-activity .add-activity .close-add,
+.container-add-report .add-report .close-add {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+
 .container-edit-profile .edit-profile .close-edit i,
-.container-edit-activity .edit-activity .close-edit i {
+.container-edit-activity .edit-activity .close-edit i,
+.container-add-activity .add-activity .close-add i,
+.container-add-report .add-report .close-add i {
     display: flex;
     justify-content: right;
     align-items: center;
@@ -851,12 +1023,16 @@ body {
 }
 
 .container-edit-profile .edit-profile .close-edit i:hover,
-.container-edit-activity .edit-activity .close-edit i:hover {
+.container-edit-activity .edit-activity .close-edit i:hover,
+.container-add-activity .add-activity .close-add i:hover,
+.container-add-report .add-report .close-add i:hover {
     background: #D1C4E9;
 }
 
 .container-edit-profile .edit-profile .input-data,
-.container-edit-activity .edit-activity .input-data {
+.container-edit-activity .edit-activity .input-data,
+.container-add-activity .add-activity .input-data,
+.container-add-report .add-report .input-data {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -864,7 +1040,9 @@ body {
 }
 
 .container-edit-profile .edit-profile span,
-.container-edit-activity .edit-activity span {
+.container-edit-activity .edit-activity span,
+.container-add-activity .add-activity span,
+.container-add-report .add-report span {
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 18px;
@@ -873,7 +1051,9 @@ body {
 }
 
 .container-edit-profile .edit-profile input,
-.container-edit-activity .edit-activity input {
+.container-edit-activity .edit-activity input,
+.container-add-activity .add-activity input,
+.container-add-report .add-report input {
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 18px;
@@ -886,7 +1066,9 @@ body {
 }
 
 .container-edit-profile .edit-profile input:focus,
-.container-edit-activity .edit-activity input:focus {
+.container-edit-activity .edit-activity input:focus,
+.container-add-activity .add-activity input:focus,
+.container-add-report .add-report input:focus {
     border: 2px solid #7E57C2;
 }
 
@@ -922,14 +1104,18 @@ body {
 }
 
 .container-edit-profile .edit-profile .input-data:last-child,
-.container-edit-activity .edit-activity .input-data:last-child {
+.container-edit-activity .edit-activity .input-data:last-child,
+.container-add-activity .add-activity .input-data:last-child,
+.container-add-report .add-report .input-data:last-child {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container-edit-profile .edit-profile input[type=submit],
-.container-edit-activity .edit-activity input[type=submit] {
+.container-edit-activity .edit-activity input[type=submit],
+.container-add-activity .add-activity input[type=submit],
+.container-add-report .add-report input[type=submit] {
     width: 170px;
     height: 60px;
     background: #7E57C2;
@@ -942,6 +1128,8 @@ body {
 }
 
 .container-edit-profile .edit-profile input[type=submit]:hover,
-.container-edit-activity .edit-activity input[type=submit]:hover {
+.container-edit-activity .edit-activity input[type=submit]:hover,
+.container-add-activity .add-activity input[type=submit]:hover,
+.container-add-report .add-report input[type=submit]:hover {
     letter-spacing: .1em;
 }

@@ -17,6 +17,14 @@
                 return null;
             }
         }
+
+        public static function editFounder($founder) {
+            try {
+                FundadorCrud::editFounder($founder);
+            } catch(Exception $error){
+                return null;
+            }
+        }
     }
 
 ?>

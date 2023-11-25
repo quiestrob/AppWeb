@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somos arcoiris - Plataforma</title>
     <link rel="stylesheet" href="../Assets/css/style_validation_inscription.css">
+    <link rel="icon" href="../assets/media/gorro.png">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-thin-rounded/css/uicons-thin-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>

@@ -31,6 +31,12 @@
     $profesorGrupoA = @$_SESSION['profesor_grupoA.all'];
     $profesorGrupoA = @unserialize($profesorGrupoA);
     
+    $donation = @$_SESSION['donacion.all'];
+    $donation = @unserialize($donation);
+
+    $report = @$_SESSION['report.all'];
+    $report = @unserialize($report);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,32 +45,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CogniSphere - <?= $user->nombre ?></title>
     <link rel="stylesheet" href="../assets/css/style_platform.css">
+    <link rel="icon" href="../assets/media/gorro.png">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=AZZ7lMNMmuGZxtNn5MbWD45Wy2xiO5tGTdTB6Z6UsyaAxT5oNobCZhNsXDj7dZpeC2XA12LcnazrxW5f&components=buttons"></script>
 </head>
 <body>
+    <div class="container-add-report">
+        <div class="add-report">
+            <div class="close-add">
+                <i class="fi fi-br-x"></i>
+            </div>
+            <div class="input-data">
+                <span>Descripcion</span>
+                <input type="text" id="description" name="description">
+            </div>
+            <div class="input-data">
+                <span>Identificacion estudiante</span>
+                <input type="number" id="idAttended" name="idAttended">
+            </div>
+            <div class="input-data">
+                <input type="hidden" id="idUser" name="idUser" value="<?= $user->identificacion ?>">
+            </div>
+            <div class="input-data">
+                <input type="submit" name="action" id="actionReport" value="Agregar">
+            </div>
+        </div>
+    </div>
+    <div class="container-add-activity">
+        <div class="add-activity">
+            <div class="close-add">
+                <i class="fi fi-br-x"></i>
+            </div>
+            <div class="input-data">
+                <span>Titulo</span>
+                <input type="text" id="title" name="title">
+            </div>
+            <div class="input-data">
+                <span>Descripcion</span>
+                <input type="text" id="description" name="description">
+            </div>
+            <div class="input-data">
+                <span>Archivo</span>
+                <input type="file" id="archive" name="archive">
+            </div>
+            <div class="input-data">
+                <span>Grupo</span>
+                <input type="number" id="group" name="group">
+            </div>
+            <div class="input-data">
+                <input type="submit" name="action" id="actionActivity" value="Agregar">
+            </div>
+        </div>
+    </div>
     <div class="container-edit-activity">
         <div class="edit-activity">
             <div class="close-edit">
                 <i class="fi fi-br-x"></i>
             </div>
             <div class="input-data">
+                <input type="hidden" id="id" name="id" value="">
+            </div>
+            <div class="input-data">
                 <span>Titulo</span>
-                <input type="number" id="title" name="title" value="" readonly>
+                <input type="text" id="title" name="title" value="" readonly>
             </div>
             <div class="input-data">
                 <span>Descripcion</span>
-                <input type="text" id="description" name="description" value="" readonly>
+                <input type="text" id="description" name="description" value="">
             </div>
             <div class="input-data">
                 <span>Archivo</span>
-                <input type="file" id="archive" name="archive" value="" readonly>
+                <input type="file" id="archive" name="archive" value="">
             </div>
             <div class="input-data">
-                <input type="submit" name="action" value="Editar">
+                <input type="submit" name="action" id="actionActivity" value="Editar">
             </div>
         </div>
     </div>
@@ -91,11 +149,11 @@
                         ?>
                                 <div class="container-radio">
                                     <div class="container-radio__radio">
-                                        <input type="radio" name="radio-gender" value="Masculino" checked required>
+                                        <input type="radio" name="radio-gender" id="radio-gender" value="Masculino" checked required>
                                         <span>Masculino</span>
                                     </div>
                                     <div class="container-radio__radio">
-                                        <input type="radio" name="radio-gender" value="Femenino" required>
+                                        <input type="radio" name="radio-gender" id="radio-gender" value="Femenino" required>
                                         <span>Femenino</span>
                                     </div>
                                 </div>
@@ -104,11 +162,11 @@
                         ?> 
                                 <div class="container-radio">
                                     <div class="container-radio__radio">
-                                        <input type="radio" name="radio-gender" value="Masculino" required>
+                                        <input type="radio" name="radio-gender" id="radio-gender" value="Masculino" required>
                                         <span>Masculino</span>
                                     </div>
                                     <div class="container-radio__radio">
-                                        <input type="radio" name="radio-gender" value="Femenino" checked required>
+                                        <input type="radio" name="radio-gender" id="radio-gender" value="Femenino" checked required>
                                         <span>Femenino</span>
                                     </div>
                                 </div>
@@ -121,14 +179,14 @@
                             $fecha = date('Y-m-d', strtotime($user->fecha_nacimiento));
                         ?>
                         <span>Fecha de nacimiento</span>
-                        <input type="date" id="date" name="date" value="<?= $fecha ?>" readonly>
+                        <input type="date" id="date" name="date" value="<?= $fecha ?>">
                     </div>
                         <div class="input-data">
                         <span>Discapacidad</span>
                         <input type="text" id="disability" name="disability" value="<?= $user->discapacidad ?>" readonly>
                     </div>
                     <div class="input-data">
-                        <input type="submit" name="action" value="Editar">
+                        <input type="submit" name="action" id="actionAttended" value="Editar">
                     </div>
                 </div>
         <?php
@@ -140,7 +198,7 @@
                     </div>
                     <div class="input-data">
                         <span>Identificación</span>
-                        <input type="number" id="identification" name="idAttended" value="<?= $user->identificacion ?>" readonly>
+                        <input type="number" id="identification" name="identification" value="<?= $user->identificacion ?>" readonly>
                     </div>
                     <div class="input-data">
                         <span>Nombre</span>
@@ -163,7 +221,7 @@
                         <input type="text" id="address" name="address" value="<?= $user->direccion ?>" readonly>
                     </div>
                     <div class="input-data">
-                        <input type="submit" name="action" value="Editar">
+                        <input type="submit" name="action" id="actionProffesor" value="Editar">
                     </div>
                 </div> 
         <?php
@@ -175,7 +233,7 @@
                     </div>
                     <div class="input-data">
                         <span>Identificación</span>
-                        <input type="number" id="identification" name="idAttended" value="<?= $user->identificacion ?>" readonly>
+                        <input type="number" id="identification" name="identification" value="<?= $user->identificacion ?>" readonly>
                     </div>
                     <div class="input-data">
                         <span>Nombre</span>
@@ -183,14 +241,14 @@
                     </div>
                     <div class="input-data">
                         <span>Correo</span>
-                        <input type="email" id="email" name="email" value="<?= $user->correo ?>" readonly>
+                        <input type="email" id="email" name="email" value="<?= $user->correo ?>" required>
                     </div>
                     <div class="input-data">
                         <span>Contraseña</span>
                         <input type="password" id="pass" name="pass" value="<?= $user->contraseña ?>" required>
                     </div>
                     <div class="input-data">
-                        <input type="submit" name="action" value="Editar">
+                        <input type="submit" name="action" id="actionAdmin" value="Editar">
                     </div>
                 </div> 
         <?php
@@ -457,30 +515,40 @@
                             <h2>Estudiantes</h2>
                         </div>
                         <div class="section-content">
-                            <?php 
-                                foreach ($estudiantes as $est) {
+                            <?php
+                                if ($estudiantes == null) {
                             ?>
-                            <div class="card">
-                                <div class="imgBx">
-                                    <?php 
-                                        $fotoEst = base64_encode($est->foto);
-                                    ?>
-                                    <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                    <span>No hay datos</span>
+                            <?php
+                                } else {
+                            ?>
+                                <?php 
+                                    foreach ($estudiantes as $est) {
+                                ?>
+                                <div class="card">
+                                    <div class="imgBx">
+                                        <?php 
+                                            $fotoEst = base64_encode($est->foto);
+                                        ?>
+                                        <img src="data:image/jpeg;base64,<?= $fotoEst ?>"> 
+                                    </div>
+                                    <div class="content">
+                                        <span class="identification">
+                                            <a><?= $est->identificacion ?></a>
+                                        </span>
+                                        <span class="group">
+                                            <a><?= $est->aula ?></a>
+                                        </span>
+                                        <ul>
+                                            <li><i class="fi fi-rr-user"></i> <?= $est->nombre ?></li>
+                                            <li><i class="fi fi-rr-venus-mars"></i> <?= $est->genero ?></li>
+                                            <li><i class="fi fi-rr-wheelchair"></i> <?= $est->discapacidad ?></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <span class="identification">
-                                        <a><?= $est->identificacion ?></a>
-                                    </span>
-                                    <span class="group">
-                                        <a><?= $est->aula ?></a>
-                                    </span>
-                                    <ul>
-                                        <li><i class="fi fi-rr-user"></i> <?= $est->nombre ?></li>
-                                        <li><i class="fi fi-rr-venus-mars"></i> <?= $est->genero ?></li>
-                                        <li><i class="fi fi-rr-wheelchair"></i> <?= $est->discapacidad ?></li>
-                                    </ul>
-                                </div>
-                            </div>
+                                <?php
+                                    }
+                                ?>
                             <?php
                                 }
                             ?>
@@ -490,102 +558,167 @@
                         <div class="section-title">
                             <h2>Actividades</h2>
                         </div>
+                        <div class="sorter-add">
+                            <?php
+                                if ($type == 'Profesor') {
+                            ?>
+                                    <div class="button-add">
+                                        <i class="fi fi-sr-apps-add"></i>
+                                    </div>
+                            <?php
+                                }
+                            ?> 
+                            <div class="sorter-by">
+                                <span>Sorter by:</span>
+                                <select name="select-order">
+                                    <option value="">Todo</option>
+                                    <option value="">Grupo</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="section-content">
                             <table>
-                                <tr>
-                                    <th>Titulo</th>
-                                    <th>Descripcion</th>
-                                    <th>Archivo</th>
-                                    <th>Fecha</th>
-                                    <?php
-                                        if ($type == 'Administrador') {
-                                            //
-                                        } else if ($type == 'Profesor') {
-                                    ?>
-                                            <th>Grupo</th>
-                                            <th>Accion</th>
-                                    <?php
-                                        } else {
-                                    ?>
-                                            <th>Grupo</th>
-                                    <?php
-                                        } 
-                                    ?>
-                                </tr>    
                                 <?php
-                                    if ($type == 'Administrador') {
-
-                                        foreach ($actividad as $a) {
-
-                                            $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                    if ($actividad == null) {
                                 ?>
-                                            <tr>
-                                                <td><?= $a->titulo ?></td>
-                                                <td><?= $a->descripcion ?></td>
-                                                <?php
-                                                    $base64=base64_encode($a->archivo);
-                                                    $ruta='data:application/pdf;base64,'.$base64;
-                                                ?>
-                                                <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
-                                                <td><?= $fecha ?></td>
-                                            </tr>
+                                        <tr>
+                                            <td>No hay actividades</td>
+                                        </tr>
                                 <?php
-                                        }
-                                    } else if ($type == 'Profesor') {
-                                        foreach ($actividad as $a) {
-
-                                            $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
-                                ?>
-                                            <tr>
-                                                <td><?= $a->titulo ?></td>
-                                                <td><?= $a->descripcion ?></td>
-                                                <?php
-                                                    $base64=base64_encode($a->archivo);
-                                                    $ruta='data:application/pdf;base64,'.$base64;
-                                                ?>
-                                                <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
-                                                <td><?= $fecha ?></td>
-                                                <td><?= $a->aula ?></td>
-                                                <td>
-                                                    <div class="button-edit" onclick="openEditActivity()">
-                                                        <i class="fi fi-sr-select"></i>
-                                                    </div>
-                                                    <div class="button-delete">
-                                                        <i class="fi fi-sr-trash"></i>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                <?php
-                                        }
                                     } else {
-                                        foreach ($actividad as $a) {
-
-                                            $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
                                 ?>
-                                            <tr>
-                                                <td><?= $a->titulo ?></td>
-                                                <td><?= $a->descripcion ?></td>
-                                                <?php
-                                                    $base64=base64_encode($a->archivo);
-                                                    $ruta='data:application/pdf;base64,'.$base64;
-                                                ?>
-                                                <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
-                                                <td><?= $fecha ?></td>
-                                                <td><?= $a->aula ?></td>
-                                            </tr>
-                                <?php
+                                        <tr>
+                                            <th>Titulo</th>
+                                            <th>Descripcion</th>
+                                            <th>Archivo</th>
+                                            <th>Fecha</th>
+                                            <?php
+                                                if ($type == 'Administrador') {
+                                                    //
+                                                } else if ($type == 'Profesor') {
+                                            ?>
+                                                    <th>Grupo</th>
+                                                    <th>Accion</th>
+                                            <?php
+                                                } else {
+                                            ?>
+                                                    <th>Grupo</th>
+                                            <?php
+                                                } 
+                                            ?>
+                                        </tr>    
+                                        <?php
+                                            if ($type == 'Administrador') {
+
+                                                foreach ($actividad as $a) {
+
+                                                    $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                        ?>
+                                                    <tr>
+                                                        <td><?= $a->titulo ?></td>
+                                                        <td><?= $a->descripcion ?></td>
+                                                        <?php
+                                                            $base64=base64_encode($a->archivo);
+                                                            $ruta='data:application/pdf;base64,'.$base64;
+                                                        ?>
+                                                        <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
+                                                        <td><?= $fecha ?></td>
+                                                    </tr>
+                                        <?php
+                                                }
+                                            } else if ($type == 'Profesor') {
+                                                foreach ($actividad as $a) {
+
+                                                    $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                        ?>
+                                                    <tr>
+                                                        <td><?= $a->titulo ?></td>
+                                                        <td><?= $a->descripcion ?></td>
+                                                        <?php
+                                                            $base64=base64_encode($a->archivo);
+                                                            $ruta='data:application/pdf;base64,'.$base64;
+                                                        ?>
+                                                        <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
+                                                        <td><?= $fecha ?></td>
+                                                        <td><?= $a->aula ?></td>
+                                                        <td>
+                                                            <div class="button-edit" onclick="openEditActivity(<?= $a->id ?>, '<?= $a->titulo ?>', '<?= $a->descripcion ?>')">
+                                                                <i class="fi fi-sr-select"></i>
+                                                            </div>
+                                                            <div class="button-delete">
+                                                                <i class="fi fi-sr-trash" onclick="openDeleteActivity(<?= $a->id ?>, <?= $user->identificacion ?>)"></i>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                        <?php
+                                                }
+                                            } else {
+                                                foreach ($actividad as $a) {
+
+                                                    $fecha = date('d/m/Y', strtotime($a->fecha_asignacion));
+                                        ?>
+                                                    <tr>
+                                                        <td><?= $a->titulo ?></td>
+                                                        <td><?= $a->descripcion ?></td>
+                                                        <?php
+                                                            $base64=base64_encode($a->archivo);
+                                                            $ruta='data:application/pdf;base64,'.$base64;
+                                                        ?>
+                                                        <td><a href="<?php echo"$ruta"?>"download="<?php echo "$a->titulo"?>.pdf"><?php echo "$a->titulo"?>.pdf</a></td>
+                                                        <td><?= $fecha ?></td>
+                                                        <td><?= $a->aula ?></td>
+                                                    </tr>
+                                        <?php
+                                                }
+                                            }
+                                        ?>
+                                    <?php
                                         }
-                                    }
-                                ?>            
+                                    ?>           
                             </table>
-                            <!--<div class="add-activity">
-                                <i class="fi fi-br-plus"></i>
-                            </div>-->
                         </div>
                     </section>
                     <section id="section-reports">
                         <div class="section-title">
                              <h2>Informes</h2>
+                        </div>
+                        <div class="sorter-add">
+                            <?php
+                                if ($type == 'Profesor') {
+                            ?>
+                                    <div class="button-add">
+                                        <i class="fi fi-sr-apps-add"></i>
+                                    </div>
+                            <?php
+                                }
+                            ?> 
+                        </div>
+                        <div class="section-content">
+                            <div class="container-report">
+                                <?php
+                                    if ($report == null) {
+                                ?>
+                                        <span>No hay informes</span>
+                                <?php
+                                    } else {       
+                                ?>
+                                        <?php
+                                            foreach ($report as $r) {
+                                                $fecha = date('d/m/Y', strtotime($r->fecha_informe));
+                                        ?>
+                                                <div class="card-report">
+                                                    <span><?= $fecha ?></span>
+                                                    <span><?= $r->nombre ?></span>
+                                                    <span><?= $r->descripcion ?></span>
+                                                    <span><?= $r->descripcion ?></span>
+                                                </div>
+                                        <?php
+                                            }
+                                        ?>
+                                <?php
+                                    }
+                                ?>
+                            </div>
                         </div>
                     </section>
                     <section id="section-proffesors">
@@ -640,7 +773,7 @@
                                         </div>
                             <?php
                                     }
-                                } else if ($type === "Administrador") {
+                                } else if ($type === "Administrador" || $type === "Profesor") {
                                     foreach ($profesor as $pro) {
                             ?>
                                         <div class="card">
@@ -670,6 +803,35 @@
                     <section id="section-donations">
                         <div class="section-title">
                             <h2>Donaciones</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="container-data-donations">
+                                <div class="total-donation">
+                                    <span>
+                                        <?php
+                                            foreach ($donation as $d) {
+                                                echo $d->conteo;
+                                            }
+                                        ?>
+                                    </span>
+                                    <span>donacion(es).</span>
+                                </div>
+                                <div class="mount-donation">
+                                    <span>
+                                        <?php
+                                            foreach ($donation as $d) {
+                                                echo "$" . $d->total . " USD";
+                                            }
+                                        ?>
+                                    </span>
+                                    <span>donado(s).</span>
+                                </div>
+                            </div>
+                            <div class="container-donation">
+                                <h2>Hacer donación</h2>
+                                <input type="number" placeholder="Valor (USD)">
+                            </div>
+                            <div id="paypal-button-container"></div>
                         </div>
                     </section>
                     <section id="section-inscriptions">
@@ -711,10 +873,10 @@
                                                 } else {
                                             ?>
                                                 <div class="button-accept" onclick="accept(<?= $i->estado_id ?>, <?= $user->identificacion ?>, <?= $i->id ?>)">
-                                                    <i class="fi fi-br-check"></i>
+                                                    <i class="fi fi-sr-checkbox"></i>
                                                 </div>
                                                 <div class="button-decline" onclick="decline(<?= $i->estado_id ?>, <?= $user->identificacion ?>, <?= $i->id ?>)">
-                                                    <i class="fi fi-br-x"></i>
+                                                    <i class="fi fi-sr-trash"></i>
                                                 </div>
                                             <?php
                                                 }
@@ -732,5 +894,19 @@
         </div>
     </div>
     <script src="../assets/js/script_platform.js"></script>
+    <script>
+        const showIdent = document.querySelector('.section-content .card .content .identification a');
+        const showGroup = document.querySelector('.section-content .card .content .group a');
+
+        showIdent.addEventListener('click', ()=> {
+            showGroup.style.opacity = 1;
+            showGroup.style.zIndex = 100;
+        });
+
+        showGroup.addEventListener('click', ()=> {
+            showGroup.style.opacity = 0;
+            showGroup.style.zIndex = 0;
+        });
+    </script>                                   
 </body>
 </html>

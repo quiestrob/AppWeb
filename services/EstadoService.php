@@ -106,6 +106,14 @@
                 return null;
             }
         }
+
+        public static function saveStatus($status) {
+            try {
+                EstadoCrud::saveStatus($status);
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
     }
 
 ?>

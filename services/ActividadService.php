@@ -70,7 +70,7 @@
                     'joins' => array(
                         'INNER JOIN Grupos ON Grupos.id = Actividades.id_Grupo'
                     ),
-                    'select' => 'Actividades.*, Grupos.*',
+                    'select' => 'Actividades.*, Grupos.Aula AS aula',
                     'conditions' => "Actividades.Identificacion_usuario='$identification'"
                 ));
  
@@ -80,6 +80,44 @@
                     return $activities;
                 }
  
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
+
+        public static function findActivity($id) {
+            try {
+                $activity = ActividadCrud::findActivity($id);
+
+                if ($activity == null) {
+                    return null;
+                } else {
+                    return $activity;
+                }
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
+
+        public static function saveActivity($activity) {
+            try {
+                ActividadCrud::saveActivity($activity);
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
+
+        public static function editActivity($activity) {
+            try {
+                ActividadCrud::editActivity($activity);
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
+
+        public static function deleteActivity($id) {
+            try {
+                ActividadCrud::deleteActivity($id);
             } catch(Exception $error){
                 return $error->getMessage();
             }

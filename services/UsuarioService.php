@@ -111,6 +111,22 @@
                 return null;
             }
         }
+
+        public static function editUser($user) {
+            try {
+                UsuarioCrud::editUser($user);
+            } catch (Exception $error) {
+                return $error->getMessage();
+            }
+        }
+
+        public static function saveUser($user) {
+            try {
+                UsuarioCrud::saveUser($user);
+            } catch (Exception $error) {
+                return $error->getMessage();
+            }
+        }
     }
 
 ?>

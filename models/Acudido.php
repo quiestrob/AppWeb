@@ -9,7 +9,6 @@
         public static $has_many = array (
             array('Informe')
         );
-        public static $primary_key = 'Identificacion';
     }
 
 ?>

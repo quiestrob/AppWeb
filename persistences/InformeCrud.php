@@ -4,7 +4,7 @@
     include_once 'IInformeCrud.php';
 
     class InformeCrud implements IInformeCrud {
-        public static function findReport($identification) {
+        public static function findReport($id) {
             try {
                 $report = Informe::find(array('id' => $id));
 

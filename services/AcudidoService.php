@@ -43,6 +43,22 @@
                 return null;
             }
         }
+
+        public static function editAttended($attended) {
+            try {
+                AcudidoCrud::editAttended($attended);
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
+
+        public static function saveAttended($attended) {
+            try {
+                AcudidoCrud::saveAttended($attended);
+            } catch(Exception $error){
+                return $error->getMessage();
+            }
+        }
     }
 
 ?>

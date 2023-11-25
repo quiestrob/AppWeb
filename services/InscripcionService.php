@@ -1,5 +1,6 @@
 <?php
 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/persistences/InscripcionCrud.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/proaulav2/models/Inscripcion.php';
 
     class InscripcionService {  
@@ -21,6 +22,14 @@
 
             } catch(Exception $error){
                 return null;
+            }
+        }
+
+        public static function saveInscription($inscription) {
+            try {
+                InscripcionCrud::saveInscription($inscription);
+            } catch(Exception $error){
+                return $error->getMessage();
             }
         }
     }

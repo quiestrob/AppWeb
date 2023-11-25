@@ -9,7 +9,7 @@
                 $activity = Actividad::find(array('id' => $id));
 
                 if ($activity == null) {
-                    throw new Exception('No existe el actividad.');
+                    throw new Exception('No existe la actividad.');
                 }
                 
                 return $activity;
