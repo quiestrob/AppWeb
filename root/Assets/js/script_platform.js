@@ -450,6 +450,11 @@ addButton.addEventListener('click', ()=> {
             const activity = document.querySelector('#section-activities .section-content');
             activity.innerHTML = xhr.responseText;
 
+            addTitle.value = null;
+            addDescription.value = null;
+            addArchive.value = null;
+            addGroup.value = null;
+
             addContainerActivity.style.zIndex = -1;
         }
     };

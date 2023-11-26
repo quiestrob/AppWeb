@@ -27,7 +27,7 @@
 
             try {
                 EstadoService::acceptStatus($idInscription, $idStatus, $identification);
-                EstadoController::updateTable();
+                EstadoController::updateTable($identification);
             } catch(Exception $error){
                echo $error->getMessage();
             }

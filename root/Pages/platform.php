@@ -710,7 +710,6 @@
                                                     <span><?= $fecha ?></span>
                                                     <span><?= $r->nombre ?></span>
                                                     <span><?= $r->descripcion ?></span>
-                                                    <span><?= $r->descripcion ?></span>
                                                 </div>
                                         <?php
                                             }

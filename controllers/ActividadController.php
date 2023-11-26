@@ -123,10 +123,10 @@
                                 <td>' . $fecha . '</td>
                                 <td>' . $a->aula . '</td>
                                 <td>
-                                    <div class="button-edit" onclick="openEditActivity('. $a->id .', '. $a->titulo .', '. $a->descripcion .')">
+                                    <div class="button-edit" onclick="openEditActivity(' . $a->id . ', \'' . $a->titulo . '\', \'' . $a->descripcion . '\')">
                                         <i class="fi fi-sr-select"></i>
                                     </div>
-                                    <div class="button-delete" onclick="openDeleteActivity('. $a->id .', '. $identification .')">
+                                    <div class="button-delete" onclick="openDeleteActivity(' . $a->id . ', ' . $identification . ')">
                                         <i class="fi fi-sr-trash"></i>
                                     </div>
                                 </td>
@@ -179,10 +179,10 @@
                                     <td>' . $fecha . '</td>
                                     <td>' . $a->aula . '</td>
                                     <td>
-                                        <div class="button-edit" onclick="openEditActivity('. $a->id .', '. $a->titulo .', '. $a->descripcion .')">
+                                        <div class="button-edit" onclick="openEditActivity(' . $a->id . ', \'' . $a->titulo . '\', \'' . $a->descripcion . '\')">
                                             <i class="fi fi-sr-select"></i>
                                         </div>
-                                        <div class="button-delete" onclick="openDeleteActivity('. $a->id .', '. $identification .')">
+                                        <div class="button-delete" onclick="openDeleteActivity(' . $a->id . ', ' . $identification . ')">
                                             <i class="fi fi-sr-trash"></i>
                                         </div>
                                     </td>
@@ -228,10 +228,10 @@
                                 <td>' . $fecha . '</td>
                                 <td>' . $a->aula . '</td>
                                 <td>
-                                    <div class="button-edit" onclick="openEditActivity('. $a->id .', '. $a->titulo .', '. $a->descripcion .')">
+                                    <div class="button-edit" onclick="openEditActivity(' . $a->id . ', \'' . $a->titulo . '\', \'' . $a->descripcion . '\')">
                                         <i class="fi fi-sr-select"></i>
                                     </div>
-                                    <div class="button-delete" onclick="openDeleteActivity('. $a->id .', '. $identification .')">
+                                    <div class="button-delete" onclick="openDeleteActivity(' . $a->id . ', ' . $identification . ')">
                                         <i class="fi fi-sr-trash"></i>
                                     </div>
                                 </td>

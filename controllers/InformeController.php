@@ -57,6 +57,22 @@
                 $report->identificacion_usuario = $idUser;
 
                 InformeService::saveReport($report);
+                $report = InformeService::listReportAttendant($idUser);
+
+                echo '
+                    ' . ($report == null ? '<span>No hay informes</span>' : '');
+
+                if ($report != null) {
+                    foreach ($report as $r) {
+                        $fecha = date('d/m/Y', strtotime($r->fecha_informe));
+                        echo '
+                            <div class="card-report">
+                                <span>' . $fecha . '</span>
+                                <span>' . $r->nombre . '</span>
+                                <span>' . $r->descripcion . '</span>
+                            </div>';
+                    }
+                }
 
             } catch(Exception $error){
                 echo "Error: " . $error->getMessage();

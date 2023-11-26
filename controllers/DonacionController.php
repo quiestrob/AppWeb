@@ -61,20 +61,20 @@
 
                 echo "
                     <div class='total-donation'>
-                        <span>Total donaciones</span>
                         <span>";
                             foreach ($donation as $d) {
                                 echo $d->conteo;
                             }
                 echo "</span>
+                    <span>donacion(es).</span>
                     </div>
                     <div class='mount-donation'>
-                        <span>Monto total donado</span>
                         <span>";
                             foreach ($donation as $d) {
-                                echo $d->total . " USD";
+                                echo "$" . $d->total . " USD";
                             }  
                 echo "  </span>
+                    <span>donado(s).</span>
                     </div> 
                 ";
             } catch (Exception $error) {
